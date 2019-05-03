@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-root',
@@ -10,14 +11,18 @@ export class AppComponent implements OnInit {
 
   title = 'theFrontEnd';
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private sanitizer: DomSanitizer) {
   }
+
+ images;
 
   ngOnInit() {
 
 
-    this.http.get('https://licentabackend.herokuapp.com/images', {responseType: 'blob'}  ).subscribe(res => {
+    this.http.get('http://localhost:4000/images').subscribe(res => {
+      this.images = res;
       console.log(res);
+
     });
 
   }

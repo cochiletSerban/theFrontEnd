@@ -18,5 +18,6 @@
   </li>
 </ul>
 
-  <img src="{{imgSrc}}" alt="">
+
+  <img [src]="image | safeImage" *ngFor="let image of images" style ="margin: 20px;">
 <router-outlet></router-outlet>

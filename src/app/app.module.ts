@@ -5,10 +5,12 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthInterceptor } from './interceptor';
+import { SafeImagePipe } from './safe-image.pipe';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SafeImagePipe
   ],
   imports: [
     BrowserModule,
