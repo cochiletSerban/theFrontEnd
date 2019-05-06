@@ -27,7 +27,7 @@ export class AppComponent implements OnInit {
          console.log('ImageUpload:uploaded:', item, status, response);
      };
 
-    this.http.get('http://localhost:4000/images').subscribe(res => {
+    this.http.get('http://localhost:4000/images?limit=5').subscribe(res => {
       this.images = res;
       console.log(res);
 

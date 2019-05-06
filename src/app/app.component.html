@@ -21,5 +21,5 @@
 <input type="file" ng2FileSelect [uploader]="uploader" multiple  /><br/>
 <button (click)="uploader.uploadAll()"></button>
 
-  <img [src]="image | safeImage" *ngFor="let image of images" style ="margin: 20px;">
+  <img [src]="image.picture | safeImage" *ngFor="let image of images" style ="margin: 20px;">
 <router-outlet></router-outlet>
