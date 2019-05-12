@@ -1,11 +1,11 @@
-import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AuthInterceptor } from './interceptor';
-import { SafeImagePipe } from './safe-image.pipe';
+import { AuthInterceptor } from './interceptors/AuthInterceptor';
+import { SafeImagePipe } from './pipes/safe-image.pipe';
 import { FileSelectDirective } from 'ng2-file-upload/';
 
 import { TestComponent } from './pages/test/test.component';
