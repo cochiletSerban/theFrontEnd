@@ -1,3 +1,104 @@
-<p>
-  signup works!
-</p>
+<!--
+  I touch your lips and all at once the sparks go flying
+  Those devil lips that know so well the art of lying
+-->
+
+<div class="row animated" #fromContainer >
+
+  <div class="col s12 m6 push-m3 l4 push-l4">
+    <div class="titleBarContainer">
+      <div class="titleBar" >
+        <img src="{{loginLogo}}" class='animated' #titleBar>
+      </div>
+    </div>
+
+    <div class="formContainer animated" >
+
+      <div class="fbl">
+        <button class="btn waves-light waves-effect"
+        (click)='fbLogin()' #loginFb
+        (mouseenter)="onHo('fb',true)" (mouseleave)="onHo('fb',false)" >
+          Login with Facebook
+        </button>
+        <img src="../../assets/img/ethBtn.png" alt="">
+      </div>
+
+      <div class="eth">
+        <button class="btn waves-light waves-effect"
+        (click)='ethLogin()' #loginEth
+        (mouseenter)="onHo('eth',true)" (mouseleave)="onHo('eth',false)" >
+          login with etherium
+        </button>
+      </div>
+
+      <div class="formBox" (mouseenter)="onHo('piky',true)" (mouseleave)="onHo('piky',false)" >
+
+        <h6>~ OR ~</h6>
+
+        <div class="row">
+          <div class="col s12">
+            <ul class="tabs" >
+              <li class="tab col s6 active"><a   (click)="cleanForms('register')">Login</a></li>
+              <li class="tab col s6"><a  (click)="cleanForms('login')">Register</a></li>
+            </ul>
+          </div>
+
+          <div id="tab1" class="col s12 animated" *ngIf="showLogin" [ngClass]='{slideInLeft:showLogin}' #tab1>
+            <form [formGroup]="loginForm" (ngSubmit)="login()">
+
+              <div class="input-field">
+                <input  type="email" class="{{myEmailValidator}}" formControlName="email">
+                <label for="email">Email</label>
+              </div>
+
+              <div class="input-field">
+                <input  type="password" class="{{myPasswordValidator}}" formControlName="password">
+                <label for="password">Password</label>
+              </div>
+
+              <button class="btn waves-light waves-effect" #loginPiky>login</button>
+
+              <div (click)="show=!show" class="errMsg valign-wrapper animated" *ngIf="show" [ngClass]='{slideInUp:errMsg.length > 0}'>
+                  <i class="small material-icons">cancel</i>
+                  <div class="errMsgText"> {{errMsg}} </div>
+                </div>
+
+            </form>
+          </div>
+
+          <div id="tab2" class="col s12 animated"  *ngIf="!showLogin" [ngClass]='{slideInRight:!showLogin}' #tab2>
+
+            <form [formGroup]="registerForm" (ngSubmit)="register()">
+
+              <div class="input-field">
+                <input  type="email" class="{{myEmailValidator}}" formControlName="email">
+                <label for="email">Email</label>
+              </div>
+
+              <div class="input-field">
+                <input  type="password" class="{{myPasswordValidator}}" formControlName="password">
+                <label for="password">Password</label>
+              </div>
+
+              <button class="btn waves-light waves-effect" #loginPiky>register</button>
+
+              <div (click)="show=!show" class="errMsg valign-wrapper animated" *ngIf="show" [ngClass]='{slideInUp:errMsg.length > 0}'>
+                  <i class="material-icons">cancel</i>
+                  <div class="errMsgText"> {{errMsg}} </div>
+                </div>
+
+            </form>
+
+          </div>
+
+        </div>
+
+
+
+
+
+      </div>
+    </div>
+  </div>
+
+</div>
