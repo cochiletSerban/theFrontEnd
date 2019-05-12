@@ -1,0 +1,125 @@
+@import '../../../sass/vars';
+/*
+                --1--
+*   Late at night it is,              *
+*   this code I write is a tease.     *
+*   Plese let the hardcode end,       *
+*   and let this desing blend.        *
+
+*   May my bugs be features           *
+*   and not these horible creatures,  *
+*   that will make my code break      *
+*   and still keep me awake.          *
+
+*/
+
+:host {
+  /*global component style*/
+  display: block;
+  /*needed to let divs get up to 100vh*/
+  overflow: auto;
+  overflow-x: hidden;
+  height: 100%;
+  background-color: rgba($dark-red, 0.2);
+  /* fall back colors*/
+}
+
+.centerContainer {
+  /* centers the darkernig filter over pic slider */
+  height: 100%;
+  /* valign only works with elem h 100%*/
+  position: relative;
+  z-index: 2;
+  padding: 0;
+  margin: 0;
+  background-color: $fall-back-color;
+}
+
+.slider {
+  filter: blur(2px);
+}
+
+.wrapper {
+  /*any child of wrapper will pe aligned h and w center */
+  height: 100vh;
+  /*makes the magic happen and makes the div full height */
+}
+
+.shadow {
+  /* adds some sparkle to the text*/
+  color:white;
+  text-shadow: 3px 0px 5px black;
+}
+
+.bgFix {
+  /* fixes image slider and makes pictures strech properly */
+  background: no-repeat center center;
+  background-size: cover;
+}
+
+i {
+  /* adds some padding to fa icons*/
+  margin: 20px;
+}
+
+.col {
+  /*fixes col postion type to center absolute divs inside of it*/
+  position: relative;
+}
+
+.btn {
+  /* fixes materilize css bug that cuts btn text */
+  height: 100%;
+  color: white;
+  padding: 10px;
+}
+
+.btn > h5 {
+  padding: 0px;
+  margin: 0px;
+}
+.bar {
+  position: fixed;
+  min-width: 100%;
+  min-height: 4px;
+  z-index: 3;
+  background-color:$light-red;
+}
+
+
+/*----------------------------MEDIA QUERIES----------------------------------*/
+
+/* used to keep the piky logo proportionted on all devices */
+
+/* and to trim logo leafs and dollars on small screens */
+
+@media only screen and (min-width: 980px) {
+  .logo {
+    max-width: 300px;
+  }
+
+}
+
+@media only screen and (max-width: 979px) {
+  .fa-tint {
+    display: none;
+  }
+  .logo {
+    max-width: 250px;
+  }
+  .btn {
+    text-transform: lowercase;
+  }
+}
+
+/*----------------------------- Animations/Trans Class--------------------------*/
+
+@keyframes spin {
+  /* simple spin animation*/
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(180deg);
+  }
+}

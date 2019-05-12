@@ -10,6 +10,7 @@ import { FileSelectDirective } from 'ng2-file-upload/';
 
 import { TestComponent } from './pages/test/test.component';
 import { SignupComponent } from './pages/signup/signup.component';
+import { LandingComponent } from './pages/landing/landing.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { SignupComponent } from './pages/signup/signup.component';
     SafeImagePipe,
     FileSelectDirective,
     SignupComponent,
-    TestComponent
+    TestComponent,
+    LandingComponent
   ],
   imports: [
     BrowserModule,
