@@ -1,15 +1,22 @@
-import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from '@angular/common/http';
+import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
+import { tap } from 'rxjs/operators';
 
+import * as M from 'materialize-css';
+import { AuthService } from '../services/auth-service.service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-    constructor() {}
+    constructor(private authService: AuthService) {}
 
-     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 // tslint:disable-next-line: max-line-length
-         const copiedReq = req.clone({headers: req.headers.append('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Y2NjMzVkYmJkZWYxMDJiMzgwOTY2ZDkiLCJ1c2VybmFtZSI6InNlZnUiLCJyb2xlIjoiYWRtaW4iLCJhY3RpdmUiOnRydWUsImlhdCI6MTU1Njg4NzAxNH0.Yl3D0y7oxr5RwTrQ6Cst0GpIQDrwWoiPuIRASHfzbfA')});
-         return next.handle(copiedReq);
-     }
+        const copiedReq = req.clone({headers: req.headers.append('Authorization', 'Bearer' + this.authService.getToken())});
+        return next.handle(copiedReq).pipe(tap((event: HttpEvent<any>) => {}, (err: any) => {
+            if (err instanceof HttpErrorResponse) {
+                M.toast({html: err.message});
+            }
+        }));
+    }
 }

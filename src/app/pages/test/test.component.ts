@@ -5,6 +5,7 @@ import { FileUploader } from 'ng2-file-upload';
 import * as M from 'materialize-css';
 import * as $ from 'jquery';
 import { HttpClient } from '@angular/common/http';
+import { AuthService } from 'src/app/services/auth-service.service';
 
 
 @Component({
@@ -17,14 +18,14 @@ export class TestComponent implements OnInit {
   title = 'theFrontEnd';
   public uploader: FileUploader = new FileUploader({
     url: 'https://licentabackend.herokuapp.com/images', itemAlias: 'image',
-    authToken:'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Y2NjMzVkYmJkZWYxMDJiMzgwOTY2ZDkiLCJ1c2VybmFtZSI6InNlZnUiLCJyb2xlIjoiYWRtaW4iLCJhY3RpdmUiOnRydWUsImlhdCI6MTU1Njg4NzAxNH0.Yl3D0y7oxr5RwTrQ6Cst0GpIQDrwWoiPuIRASHfzbfA'});
+    authToken: this.authService.getToken()});
 
   public hasBaseDropZoneOver = false;
   public hasAnotherDropZoneOver = false;
 
 
 
-  constructor(private http: HttpClient, private sanitizer: DomSanitizer) {
+  constructor(private http: HttpClient, private sanitizer: DomSanitizer, private authService: AuthService) {
   }
 
  images;
