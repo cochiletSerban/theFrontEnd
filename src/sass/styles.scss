@@ -6,3 +6,16 @@ $roboto-font-path: "~materialize-css/dist/fonts/roboto/";
 html,body {
     height: 100%;
 }
+
+%errToast {
+    @extend  .red, .darken-4;
+}
+
+%successToast {
+    background-color: $primary-color;
+}
+
+
+.interceptorErrToast {
+    @extend %errToast;
+}

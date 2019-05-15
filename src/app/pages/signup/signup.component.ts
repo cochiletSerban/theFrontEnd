@@ -20,8 +20,8 @@ export class SignupComponent implements OnInit, AfterViewInit {
   @ViewChild('loginFb') loginFb;
   @ViewChild('loginEth') loginEth;
   @ViewChild('fromContainer') formContainer;
-  @ViewChild('tab1') tab1;
-  @ViewChild('tab2') tab2;
+  @ViewChild('activeLogin') activeLogin;
+
   showLogin = true;
   myEmailValidator = '';
   myPasswordValidator = '';
@@ -31,17 +31,19 @@ export class SignupComponent implements OnInit, AfterViewInit {
   loginForm: FormGroup;
   registerForm: FormGroup;
   show = false;
+  tabs: any;
+  emailPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
   constructor(private render: Renderer2, private router: Router, private elRef: ElementRef, private authService: AuthService) { }
 
   ngOnInit() {
     this.loginForm = new FormGroup({
       password : new FormControl(null, Validators.required),
-      email : new FormControl(null, [Validators.email , Validators.required])
+      email : new FormControl(null, [Validators.pattern(this.emailPattern) , Validators.required])
     });
     this.registerForm =  new FormGroup({
       password : new FormControl(null, Validators.required),
-      email : new FormControl(null, [Validators.email, Validators.required])
+      email : new FormControl(null, [Validators.pattern(this.emailPattern), Validators.required])
     });
   }
 
@@ -63,7 +65,7 @@ export class SignupComponent implements OnInit, AfterViewInit {
     this.render.removeClass(button.nativeElement, 'disabled');
   }
 
-  throwErr(message, type?) {
+  setValidationErrors(type) {
     switch (type) {
       case 'email':
       this.myEmailValidator = 'invalid';
@@ -75,11 +77,14 @@ export class SignupComponent implements OnInit, AfterViewInit {
         this.myEmailValidator = 'invalid';
         this.myPasswordValidator = 'invalid';
     }
-    this.show = true;
-    this.errMsg = message;
-    this.render.removeClass(this.titleBar.nativeElement, 'bounce');
     this.shakeFrom();
     this.stopTitleBar(this.loginPiky);
+  }
+
+  throwErr(message, type?) {
+    this.setValidationErrors(type);
+    this.show = true;
+    this.errMsg = message;
   }
 
   removeErr() {
@@ -92,7 +97,7 @@ export class SignupComponent implements OnInit, AfterViewInit {
 
   login() {
     if (!this.loginForm.get('email').valid) {
-      this.throwErr('email', 'Invalid Email');
+      this.throwErr('Invalid Email', 'email');
     } else if (!this.loginForm.get('password').valid) {
       this.removeErr();
       this.throwErr('Invalid passowrd', 'password');
@@ -105,12 +110,10 @@ export class SignupComponent implements OnInit, AfterViewInit {
         password: this.loginForm.value.password
       };
       this.authService.login(this.user).subscribe(res => {
-        console.log('ggwp');
         this.stopTitleBar(this.loginPiky);
+        this.router.navigate(['/test']);
       }, err => {
-        console.log(err);
-        this.throwErr(err.message);
-        this.stopTitleBar(this.loginPiky);
+        this.setValidationErrors('both');
       });
     }
   }
@@ -125,18 +128,18 @@ export class SignupComponent implements OnInit, AfterViewInit {
     }
     if (this.registerForm.valid) {
       this.removeErr();
+      this.moveTitleBar(this.loginPiky);
       this.user = {
         username: this.registerForm.value.email.split('@')[0],
         email: this.registerForm.value.email,
         password: this.registerForm.value.password
       };
       this.authService.register(this.user).subscribe(res => {
-        console.log('ggwp');
         this.stopTitleBar(this.loginPiky);
+        this.cleanForms('register');
+        this.activeLogin.nativeElement.click();
       }, err => {
-        console.log(err);
-        this.throwErr(err.message);
-        this.stopTitleBar(this.loginPiky);
+        this.setValidationErrors('both');
       });
     }
   }
@@ -149,7 +152,6 @@ export class SignupComponent implements OnInit, AfterViewInit {
       this.show = false;
       this.errMsg = '';
       this.showLogin = false;
-
     } else {
       this.registerForm.reset();
       this.myEmailValidator = '';
@@ -192,7 +194,7 @@ export class SignupComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    M.Tabs.init(this.elRef.nativeElement.querySelector('.tabs'));
+    this.tabs = M.Tabs.init(this.elRef.nativeElement.querySelector('.tabs'));
   }
 
 }
