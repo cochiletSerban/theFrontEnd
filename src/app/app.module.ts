@@ -11,6 +11,7 @@ import { FileSelectDirective } from 'ng2-file-upload/';
 import { TestComponent } from './pages/test/test.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { LandingComponent } from './pages/landing/landing.component';
+import { FeedComponent } from './pages/feed/feed.component';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { LandingComponent } from './pages/landing/landing.component';
     SignupComponent,
     TestComponent,
     LandingComponent,
+    FeedComponent,
   ],
   imports: [
     BrowserModule,
