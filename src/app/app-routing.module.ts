@@ -13,7 +13,6 @@ const routes: Routes = [
   {path: '', component: LandingComponent},
   {path: 'feed', component: FeedComponent}
 ];
-
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
