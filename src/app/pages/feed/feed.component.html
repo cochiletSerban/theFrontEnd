@@ -1,3 +1,5 @@
-<p>
-  feed works!
-</p>
+<div class="container">
+  <div class="row">
+      <img [src]="image.picture | safeImage" *ngFor="let image of feedImages" width="250px">
+  </div>
+</div>
