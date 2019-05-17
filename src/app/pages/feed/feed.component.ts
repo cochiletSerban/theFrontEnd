@@ -9,11 +9,35 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FeedComponent implements OnInit {
   feedImages: Image[];
+  skip = 0;
+  loading = true;
 
   constructor(private imageService: ImageService) { }
 
   ngOnInit() {
-    this.imageService.getLandingPageBgs().subscribe(res => this.feedImages = res);
+    this.imageService.getPublicImages(this.skip).subscribe(images => {
+      this.feedImages = images;
+      this.loading = false;
+    });
+
+  }
+
+  nextPage() {
+    this.loading = true;
+    this.skip++;
+    this.imageService.getPublicImages(this.skip).subscribe(images => {
+      this.feedImages = images;
+      this.loading = false;
+    });
+  }
+
+  prevPage() {
+    this.loading = true;
+    this.skip--;
+    this.imageService.getPublicImages(this.skip).subscribe(images => {
+      this.feedImages = images;
+      this.loading = false;
+    });
   }
 
 

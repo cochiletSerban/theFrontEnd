@@ -1,4 +1,6 @@
 <div class="container">
+  <button  class="btn left" *ngIf="skip > 0" (click)="prevPage()">{{loading? 'Loading...' : 'Prev Page'}}</button>
+  <button  class="btn right" (click)="nextPage()">{{loading? 'Loading...' : 'Next Page'}}</button>
   <div class="row">
       <img [src]="image.picture | safeImage" *ngFor="let image of feedImages" width="250px">
   </div>
