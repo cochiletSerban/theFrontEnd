@@ -15,7 +15,7 @@ export class FeedComponent implements OnInit {
   constructor(private imageService: ImageService) { }
 
   ngOnInit() {
-    this.imageService.getPublicImages(this.skip).subscribe(images => {
+    this.imageService.getPublicImages(25).subscribe(images => {
       this.feedImages = images;
       this.loading = false;
     });
@@ -38,6 +38,10 @@ export class FeedComponent implements OnInit {
       this.feedImages = images;
       this.loading = false;
     });
+  }
+
+  onScroll() {
+    console.log('yas');
   }
 
 
