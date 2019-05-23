@@ -15,4 +15,8 @@ export class ImageService {
     return this.http.get<Image[]>(this.apiUrl, { params: {limit: '25'} });
   }
 
+  getPublicImages(skip) {
+    return this.http.get<Image[]>(this.apiUrl, { params: {limit: '12', skip} });
+  }
+
 }

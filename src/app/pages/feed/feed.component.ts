@@ -1,3 +1,5 @@
+import { Image } from './../../models/image';
+import { ImageService } from './../../services/image-service.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,10 +8,41 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./feed.component.scss']
 })
 export class FeedComponent implements OnInit {
+  feedImages: Image[];
+  skip = 0;
+  loading = true;
 
-  constructor() { }
+  constructor(private imageService: ImageService) { }
 
   ngOnInit() {
+    this.imageService.getPublicImages(25).subscribe(images => {
+      this.feedImages = images;
+      this.loading = false;
+    });
+
   }
+
+  nextPage() {
+    this.loading = true;
+    this.skip++;
+    this.imageService.getPublicImages(this.skip).subscribe(images => {
+      this.feedImages = images;
+      this.loading = false;
+    });
+  }
+
+  prevPage() {
+    this.loading = true;
+    this.skip--;
+    this.imageService.getPublicImages(this.skip).subscribe(images => {
+      this.feedImages = images;
+      this.loading = false;
+    });
+  }
+
+  onScroll() {
+    console.log('yas');
+  }
+
 
 }
