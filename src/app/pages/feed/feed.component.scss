@@ -1,7 +1,8 @@
 
 .mcontainer {
-  height: 100%!important;
-  //overflow-y: scroll;
+  height : 100%;
+  overflow-y: auto;
+  // background-color: #474A51;
 }
 
 // ::-webkit-scrollbar {
@@ -17,4 +18,6 @@
   background-color: gray;
   bottom: 0px;
 }
+
+
 

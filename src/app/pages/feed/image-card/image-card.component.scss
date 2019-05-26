@@ -1,0 +1,40 @@
+@import '../../../../sass/vars';
+
+.card  {
+    cursor: pointer;
+}
+
+i {
+    margin-right: 5px;
+    top: -2px;
+    position: relative;
+    // color:gray;
+}
+
+.likes:hover {
+   color: $primary-color;
+}
+
+.dislikes:hover {
+    color: red;
+}
+
+.comms:hover {
+   color: black;
+}
+
+
+.myTitle {
+    padding: 5px;
+}
+
+.card-buttons {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    color:gray;
+}
+
+
+.card-content {
+    padding: 0;
+}

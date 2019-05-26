@@ -1,12 +1,47 @@
 <div class="card">
+
   <div class="card-image">
-    <img [src]="image.picture | safeImage" (load)="initGrid(ind)">
-    <span class="card-title">{{image.fileName}}</span>
+    <img [src]="image.picture | safeImage" (load)="initGrid()">
   </div>
-  <div class="card-content">
-    <p>uploaded by: <b>{{image.owner.username}}</b></p>
+
+  <div class="card-content center-align">
+
+    <div class="myTitle">
+        {{image.fileName}}
+    </div>
+
+    <div class="card-buttons row">
+
+      <!-- likes -->
+      <div class="col s4 ">
+        <div class="likes">
+            <i class="fa fa-thumbs-up fa-lg"></i> 10
+        </div>
+      </div>
+
+
+      <!-- dislikes -->
+      <div class="col s4 ">
+        <div class="dislikes">
+            <i class="fa fa-thumbs-down fa-lg"></i> 0
+        </div>
+      </div>
+
+
+      <!-- comms -->
+      <div class="col s4 ">
+        <div class="comms">
+            <i class="fa fa-commenting fa-lg"></i> 100
+        </div>
+      </div>
+
+
+    </div>
   </div>
-  <div class="card-action">
+
+  <!-- <div class="card-action">
+    TODO add a date pipe to show age in 1h 2h 3 days 1month kind of format
     <p>on {{image.updatedAt.split('T')[0]}}</p>
-  </div>
+  </div> -->
 </div>
+

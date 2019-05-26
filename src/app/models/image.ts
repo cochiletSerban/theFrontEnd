@@ -6,4 +6,6 @@ export interface Image {
     picture: string;
     updatedAt?: Date;
     _id?: string;
+    title?: string;
+    description?: string;
 }
