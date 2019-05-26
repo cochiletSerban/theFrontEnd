@@ -4,6 +4,21 @@
     cursor: pointer;
 }
 
+.card-content {
+    opacity: 0.8;
+}
+
+.card:hover {
+    img {
+        opacity: 0.7;
+    }
+    .card-content {
+        opacity: 1;
+    }
+
+}
+
+
 i {
     margin-right: 5px;
     top: -2px;
