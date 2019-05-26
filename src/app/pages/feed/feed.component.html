@@ -1,11 +1,21 @@
-<div style="height : 100%; overflow-y: auto;" infiniteScroll [infiniteScrollDistance]="2"
+<!-- infinite scroll container -->
+<div style="height : 100%; overflow-y: auto;" infiniteScroll [infiniteScrollDistance]="0"
 [infiniteScrollThrottle]="300" (scrolled)="onScroll()" [scrollWindow]="false">
 
-  <button  class="btn left" *ngIf="skip > 0" (click)="prevPage()">{{loading? 'Loading...' : 'Prev Page'}}</button>
-  <button  class="btn right" (click)="nextPage()">{{loading? 'Loading...' : 'Next Page'}}</button>
+<!-- card grid -->
+<div class="row grid">
+  <div class="col s12 m4  xl2 grid-item" *ngFor="let image of feedImages; let ind = index">
+    <app-image-card  [image]="image" (loaded)="initGrid(ind)"></app-image-card>
+  </div>
+</div>
 
-  <div class="row"  >
-      <img [src]="image.picture | safeImage" *ngFor="let image of feedImages" width="250px">
+
+<!-- loader -->
+
+  <div class="row">
+    <div class="loading" *ngIf="loading">
+      Loading your content...
+    </div>
   </div>
 
 </div>

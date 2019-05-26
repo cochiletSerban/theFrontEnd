@@ -1,8 +1,3 @@
-img {
-  margin:20px;
-  border:2px solid black;
-
-}
 
 .mcontainer {
   height: 100%!important;
@@ -13,3 +8,13 @@ img {
 //   width: 0px;  /* remove scrollbar space */
 //   background: transparent;  /* optional: just make scrollbar invisible */
 // }
+
+.loading {
+  border:2px solid red;
+  width: 100%;
+  height: 50px;
+  text-align: center;
+  background-color: gray;
+  bottom: 0px;
+}
+

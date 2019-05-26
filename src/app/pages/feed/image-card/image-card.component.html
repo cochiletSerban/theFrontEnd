@@ -1,0 +1,12 @@
+<div class="card">
+  <div class="card-image">
+    <img [src]="image.picture | safeImage" (load)="initGrid(ind)">
+    <span class="card-title">{{image.fileName}}</span>
+  </div>
+  <div class="card-content">
+    <p>uploaded by: <b>{{image.owner.username}}</b></p>
+  </div>
+  <div class="card-action">
+    <p>on {{image.updatedAt.split('T')[0]}}</p>
+  </div>
+</div>

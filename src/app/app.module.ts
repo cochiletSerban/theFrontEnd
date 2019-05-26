@@ -12,6 +12,7 @@ import { TestComponent } from './pages/test/test.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { LandingComponent } from './pages/landing/landing.component';
 import { FeedComponent } from './pages/feed/feed.component';
+import { ImageCardComponent } from './pages/feed/image-card/image-card.component';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { FeedComponent } from './pages/feed/feed.component';
     TestComponent,
     LandingComponent,
     FeedComponent,
+    ImageCardComponent,
   ],
   imports: [
     BrowserModule,
