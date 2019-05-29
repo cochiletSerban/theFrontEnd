@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { User } from '../models/user';
 import { map } from 'rxjs/operators';
-
+import * as jwt_decode from "jwt-decode";
 @Injectable({
   providedIn: 'root'
 })
@@ -27,4 +27,18 @@ export class AuthService {
   setToken(token) {
     localStorage.setItem('token', token);
   }
+
+  isUserLoggedIn() {
+    if (this.getToken()) {
+      return true;
+    }
+    return false;
+  }
+
+  getUserId() {
+    if (this.isUserLoggedIn()) {
+      return jwt_decode(localStorage.getItem('token'))._id;
+    }
+  }
+
 }

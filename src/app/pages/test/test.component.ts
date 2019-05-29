@@ -17,7 +17,7 @@ import { AuthService } from 'src/app/services/auth-service.service';
 export class TestComponent implements OnInit {
   title = 'theFrontEnd';
   public uploader: FileUploader = new FileUploader({
-    url: 'https://licentabackend.herokuapp.com/images', itemAlias: 'image',
+    url: 'http://localhost:4000/images', itemAlias: 'image',
     authToken: this.authService.getToken()});
 
   public hasBaseDropZoneOver = false;

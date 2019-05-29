@@ -20,4 +20,16 @@ export class ImageService {
     return this.http.get<Image[]>(this.apiUrl, { params: {limit, skip} });
   }
 
+  likeImage(image: Image) {
+    return this.http.post(this.apiUrl + '/like', {imageId: image._id});
+  }
+
+  dislikeImage(image: Image) {
+    return this.http.post(this.apiUrl + '/dislike', {imageId: image._id});
+  }
+
+  resetImageRating(image: Image) {
+    return this.http.post(this.apiUrl + '/resetImageRating', {imageId: image._id});
+  }
+
 }

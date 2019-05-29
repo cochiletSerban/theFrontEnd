@@ -1,5 +1,5 @@
 import { User } from './user';
-
+import { Rating } from './rating';
 export interface Image {
     fileName?: string;
     owner?: User;
@@ -8,4 +8,5 @@ export interface Image {
     _id?: string;
     title?: string;
     description?: string;
+    rating?: Rating;
 }

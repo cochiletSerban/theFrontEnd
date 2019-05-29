@@ -14,16 +14,16 @@
 
       <!-- likes -->
       <div class="col s4 ">
-        <div class="likes">
-            <i class="fa fa-thumbs-up fa-lg"></i> 10
+        <div class="likes" (click)="likeImage()"  [ngClass]="{'isLiked': isLiked}">
+            <i class="fa fa-thumbs-up fa-lg"></i> {{image.rating.likes.length}}
         </div>
       </div>
 
 
       <!-- dislikes -->
       <div class="col s4 ">
-        <div class="dislikes">
-            <i class="fa fa-thumbs-down fa-lg"></i> 0
+        <div class="dislikes" (click)="dislikeImage()" [ngClass]="{'isLiked': isDisliked}">
+            <i class="fa fa-thumbs-down fa-lg"></i> {{image.rating.dislikes.length}}
         </div>
       </div>
 
