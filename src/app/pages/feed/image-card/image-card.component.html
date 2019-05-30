@@ -4,7 +4,7 @@
     <img [src]="image.picture | safeImage" (load)="initGrid()">
   </div>
 
-  <div class="card-content center-align">
+  <div class="card-content center-align"  [ngClass]="{'isLikedCard': isLiked, 'isDislikedCard' : isDisliked }">
 
     <div class="myTitle">
         {{image.fileName}}
@@ -22,7 +22,7 @@
 
       <!-- dislikes -->
       <div class="col s4 ">
-        <div class="dislikes" (click)="dislikeImage()" [ngClass]="{'isLiked': isDisliked}">
+        <div class="dislikes" (click)="dislikeImage()" [ngClass]="{'isDisliked': isDisliked}">
             <i class="fa fa-thumbs-down fa-lg"></i> {{image.rating.dislikes.length}}
         </div>
       </div>

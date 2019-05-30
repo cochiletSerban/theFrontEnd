@@ -20,7 +20,7 @@
   overflow: auto;
   overflow-x: hidden;
   height: 100%;
-  background-color: rgba($dark-red, 0.2);
+  background-color: rgba($primary-color, 0.2);
   /* fall back colors*/
 }
 
@@ -83,7 +83,7 @@ i {
   min-width: 100%;
   min-height: 4px;
   z-index: 3;
-  background-color:$light-red;
+  background-color:$primary-color;
 }
 
 

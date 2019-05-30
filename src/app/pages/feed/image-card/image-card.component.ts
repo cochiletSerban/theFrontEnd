@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Image } from 'src/app/models/image';
 import { ImageService } from 'src/app/services/image-service.service';
 import { AuthService } from 'src/app/services/auth-service.service';
-
+declare var $: any;
 
 @Component({
   selector: 'app-image-card',

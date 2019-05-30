@@ -1,21 +1,57 @@
 @import '../../../../sass/vars';
 
-.card  {
-    cursor: pointer;
+.myTitle {
+    padding: 5px;
+    
 }
 
 .card-content {
-    opacity: 0.8;
+    // opacity: 0.8;
+    padding: 0;
+
+
+
+    background:#388e3c;
+
 }
 
-.card:hover {
-    img {
-        opacity: 0.7;
-    }
-    .card-content {
-        opacity: 1;
-    }
 
+.card  {
+    cursor: pointer;
+     background:#388e3c;
+    //background-color: $imgur-card-bg;
+    color: white;
+    // border-top: 5px solid #388e3c;
+    // border-left: 2px solid #388e3c;
+    // border-right: 2px solid #388e3c;
+}
+
+.card-image {
+    
+}
+// .card:hover {
+//     img {
+//         opacity: 0.7;
+//     }
+//     .card-content {
+//         opacity: 1;
+//     }
+
+// }
+
+.card:hover {
+    // background-color: #81c784;
+   .card-content {
+    // border-bottom: 5px solid #81c784;
+ 
+   }
+}
+
+.card-buttons {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    // color:$imgur-button-bg;
+    color:white;
 }
 
 
@@ -23,37 +59,34 @@ i {
     margin-right: 5px;
     top: -2px;
     position: relative;
-    // color:gray;
-}
-
-.likes:hover {
-   color: $primary-color;
 }
 
 .isLiked {
     color: $primary-color;
  }
 
-.dislikes:hover {
-    color: red;
+ .isDisliked {
+    color:#f2596d;
+ }
+
+ .isLikedCard  {
+     border-bottom:5px solid $primary-color;
+ }
+
+ .isDislikedCard  {
+    border-bottom: 5px solid #f2596d;;
 }
+
+.likes:hover {
+   color: $primary-color;
+}
+
+.dislikes:hover {
+    color:#f2596d;
+}
+
 
 .comms:hover {
-   color: black;
+   color: white;
 }
 
-
-.myTitle {
-    padding: 5px;
-}
-
-.card-buttons {
-    padding-top: 5px;
-    padding-bottom: 5px;
-    color:gray;
-}
-
-
-.card-content {
-    padding: 0;
-}
