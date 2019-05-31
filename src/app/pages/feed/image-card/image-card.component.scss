@@ -2,7 +2,7 @@
 
 .myTitle {
     padding: 5px;
-    
+
 }
 
 .card-content {
@@ -15,6 +15,9 @@
 
 }
 
+img {
+  width:100px;
+}
 
 .card  {
     cursor: pointer;
@@ -27,7 +30,7 @@
 }
 
 .card-image {
-    
+
 }
 // .card:hover {
 //     img {
@@ -43,7 +46,7 @@
     // background-color: #81c784;
    .card-content {
     // border-bottom: 5px solid #81c784;
- 
+
    }
 }
 
@@ -89,4 +92,60 @@ i {
 .comms:hover {
    color: white;
 }
+
+
+
+
+
+// /* creates base for image card will contain likes */
+// .base {
+//   background-color:#388e3c;
+//   width:200px;
+//   height:150px;
+//   border-bottom-left-radius:50%;
+//   border-bottom-right-radius:50%;
+
+// }
+
+
+// /* cuts part of the base to create the peaks */
+//  .base:after {
+//   content:'';
+//   width:200px;
+//   height:90px;
+//   display:block;
+//   position:absolute;
+//   border-bottom-left-radius:50%;
+//   border-bottom-right-radius:50%;
+//   background-color:white;
+
+// }
+
+// /* containter for the image base and imageContainer */
+// .leafCard {
+//   width:200px;
+//   margin: 0 auto;
+//   margin-top:200px;
+//   position:relative;
+// }
+
+// /* sets image size and shape */
+// .leafCard > img {
+//   width:150px;
+//   display:block;
+//   margin:0 auto;
+//   position: relative;
+//   top:90px;
+//   z-index:1;
+//   border-bottom-left-radius:20%;
+//   border-bottom-right-radius:20%;
+//   border-top-left-radius:30%;
+//   border-top-right-radius:30%;
+//   /* used to create a small base for the image */
+//   border-bottom:25px solid #388e3c;
+// }
+
+
+
+
 
