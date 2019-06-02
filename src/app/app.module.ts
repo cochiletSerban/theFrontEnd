@@ -13,6 +13,7 @@ import { SignupComponent } from './pages/signup/signup.component';
 import { LandingComponent } from './pages/landing/landing.component';
 import { FeedComponent } from './pages/feed/feed.component';
 import { ImageCardComponent } from './pages/feed/image-card/image-card.component';
+import { NgxMasonryModule } from 'ngx-masonry';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { ImageCardComponent } from './pages/feed/image-card/image-card.component
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    InfiniteScrollModule
+    InfiniteScrollModule,
+    NgxMasonryModule
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
   bootstrap: [AppComponent]

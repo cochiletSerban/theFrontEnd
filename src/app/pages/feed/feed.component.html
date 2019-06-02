@@ -3,18 +3,24 @@
 [infiniteScrollThrottle]="300" (scrolled)="onScroll()" [scrollWindow]="false">
 
 <!-- card grid -->
-<div class="row grid">
-  <div class="col s12 m4  xl2 grid-item" *ngFor="let image of feedImages; let ind = index">
-    <app-image-card  [image]="image" (loaded)="initGrid(ind)"></app-image-card>
-  </div>
+<div class="row ">
+
+  <ngx-masonry [useImagesLoaded]="true" [options]="options">
+      <div ngxMasonryItem class="masonry-item col s12 m4  xl2" *ngFor="let image of feedImages; let ind = index">
+          <app-image-card [image]="image"></app-image-card>
+      </div>
+  </ngx-masonry>
+
 </div>
+
 
 
 <!-- loader -->
 
   <div class="row">
-    <div class="loading" *ngIf="loading">
-      Loading your content...
+    <div class="loading" [hidden]="!loading">
+      <img src="https://media.giphy.com/media/8ShTENZfKnfQA/giphy.gif" alt="">
+      <!-- https://www.mechsauce.com/wp-content/uploads/2018/09/Fall-Leaves-Falling-GiF.gif -->
     </div>
   </div>
 

@@ -12,6 +12,7 @@
   cursor: pointer;
   background:#200505;
   color: gray;
+  transition: all .1s ease-in-out;
 }
 
 .card:hover {
@@ -20,6 +21,7 @@
     color:white;
   }
   opacity: 0.8;
+  transform: scale(1.05);
 }
 
 .card-buttons {
