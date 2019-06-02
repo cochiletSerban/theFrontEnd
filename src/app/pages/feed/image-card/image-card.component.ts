@@ -30,6 +30,8 @@ export class ImageCardComponent implements OnInit {
      }
   }
 
+
+
   initGrid() {
     this.loaded.emit(true);
   }
