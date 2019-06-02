@@ -1,91 +1,35 @@
-<div class="card">
-
-  <div class="card-image">
-    <img [src]="image.picture | safeImage" (load)="initGrid()">
+<div class="leafContainer">
+  <img [src]="image.picture | safeImage" (load)="initGrid()">
+  <div class="bottom">
+    <p>{{image.fileName}}</p>
   </div>
-
-  <div class="card-content center-align"  [ngClass]="{'isLikedCard': isLiked, 'isDislikedCard' : isDisliked }">
-
-    <div class="myTitle">
-        {{image.fileName}}
-    </div>
-
-    <div class="card-buttons row">
-
+  <div class="buttons ">
+    <div class="row center-align">
       <!-- likes -->
-      <div class="col s4 ">
-        <div class="likes" (click)="likeImage()"  [ngClass]="{'isLiked': isLiked}">
-            <i class="fa fa-thumbs-up fa-lg"></i> {{image.rating.likes.length}}
-        </div>
-      </div>
-
-
-      <!-- dislikes -->
-      <div class="col s4 ">
-        <div class="dislikes" (click)="dislikeImage()" [ngClass]="{'isDisliked': isDisliked}">
-            <i class="fa fa-thumbs-down fa-lg"></i> {{image.rating.dislikes.length}}
+      <div class="col s4  ">
+        <div class="likes" (click)="likeImage()" [ngClass]="{'isLiked': isLiked}">
+          <i class="fa fa-thumbs-up fa-lg"></i> {{image.rating.likes.length}}
         </div>
       </div>
 
 
       <!-- comms -->
-      <div class="col s4 ">
+      <div class="col s4  ">
         <div class="comms">
-            <i class="fa fa-commenting fa-lg"></i> 100
+          <i class="fa fa-commenting fa-lg"></i> 10
+        </div>
+      </div>
+
+      <!-- dislikes -->
+      <div class="col s4  ">
+        <div class="dislikes" (click)="dislikeImage()" [ngClass]="{'isDisliked': isDisliked}">
+          <i class="fa fa-thumbs-down fa-lg"></i> {{image.rating.dislikes.length}}
         </div>
       </div>
 
 
     </div>
   </div>
-
-  <!-- <div class="card-action">
-    TODO add a date pipe to show age in 1h 2h 3 days 1month kind of format
-    <p>on {{image.updatedAt.split('T')[0]}}</p>
-  </div> -->
-</div>
+  </div>
 
 
-
-
-
-<div class="row">
-
-
-  <!-- <div class="col s12 offset-m4 m4 xl2 ">
-    <img id="sefu" src="https://i.pinimg.com/originals/d2/fa/0e/d2fa0ee023d63a728fac54dfc383431c.jpg">
-    <div class="bottom">
-      <p>o imagine blanoua</p>
-    </div>
-    <div class="buttons ">
-      <div class="row center-align">
-        <!-- likes -->
-        <div class="col s4  ">
-          <div class="likes" (click)="likeImage()" [ngClass]="{'isLiked': isLiked}">
-            <i class="fa fa-thumbs-up fa-lg"></i> 10
-          </div>
-        </div>
-
-
-        <!-- comms -->
-        <div class="col s4  ">
-          <div class="comms">
-            <i class="fa fa-commenting fa-lg"></i> 100
-          </div>
-        </div>
-
-        <!-- dislikes -->
-        <div class="col s4  ">
-          <div class="dislikes" (click)="dislikeImage()" [ngClass]="{'isDisliked': isDisliked}">
-            <i class="fa fa-thumbs-down fa-lg"></i> 10
-          </div>
-        </div>
-
-
-      </div>
-    </div>
-
-  </div> -->
-
- 
-</div>

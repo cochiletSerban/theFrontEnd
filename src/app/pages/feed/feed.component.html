@@ -3,8 +3,8 @@
 [infiniteScrollThrottle]="300" (scrolled)="onScroll()" [scrollWindow]="false">
 
 <!-- card grid -->
-<div class="row ">
-  <div class="col s12 m4  xl2 " *ngFor="let image of feedImages; let ind = index">
+<div class="row grid">
+  <div class="col s12 m4  xl2  grid-item" *ngFor="let image of feedImages; let ind = index">
     <app-image-card  [image]="image" (loaded)="initGrid(ind)"></app-image-card>
   </div>
 </div>
