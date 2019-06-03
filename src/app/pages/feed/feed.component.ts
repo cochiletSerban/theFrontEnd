@@ -43,5 +43,8 @@ export class FeedComponent implements OnInit {
     });
   }
 
+  goToTop() {
+    $('.mcontainer').animate({scrollTop: 0}, 1000);
+  }
 
 }

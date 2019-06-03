@@ -1,8 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 $roboto-font-path: "~materialize-css/dist/fonts/roboto/";
+@import './vars';
 @import "~materialize-css/sass/materialize";
 
-@import './vars';
+
 
 html,body {
     height: 100%;
