@@ -21,7 +21,7 @@
 <!-- loader -->
 
   <div class="row">
-    <div class="loading" [hidden]="!loading">
+    <div class="loading" [ngClass]="{'show':loading}">
       <img src="https://media.giphy.com/media/8ShTENZfKnfQA/giphy.gif" alt="">
       <!-- https://www.mechsauce.com/wp-content/uploads/2018/09/Fall-Leaves-Falling-GiF.gif -->
     </div>
