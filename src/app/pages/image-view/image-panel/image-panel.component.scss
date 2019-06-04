@@ -1,15 +1,15 @@
 @import '../../../../sass/vars';
 
 .view-container {
-  // border:2px solid fuchsia;
+   border:2px solid fuchsia;
   // background-color: $tree-brown;
 }
 
 img {
   display: block;
-  height: 100%;
   margin: 0 auto;
-  height: 90vh;
+  max-height:90vh;
+  max-width: 100%;
 }
 
 .title {
