@@ -1,3 +1,4 @@
+import { ImageViewComponent } from './pages/image-view/image-view.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { SignupComponent } from './pages/signup/signup.component';
@@ -11,7 +12,8 @@ const routes: Routes = [
   {path: 'test', canActivate: [AuthGuard], component: TestComponent},
   {path: 'signup', component: SignupComponent},
   {path: '', component: LandingComponent},
-  {path: 'feed', component: FeedComponent}
+  {path: 'feed', component: FeedComponent},
+  {path: 'image/:imageId', component: ImageViewComponent}
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

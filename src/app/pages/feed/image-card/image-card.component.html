@@ -1,7 +1,7 @@
 <div class="card">
 
-  <div class="card-image">
-    <img [src]="image.picture | safeImage" (load)="initGrid()">
+  <div class="card-image" (click)="goToImageView()">
+    <img [src]="image.picture | safeImage" >
   </div>
 
   <div class="card-content center-align"  [ngClass]="{'isLikedCard': isLiked, 'isDislikedCard' : isDisliked }">
@@ -14,35 +14,28 @@
 
       <!-- likes -->
       <div class="col s4 ">
-        <div class="likes" (click)="likeImage()"  [ngClass]="{'isLiked': isLiked}">
+        <div (click)="likeImage()"  [ngClass]="{'isLiked': isLiked, 'likes': authService.isUserLoggedIn()}">
             <i class="fa fa-thumbs-up fa-lg"></i> {{image.rating.likes.length}}
         </div>
       </div>
 
       <!-- comms -->
       <div class="col s4 ">
-        <div class="comms">
+        <div class="comms" (click)="goToImageView()">
             <i class="fa fa-commenting fa-lg"></i> 100
         </div>
       </div>
 
       <!-- dislikes -->
       <div class="col s4 ">
-        <div class="dislikes" (click)="dislikeImage()" [ngClass]="{'isDisliked': isDisliked}">
+        <div class="dislikes" (click)="dislikeImage()" [ngClass]="{'isDisliked': isDisliked, 'dislikes': authService.isUserLoggedIn()}">
             <i class="fa fa-thumbs-down fa-lg"></i> {{image.rating.dislikes.length}}
         </div>
       </div>
 
 
-
-
-
     </div>
   </div>
 
-  <!-- <div class="card-action">
-    TODO add a date pipe to show age in 1h 2h 3 days 1month kind of format
-    <p>on {{image.updatedAt.split('T')[0]}}</p>
-  </div> -->
 </div>
 

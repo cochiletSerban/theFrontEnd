@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Image } from 'src/app/models/image';
 import { ImageService } from 'src/app/services/image-service.service';
 import { AuthService } from 'src/app/services/auth-service.service';
+import { Router } from '@angular/router';
 declare var $: any;
 
 @Component({
@@ -11,13 +12,12 @@ declare var $: any;
 })
 export class ImageCardComponent implements OnInit {
   @Input() image: Image;
-  @Output() loaded: EventEmitter <boolean> = new EventEmitter();
 
   isLiked = false;
   isDisliked = false;
   isLoading = false;
 
-  constructor(private imageService: ImageService, private authService: AuthService) { }
+  constructor(private imageService: ImageService, public authService: AuthService, private router: Router) { }
 
   ngOnInit() {
      if (this.image.rating.likes.includes(this.authService.getUserId())) {
@@ -30,16 +30,15 @@ export class ImageCardComponent implements OnInit {
      }
   }
 
-
-
-  initGrid() {
-    this.loaded.emit(true);
-  }
-
   likeImage() {
     if (this.isLoading) {
       return;
     }
+    if (!this.authService.isUserLoggedIn()) {
+      this.router.navigate(['/image', this.image._id]);
+      return;
+    }
+
     this.isLoading =  true;
     if (!this.isLiked) {
       this.imageService.likeImage(this.image).subscribe(res => {
@@ -61,6 +60,11 @@ export class ImageCardComponent implements OnInit {
     if (this.isLoading) {
       return;
     }
+    if (!this.authService.isUserLoggedIn()) {
+      this.router.navigate(['/image', this.image._id]);
+      return;
+    }
+
     this.isLoading =  true;
     if (!this.isDisliked) {
       this.imageService.dislikeImage(this.image).subscribe(res => {
@@ -78,4 +82,7 @@ export class ImageCardComponent implements OnInit {
     }
   }
 
+  goToImageView() {
+    this.router.navigate(['/image', this.image._id]);
+  }
 }

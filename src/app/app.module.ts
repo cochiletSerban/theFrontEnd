@@ -14,6 +14,7 @@ import { LandingComponent } from './pages/landing/landing.component';
 import { FeedComponent } from './pages/feed/feed.component';
 import { ImageCardComponent } from './pages/feed/image-card/image-card.component';
 import { NgxMasonryModule } from 'ngx-masonry';
+import { ImageViewComponent } from './pages/image-view/image-view.component';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { NgxMasonryModule } from 'ngx-masonry';
     LandingComponent,
     FeedComponent,
     ImageCardComponent,
+    ImageViewComponent,
   ],
   imports: [
     BrowserModule,

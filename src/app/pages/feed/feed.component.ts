@@ -25,6 +25,7 @@ export class FeedComponent implements OnInit {
   constructor(private imageService: ImageService) { }
 
   ngOnInit() {
+    this.feedImages = this.imageService.getStoredPublicImages();
     this.imageService.getPublicImages(this.limit, 0).subscribe(images => {
       this.feedImages = images;
       this.loading = false;
