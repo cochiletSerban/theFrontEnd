@@ -1,0 +1,25 @@
+<div class="view-container">
+  <div class="title">
+
+      <div class="row">
+        <div class="col s12">
+          <h4>{{image.fileName.split('.')[0]}}</h4>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col s12">
+          by <b>{{image.owner.username | titlecase}} </b>
+          {{image.updatedAt | timeAgo}}
+        </div>
+      </div>
+
+
+    </div>
+    <img [src]="image?.picture | safeImage">
+    <div class="title">
+
+    </div>
+</div>
+
+

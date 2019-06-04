@@ -17,7 +17,7 @@ import { AuthService } from 'src/app/services/auth-service.service';
 export class TestComponent implements OnInit {
   title = 'theFrontEnd';
   public uploader: FileUploader = new FileUploader({
-    url: 'http://localhost:4000/images', itemAlias: 'image',
+    url: 'https://licentabackend.herokuapp.com/images', itemAlias: 'image',
     authToken: this.authService.getToken()});
 
   public hasBaseDropZoneOver = false;
@@ -35,7 +35,8 @@ export class TestComponent implements OnInit {
 
     this.uploader.options.additionalParameter = {
       title: 'swag',
-      description: 'cea mai jmen poza'
+      description: 'cea mai jmen poza',
+      private: false
 
     };
     this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };

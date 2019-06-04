@@ -37,4 +37,8 @@ export class ImageService {
     }
   }
 
+  getImageById(imageId) {
+    return this.http.get<Image>(this.apiUrl + '/' + imageId);
+  }
+
 }

@@ -15,6 +15,8 @@ import { FeedComponent } from './pages/feed/feed.component';
 import { ImageCardComponent } from './pages/feed/image-card/image-card.component';
 import { NgxMasonryModule } from 'ngx-masonry';
 import { ImageViewComponent } from './pages/image-view/image-view.component';
+import { ImagePanelComponent } from './pages/image-view/image-panel/image-panel.component';
+import {TimeAgoPipe} from 'time-ago-pipe';
 
 
 @NgModule({
@@ -28,6 +30,8 @@ import { ImageViewComponent } from './pages/image-view/image-view.component';
     FeedComponent,
     ImageCardComponent,
     ImageViewComponent,
+    ImagePanelComponent,
+    TimeAgoPipe
   ],
   imports: [
     BrowserModule,

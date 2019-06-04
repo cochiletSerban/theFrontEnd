@@ -1,3 +1,5 @@
+import { Image } from './../../models/image';
+import { ImageService } from './../../services/image-service.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
@@ -7,12 +9,17 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./image-view.component.scss']
 })
 export class ImageViewComponent implements OnInit {
-
-  constructor(private activeRoute: ActivatedRoute) { }
+  image: Image;
+  constructor(
+      private activeRoute: ActivatedRoute,
+      private imageService: ImageService,
+    ) { }
 
   ngOnInit() {
     this.activeRoute.params.subscribe(params => {
-      console.log(params.imageId);
+      this.imageService.getImageById(params.imageId).subscribe(img => {
+        this.image = img;
+      });
     });
   }
 
