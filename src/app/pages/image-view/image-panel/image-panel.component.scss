@@ -1,23 +1,69 @@
 @import '../../../../sass/vars';
 @import '../../../../sass/classes';
 
-.view-container  {
-  @extend %treeBg;
+
+:host {
+  // background-color: $imgur-bg;
+  //  display: block;
+  //  min-height: 100%!important;
+  //  border:2px solid green;
+  color:white;
+}
+
+.image-container {
+  // background-image: url('../../../../assets/treeBg.png');
+  // background-repeat: repeat-x;
+  // background-size: 40% auto;
+  // background-position: bottom;
+  background: linear-gradient(to top, $tree-dark 0%, white 60%);
+  padding-bottom: 15px;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+}
+
+.image-container > .row {
+  margin:0px;
 }
 
 img {
   display: block;
   margin: 0 auto;
-  max-height:90vh;
+  max-height:70vh;
   max-width: 100%;
+  // border: 2px solid $tree-dark;
+  //border-image: url('../../../../assets/treeBg.png') 30 stretch;
 }
 
 .title {
   // border: 2px solid red;
   padding-bottom:  10px;
+  margin-top:12px;
   color:white;
 }
 
+.post-comment {
+  text-shadow: 2px 2px 2px black;
+  //  @extend %treeBgLight;
+  background-color: $tree-dark;
+  border-bottom: 15px solid white;
+}
+
+.post-comment > .row {
+ margin:0;
+}
+
+.comment-container {
+  text-shadow: 2px 2px 2px black;
+   @extend %treeBg;
+  // background-color: $tree-dark;
+  overflow: hidden;
+  padding-top:23px;
+  border-top: 2px solid $tree;
+}
+
+.comment-container > .row {
+  border-bottom: 15px solid white;
+  padding-bottom: 23px;
+}
 
 
 .title > .row {
@@ -30,3 +76,28 @@ img {
   margin:0 0 0 -3px;
 }
 
+i > span {
+  margin-left:10px;
+}
+
+.col {
+  // padding:0px;
+}
+
+
+label {
+  color:white;
+}
+
+textarea {
+  color:white;
+}
+
+.btn {
+  width:100%;
+}
+
+.all {
+//  background-color: $tree-dark;
+  min-height: 100%;
+}

@@ -8,10 +8,13 @@ $roboto-font-path: "~materialize-css/dist/fonts/roboto/";
 html,body {
     height: 100%;
     // background-color: $imgur-bg;
+    // border:2px solid red;
 }
 
 .interceptorErrToast {
     @extend %errToast;
 }
 
-
+.debug {
+    border:2px solid fuchsia;
+}

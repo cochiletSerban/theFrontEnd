@@ -11,3 +11,10 @@
     background-color: $tree-dark;
     background-image: url('../../../../assets/topography.svg');
 }
+
+
+
+%treeBgLight {
+    background-color: $tree;
+    background-image: url('../../../../assets/topography.svg');
+}
