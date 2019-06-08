@@ -1,0 +1,13 @@
+%errToast {
+    background-color: red;
+}
+
+%successToast {
+    background-color: $primary-color;
+}
+
+
+%treeBg {
+    background-color: $tree-dark;
+    background-image: url('../../../../assets/topography.svg');
+}

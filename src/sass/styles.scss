@@ -1,23 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
 $roboto-font-path: "~materialize-css/dist/fonts/roboto/";
 @import './vars';
+@import './classes';
 @import "~materialize-css/sass/materialize";
-
 
 
 html,body {
     height: 100%;
     // background-color: $imgur-bg;
 }
-
-%errToast {
-    @extend  .red, .darken-4;
-}
-
-%successToast {
-    background-color: $primary-color;
-}
-
 
 .interceptorErrToast {
     @extend %errToast;

@@ -1,4 +1,5 @@
 @import '../../../../sass/vars';
+@import '../../../../sass/classes';
 
 .myTitle {
   padding: 5px;
@@ -10,16 +11,12 @@
 
 .card  {
   cursor: pointer;
-  background:$tree-brown;
-  color: gray;
+  @extend %treeBg;
   transition: all .1s ease-in-out;
+  color:white;
 }
 
 .card:hover {
-  color:white;
-  .card-buttons {
-    color:white;
-  }
   opacity: 0.8;
   transform: scale(1.05);
 }
@@ -27,7 +24,6 @@
 .card-buttons {
   padding-top: 5px;
   padding-bottom: 5px;
-  color:gray;
 }
 
 .gigante {

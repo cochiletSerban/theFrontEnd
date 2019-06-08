@@ -1,8 +1,8 @@
 @import '../../../../sass/vars';
+@import '../../../../sass/classes';
 
-.view-container {
-   border:2px solid fuchsia;
-  // background-color: $tree-brown;
+.view-container  {
+  @extend %treeBg;
 }
 
 img {
@@ -15,9 +15,9 @@ img {
 .title {
   // border: 2px solid red;
   padding-bottom:  10px;
-  background: $tree-brown;
-  color:lightgray;
+  color:white;
 }
+
 
 
 .title > .row {
