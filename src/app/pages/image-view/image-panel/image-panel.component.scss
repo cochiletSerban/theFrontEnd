@@ -7,7 +7,7 @@
     display: block;
   //  min-height: 100%!important;
   //  border:2px solid green;
-  color:white;
+   color:white;
   
 }
 
@@ -93,9 +93,6 @@ i > span {
   font-family: initial;
 }
 
-.col {
-  // padding:0px;
-}
 
 
 label {
@@ -120,3 +117,19 @@ textarea {
   padding:0px;
   margin:0px;
 }
+
+.likes:hover {
+  color: $primary-color;
+}
+
+.dislikes:hover {
+  color:#f2596d;
+}
+
+.isLiked {
+  color: $primary-color;
+ }
+
+ .isDisliked {
+  color:#f2596d;
+ }

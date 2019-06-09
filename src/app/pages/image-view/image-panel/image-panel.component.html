@@ -5,58 +5,76 @@
   <div class="row valign-wrapper">
 
     <div class="col s8">
-        <div class="title">
-          <div class="row">
-            <div class="col s12">
-              <h4>{{image.fileName.split('.')[0]}}</h4>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col s12">
-              by <b>{{image.owner.username | titlecase}} </b>
-              {{image.updatedAt | timeAgo}}
-            </div>
+      <div class="title">
+        <div class="row">
+          <div class="col s12">
+            <h4>{{image.fileName.split('.')[0]}}</h4>
           </div>
         </div>
-    </div>
-
-
-    <div class="col s4 likes">
-        <div class="col s6 right-align"><i class="fa fa-thumbs-up fa-2x" aria-hidden="true"><span>{{image.rating.likes.length}}</span></i></div>
-        <div class="col s6 right-align"><i class="fa fa-thumbs-down fa-2x" aria-hidden="true"><span>{{image.rating.dislikes.length}}</span></i></div>
-    </div>
-  </div>
-  <div class="row">
-      <div class="col">
-        <div class="col">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo voluptate rerum pariatur a! Sequi similique aut cupiditate deleniti placeat, voluptatum magnam nostrum beatae praesentium facilis nemo. Quisquam aspernatur magni in?
+        <div class="row">
+          <div class="col s12">
+            by <b>{{image.owner.username | titlecase}} </b>
+            {{image.updatedAt | timeAgo}}
+          </div>
         </div>
       </div>
     </div>
+
+
+    <div class="col s4">
+      <div class="col s6 right-align" (click)="likeImage()"  >
+
+        <i class="fa fa-thumbs-up fa-2x"aria-hidden="true" [ngClass]="{'isLiked': isLiked, 'likes': authService.isUserLoggedIn()}" >
+          <span>{{image.rating.likes.length}}</span>
+        </i>
+
+      </div>
+
+      <div class="col s6 right-align" (click)="dislikeImage()" >
+
+        <i class="fa fa-thumbs-down fa-2x" aria-hidden="true" [ngClass]="{'isDisliked': isDisliked, 'dislikes': authService.isUserLoggedIn()}">
+          <span>{{image.rating.dislikes.length}}</span>
+        </i>
+
+      </div>
+
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <div class="col">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo voluptate rerum pariatur a! Sequi similique aut
+        cupiditate deleniti placeat, voluptatum magnam nostrum beatae praesentium facilis nemo. Quisquam aspernatur
+        magni in?
+      </div>
+    </div>
+  </div>
+
 </div>
 
 <div class="post-comment">
-    <div class="row">
-        <form class="col s12 valign-wrapper">
-          <div class="input-field col s12 m10">
-            <textarea id="textarea2" class="materialize-textarea" data-length="120"></textarea>
-            <label for="textarea2">Write a comment</label>
-          </div>
-
-          <div class="col s12 m2">
-            <button class="btn">Post</button>
-          </div>
-
-        </form>
+  <div class="row">
+    <form class="col s12 valign-wrapper">
+      <div class="input-field col s12 m10">
+        <textarea id="textarea2" class="materialize-textarea" data-length="120"></textarea>
+        <label for="textarea2">Write a comment</label>
       </div>
+
+      <div class="col s12 m2">
+        <button class="btn">Post</button>
+      </div>
+
+    </form>
+  </div>
 </div>
 
 
 <div class="comment-container">
 
   <ul class="collection">
+    <!-- add ng for & input for app-comment -->
     <app-comment></app-comment>
   </ul>
 
 </div>
-

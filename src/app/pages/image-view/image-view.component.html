@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col s12 m10 offset-m1">
-      <app-image-panel [image]="image"></app-image-panel>
+      <app-image-panel *ngIf="!loading" [image]="image"></app-image-panel>
     </div>
   </div>
 </div>

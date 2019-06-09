@@ -10,6 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ImageViewComponent implements OnInit {
   image: Image;
+  loading = true;
   constructor(
       private activeRoute: ActivatedRoute,
       private imageService: ImageService,
@@ -19,6 +20,7 @@ export class ImageViewComponent implements OnInit {
     this.activeRoute.params.subscribe(params => {
       this.imageService.getImageById(params.imageId).subscribe(img => {
         this.image = img;
+        this.loading = false;
       });
     });
   }
