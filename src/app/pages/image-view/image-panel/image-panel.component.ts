@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ImageService } from 'src/app/services/image-service.service';
-import { AuthService } from 'src/app/services/auth-service.service';
+import { ImageService } from 'src/app/services/image.service';
+import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
 
 @Component({

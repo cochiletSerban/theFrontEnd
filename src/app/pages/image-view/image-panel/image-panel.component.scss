@@ -52,30 +52,30 @@ img {
  margin:0;
 }
 
-.comment-container {
-  // text-shadow: 2px 2px 2px black;
-  //  @extend %treeBg;
-  background-color:   rgba(99, 41, 40, 0.7);
-  overflow: hidden;
-  // border-top: 2px solid $tree;
-  position: relative;
-}
+// .comment-container {
+//   // text-shadow: 2px 2px 2px black;
+//   //  @extend %treeBg;
+//   background-color:   rgba(99, 41, 40, 0.7);
+//   overflow: hidden;
+//   // border-top: 2px solid $tree;
+//   position: relative;
+// }
 
-.comment-container > .row {
-  border-bottom: 15px solid white;
-  padding-bottom: 23px;
-}
+// .comment-container > .row {
+//   border-bottom: 15px solid white;
+//   padding-bottom: 23px;
+// }
 
-.comment-container:after {
-  display: block;
-  content: '';
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top:0;
-  z-index:-1;
-  @extend %treeBg;
-}
+// .comment-container:after {
+//   display: block;
+//   content: '';
+//   width: 100%;
+//   height: 100%;
+//   position: absolute;
+//   top:0;
+//   z-index:-1;
+//   @extend %treeBg;
+// }
 
 
 .title > .row {
@@ -112,11 +112,11 @@ textarea {
   min-height: 100%;
 }
 
-.collection {
-  border: none;
-  padding:0px;
-  margin:0px;
-}
+// .collection {
+//   border: none;
+//   padding:0px;
+//   margin:0px;
+// }
 
 .likes:hover {
   color: $primary-color;

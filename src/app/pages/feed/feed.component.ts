@@ -1,5 +1,5 @@
 import { Image } from './../../models/image';
-import { ImageService } from './../../services/image-service.service';
+import { ImageService } from '../../services/image.service';
 import { Component, OnInit } from '@angular/core';
 import { NgxMasonryOptions } from 'ngx-masonry';
 

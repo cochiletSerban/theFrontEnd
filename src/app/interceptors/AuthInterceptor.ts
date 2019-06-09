@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { tap } from 'rxjs/operators';
 
 import * as M from 'materialize-css';
-import { AuthService } from '../services/auth-service.service';
+import { AuthService } from '../services/auth.service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {

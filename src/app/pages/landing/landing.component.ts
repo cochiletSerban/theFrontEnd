@@ -1,5 +1,5 @@
 import { Component, OnInit, AfterContentInit, AfterViewInit, AfterViewChecked } from '@angular/core';
-import { ImageService } from 'src/app/services/image-service.service';
+import { ImageService } from 'src/app/services/image.service';
 import { Image } from 'src/app/models/image';
 declare var $: any;
 

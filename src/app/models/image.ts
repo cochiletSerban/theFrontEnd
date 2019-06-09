@@ -1,5 +1,6 @@
 import { User } from './user';
 import { Rating } from './rating';
+import { Comment } from './comment';
 export interface Image {
     fileName?: string;
     owner?: User;
@@ -9,4 +10,5 @@ export interface Image {
     title?: string;
     description?: string;
     rating?: Rating;
+    comms?: Comment[];
 }

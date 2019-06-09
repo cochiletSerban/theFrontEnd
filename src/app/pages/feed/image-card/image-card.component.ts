@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Image } from 'src/app/models/image';
-import { ImageService } from 'src/app/services/image-service.service';
-import { AuthService } from 'src/app/services/auth-service.service';
+import { ImageService } from 'src/app/services/image.service';
+import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
 declare var $: any;
 

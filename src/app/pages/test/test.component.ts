@@ -5,7 +5,7 @@ import { FileUploader } from 'ng2-file-upload';
 import * as M from 'materialize-css';
 import * as $ from 'jquery';
 import { HttpClient } from '@angular/common/http';
-import { AuthService } from 'src/app/services/auth-service.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 
 @Component({
@@ -18,7 +18,7 @@ export class TestComponent implements OnInit {
   title = 'theFrontEnd';
   public uploader: FileUploader = new FileUploader({
     url: 'https://licentabackend.herokuapp.com/images', itemAlias: 'image',
-    authToken: this.authService.getToken()});
+    authToken: 'Bearer '  + this.authService.getToken()});
 
   public hasBaseDropZoneOver = false;
   public hasAnotherDropZoneOver = false;
@@ -36,7 +36,7 @@ export class TestComponent implements OnInit {
     this.uploader.options.additionalParameter = {
       title: 'swag',
       description: 'cea mai jmen poza',
-      private: false
+      private: false,
 
     };
     this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };

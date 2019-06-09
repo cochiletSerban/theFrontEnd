@@ -4,7 +4,7 @@ import { User } from 'src/app/models/user';
 import { Router } from '@angular/router';
 
 import * as M from 'materialize-css';
-import { AuthService } from 'src/app/services/auth-service.service';
+import { AuthService } from 'src/app/services/auth.service';
 declare var $: any;
 
 
