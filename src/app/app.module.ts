@@ -17,6 +17,7 @@ import { NgxMasonryModule } from 'ngx-masonry';
 import { ImageViewComponent } from './pages/image-view/image-view.component';
 import { ImagePanelComponent } from './pages/image-view/image-panel/image-panel.component';
 import {TimeAgoPipe} from 'time-ago-pipe';
+import { CommentComponent } from './pages/image-view/comment/comment.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import {TimeAgoPipe} from 'time-ago-pipe';
     ImageCardComponent,
     ImageViewComponent,
     ImagePanelComponent,
-    TimeAgoPipe
+    TimeAgoPipe,
+    CommentComponent
   ],
   imports: [
     BrowserModule,
