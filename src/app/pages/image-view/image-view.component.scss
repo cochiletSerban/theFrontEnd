@@ -39,3 +39,12 @@
     border-bottom: 15px solid white;
     padding-bottom: 23px;
   }
+
+  .loadMore {
+    @extend %treeBgLight;
+    text-align: center;
+    font-weight: bold;
+    padding: 20px;
+    cursor: pointer;
+    color:white;
+  }

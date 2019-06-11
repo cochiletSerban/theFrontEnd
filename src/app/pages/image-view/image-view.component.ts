@@ -15,6 +15,8 @@ export class ImageViewComponent implements OnInit {
   imgLoading = true;
   commsLoading = true;
   comms: Comment[];
+  limit = 10;
+  skip = 0;
   constructor(
       private activeRoute: ActivatedRoute,
       private imageService: ImageService,
@@ -34,10 +36,22 @@ export class ImageViewComponent implements OnInit {
         this.image = img;
         this.imgLoading = false;
       });
-      this.comentesSerivce.getCommentsByImageId(params.imageId).subscribe(comms => {
+      this.comentesSerivce.getCommentsByImageId(params.imageId, this.limit , 0).subscribe(comms => {
         this.comms = comms;
         this.commsLoading = false;
       });
+    });
+  }
+
+  loadMore() {
+    if (this.commsLoading) {
+      return ;
+    }
+    this.skip++;
+    this.commsLoading = true;
+    this.comentesSerivce.getCommentsByImageId(this.image._id, this.limit, this.skip).subscribe(comms => {
+      this.comms.push(...comms);
+      this.commsLoading = false;
     });
   }
 

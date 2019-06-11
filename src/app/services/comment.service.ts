@@ -17,8 +17,9 @@ export class CommentService {
 
   constructor(private http: HttpClient) { }
 
-  getCommentsByImageId(imageId) {
-    return this.http.get<Comment[]>(this.apiUrl + '/' + imageId );
+  getCommentsByImageId(imageId, limit, skip) {
+    skip *= limit;
+    return this.http.get<Comment[]>(this.apiUrl + '/' + imageId, {params: {limit, skip}});
   }
 
   postComment(comment) {
