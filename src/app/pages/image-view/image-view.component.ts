@@ -19,7 +19,14 @@ export class ImageViewComponent implements OnInit {
       private activeRoute: ActivatedRoute,
       private imageService: ImageService,
       private comentesSerivce: CommentService
-    ) { }
+    ) {
+      this.comentesSerivce.commentAdded$.subscribe(comm => {
+        const temp  = [comm];
+        temp.push(...this.comms);
+        this.comms = temp;
+        console.log(this.comms);
+      });
+    }
 
   ngOnInit() {
     this.activeRoute.params.subscribe(params => {

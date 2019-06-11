@@ -53,14 +53,14 @@
 
 <div class="post-comment">
   <div class="row">
-    <form class="col s12 valign-wrapper">
+    <form class="col s12 valign-wrapper" [formGroup]="comment" (ngSubmit)="postComment()">
       <div class="input-field col s12 m10">
-        <textarea id="textarea2" class="materialize-textarea" data-length="120"></textarea>
+        <textarea id="textarea2" class="materialize-textarea" formControlName="text" data-length="120"></textarea>
         <label for="textarea2">Write a comment</label>
       </div>
 
       <div class="col s12 m2">
-        <button class="btn">Post</button>
+        <button class="btn" [disabled]="postComentLoading">Post</button>
       </div>
 
     </form>
