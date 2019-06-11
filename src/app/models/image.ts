@@ -5,7 +5,7 @@ export interface Image {
     fileName?: string;
     owner?: User;
     picture: string;
-    updatedAt?: Date;
+    createdAt?: Date;
     _id?: string;
     title?: string;
     description?: string;

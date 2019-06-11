@@ -14,7 +14,7 @@
         <div class="row">
           <div class="col s12">
             by <b>{{image.owner.username | titlecase}} </b>
-            {{image.updatedAt | timeAgo}}
+            {{image.createdAt | timeAgo}}
           </div>
         </div>
       </div>
@@ -44,9 +44,7 @@
   <div class="row">
     <div class="col">
       <div class="col">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo voluptate rerum pariatur a! Sequi similique aut
-        cupiditate deleniti placeat, voluptatum magnam nostrum beatae praesentium facilis nemo. Quisquam aspernatur
-        magni in?
+        {{image.description}}
       </div>
     </div>
   </div>
