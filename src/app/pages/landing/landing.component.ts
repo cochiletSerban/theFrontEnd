@@ -18,8 +18,7 @@ export class LandingComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.images = this.imageService.getStoredPublicImages();
-    this.imageService.getPublicImages(15, 0).subscribe(res => {
+    this.imageService.getPublicImages(15, 0, 'date').subscribe(res => {
       this.images.push(...res);
     });
   }

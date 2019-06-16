@@ -2,6 +2,14 @@
 <div class="mcontainer" infiniteScroll [infiniteScrollDistance]="0"
 [infiniteScrollThrottle]="300" (scrolled)="onScroll()" [scrollWindow]="false">
 
+<div class="row">
+  <app-explore-tags></app-explore-tags>
+</div>
+
+<div class="row">
+  <app-filter-pictures (sorted)="sorted($event)" [loading]="loading"></app-filter-pictures>
+</div>
+
 <!-- card grid -->
 <div class="row ">
 

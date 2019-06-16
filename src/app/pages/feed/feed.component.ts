@@ -25,10 +25,7 @@ export class FeedComponent implements OnInit {
   constructor(private imageService: ImageService) { }
 
   ngOnInit() {
-    this.feedImages = this.imageService.getStoredPublicImages();
     this.imageService.getPublicImages(this.limit, 0).subscribe(images => {
-      console.log(images);
-
       this.feedImages = images;
       this.loading = false;
     });
@@ -50,4 +47,12 @@ export class FeedComponent implements OnInit {
     $('.mcontainer').animate({scrollTop: 0}, 1000);
   }
 
+  sorted(sortBy) {
+    this.skip = 0;
+    this.loading = true;
+    this.imageService.getPublicImages(this.limit, this.skip, sortBy).subscribe(images => {
+      this.feedImages = images;
+      this.loading = false;
+    });
+  }
 }

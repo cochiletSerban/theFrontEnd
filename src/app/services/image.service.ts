@@ -1,4 +1,4 @@
-import { images } from '../../assets/images';
+
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
@@ -14,9 +14,16 @@ export class ImageService {
   apiUrl = environment.apiUrl + '/images';
   constructor(private http: HttpClient) { }
 
-  getPublicImages(limit, skip) {
+  getPublicImages(limit, skip, sort?) {
     skip = skip * limit;
-    return this.http.get<Image[]>(this.apiUrl, { params: {limit, skip} }).pipe(tap(imgs => this.publicImages = imgs));
+    let params;
+    if (sort) {
+     params = {limit, skip, sort};
+    } else {
+      params = {limit, skip};
+    }
+
+    return this.http.get<Image[]>(this.apiUrl,  {params} ).pipe(tap(imgs => this.publicImages = imgs));
   }
 
   likeImage(image: Image) {
@@ -31,11 +38,7 @@ export class ImageService {
     return this.http.post(this.apiUrl + '/resetImageRating', {imageId: image._id});
   }
 
-  getStoredPublicImages() {
-    if (this.publicImages.length === 0) {
-      return images;
-    }
-  }
+
 
   getImageById(imageId) {
     return this.http.get<Image>(this.apiUrl + '/' + imageId);

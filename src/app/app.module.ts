@@ -18,6 +18,8 @@ import { ImageViewComponent } from './pages/image-view/image-view.component';
 import { ImagePanelComponent } from './pages/image-view/image-panel/image-panel.component';
 import {TimeAgoPipe} from 'time-ago-pipe';
 import { CommentComponent } from './pages/image-view/comment/comment.component';
+import { ExploreTagsComponent } from './pages/feed/explore-tags/explore-tags.component';
+import { FilterPicturesComponent } from './pages/feed/filter-pictures/filter-pictures.component';
 
 
 @NgModule({
@@ -33,7 +35,9 @@ import { CommentComponent } from './pages/image-view/comment/comment.component';
     ImageViewComponent,
     ImagePanelComponent,
     TimeAgoPipe,
-    CommentComponent
+    CommentComponent,
+    ExploreTagsComponent,
+    FilterPicturesComponent
   ],
   imports: [
     BrowserModule,
