@@ -27,11 +27,11 @@ export class ImageService {
   }
 
   likeImage(image: Image) {
-    return this.http.post(this.apiUrl + '/like', {imageId: image._id});
+    return this.http.post(this.apiUrl + '/like'  + '/' + image._id, {});
   }
 
   dislikeImage(image: Image) {
-    return this.http.post(this.apiUrl + '/dislike', {imageId: image._id});
+    return this.http.post(this.apiUrl + '/dislike' + '/' + image._id, {});
   }
 
   resetImageRating(image: Image) {

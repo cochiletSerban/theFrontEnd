@@ -26,7 +26,7 @@ export class FilterPicturesComponent implements OnInit, AfterViewInit {
   @Input() loading;
   constructor() { }
 
-  ngOnInit() { //subscribe to route to know what to filter
+  ngOnInit() { // subscribe to route to know what to filter
   }
 
   sort(criteria) {
