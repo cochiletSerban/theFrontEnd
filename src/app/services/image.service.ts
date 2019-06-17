@@ -38,8 +38,6 @@ export class ImageService {
     return this.http.post(this.apiUrl + '/resetImageRating', {imageId: image._id});
   }
 
-
-
   getImageById(imageId) {
     return this.http.get<Image>(this.apiUrl + '/' + imageId);
   }

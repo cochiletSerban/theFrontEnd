@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { TagService } from 'src/app/services/tag.service';
+import { Tag } from 'src/app/models/tag';
 
 @Component({
   selector: 'app-explore-tags',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ExploreTagsComponent implements OnInit {
 
-  constructor() { }
+  tags: Tag[] = [];
+  constructor(private tagService: TagService) { }
 
   ngOnInit() {
+    this.tagService.getTags(6).subscribe(tags => {
+      this.tags.push(...tags);
+      console.log(tags);
+    });
   }
+
 
 }

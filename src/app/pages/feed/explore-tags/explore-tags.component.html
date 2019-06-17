@@ -1,3 +1,8 @@
-<p>
-  explore-tags works!
-</p>
+
+<div class="container">
+  <div class="row">
+    <div class="col s2" *ngFor="let tag of tags">
+        <app-tag-card [tag]="tag" ></app-tag-card>
+    </div>
+  </div>
+</div>
