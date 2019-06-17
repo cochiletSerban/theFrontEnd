@@ -19,26 +19,32 @@
     <!-- logo -->
     <div class="row">
       <div class="col s12">
-        <img src="../../assets/img/logo.png" class="responsive-img logo animated" >
+        <img src="../../assets/img/eth.png" class="responsive-img logo logoOver animated" #eth id="eth">
+        <img src="../../assets/img/JustPiky.png" class="responsive-img logo logoOver" #logo>
+        <img src="../../assets/img/PikyFaraEth.png" class="responsive-img logo" >
       </div>
     </div>
     <!-- description (under logo) -->
     <div class="row">
       <div class="col s12 ">
         <h5 class="shadow" >
-
-          {{lpText}}
-
+          <i class="fa fa-compass" aria-hidden="true" #fa1></i>
+          Discover yourself through images !
+          <i class="fa fa-compass" aria-hidden="true" #fa2></i>
         </h5>
       </div>
     </div>
-    <!-- button -->
+    <!-- button and it's leafs -->
     <div class="row ">
       <div class="col s12 ">
-        <button [routerLink]="['/login']" routerLinkActive="router-link-active"  class="waves-effect waves-light btn getStarted" >
-          <h5>write a story</h5>
-        </button>
+        <img src="../../assets/img/GetStartedButton.png" class="buttonLeafs animated" #frunze />
+        <a class="waves-effect waves-light btn getStarted"  (click)="getStarted()" (mouseenter)="onHo(true)" (mouseleave)="onHo(false)">
+        <h5>Get Started Now!</h5>
+        </a>
+
       </div>
     </div>
   </div>
+  <!-- garss footer -->
+  <div class="grass animated" #grass> </div>
 </div>

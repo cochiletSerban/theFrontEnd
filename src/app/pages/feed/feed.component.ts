@@ -14,6 +14,7 @@ export class FeedComponent implements OnInit {
   feedImages: Image[];
   skip = 0;
   loading = true;
+  endOfPages = false;
   grid;
   private readonly limit = 15;
 
@@ -38,6 +39,9 @@ export class FeedComponent implements OnInit {
     this.loading = true;
     this.skip++;
     this.imageService.getPublicImages(this.limit, this.skip).subscribe(images => {
+      if (images.length === 0) {
+        this.endOfPages = true;
+      }
       this.feedImages.push(...images);
       this.loading = false;
     });

@@ -20,6 +20,7 @@ import {TimeAgoPipe} from 'time-ago-pipe';
 import { CommentComponent } from './pages/image-view/comment/comment.component';
 import { ExploreTagsComponent } from './pages/feed/explore-tags/explore-tags.component';
 import { FilterPicturesComponent } from './pages/feed/filter-pictures/filter-pictures.component';
+import { NavBarComponent } from './pages/shared/nav-bar/nav-bar.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { FilterPicturesComponent } from './pages/feed/filter-pictures/filter-pic
     TimeAgoPipe,
     CommentComponent,
     ExploreTagsComponent,
-    FilterPicturesComponent
+    FilterPicturesComponent,
+    NavBarComponent
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,3 @@
-@import '../../../sass/vars';
 /*
                 --1--
 *   Late at night it is,              *
@@ -18,9 +17,8 @@
   display: block;
   /*needed to let divs get up to 100vh*/
   overflow: auto;
-  overflow-x: hidden;
   height: 100%;
-  background-color: rgba($primary-color, 0.2);
+  background-color: rgb(26, 77, 68);
   /* fall back colors*/
 }
 
@@ -32,11 +30,7 @@
   z-index: 2;
   padding: 0;
   margin: 0;
-  background-color: $fall-back-color;
-}
-
-.slider {
-  filter: blur(2px);
+  background-color: rgba(26, 77, 68, 0.6);
 }
 
 .wrapper {
@@ -47,7 +41,7 @@
 
 .shadow {
   /* adds some sparkle to the text*/
-  color:white;
+  color: white;
   text-shadow: 3px 0px 5px black;
 }
 
@@ -67,24 +61,72 @@ i {
   position: relative;
 }
 
+
+
+.logoOver{
+  position: absolute;
+  z-index: 2;
+  animation-delay: 1s;
+}
+
+#eth {
+  animation-iteration-count: infinite;
+  animation-duration: 2s;
+}
+
 .btn {
   /* fixes materilize css bug that cuts btn text */
   height: 100%;
-  color: white;
+  background-color: #61aa25;
   padding: 10px;
 }
 
 .btn > h5 {
-  padding: 0px;
+  
   margin: 0px;
 }
+
+.buttonLeafs {
+  min-width: 400px;
+  /* -- absolute centering css magic -- */
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  /* --------------------------------- */
+  animation-delay: 1.3s;
+  top: -30px;
+  max-height: 135px;
+  position: absolute;
+  z-index: -1;
+  /* puts leafs under button */
+}
+
+.grass {
+  /* makes a sticky footer that has a png bg
+  and it's under the centerContainer div z-index = -1*/
+  position: fixed;
+  z-index: -1;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  min-height: 100px;
+  opacity: 0.9;
+  background-image: url('../../../assets/img/grass.png');
+  background-repeat: repeat-x;
+  background-position: 0 100%;
+  background-size: 125px;
+  animation-delay: 1.3s;
+}
+
 .bar {
   position: fixed;
   min-width: 100%;
   min-height: 4px;
   z-index: 3;
-  background-color:$primary-color;
+  background-color: #78ce32;
 }
+
 
 
 /*----------------------------MEDIA QUERIES----------------------------------*/
@@ -95,24 +137,46 @@ i {
 
 @media only screen and (min-width: 980px) {
   .logo {
-    max-width: 300px;
+    max-width: 275px;
   }
 
+  /* :host{
+        background-color:white;
+    } */
 }
 
 @media only screen and (max-width: 979px) {
-  .fa-tint {
+  .buttonLeafs {
+    display: none;
+  }
+  .fa-diamond {
     display: none;
   }
   .logo {
-    max-width: 250px;
+    max-width: 200px;
   }
   .btn {
     text-transform: lowercase;
   }
+  /* :host {
+        background-color:teal;
+    } */
 }
 
 /*----------------------------- Animations/Trans Class--------------------------*/
+
+@keyframes fadein {
+  /* simple fadeIn animation*/
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 
 @keyframes spin {
   /* simple spin animation*/
@@ -121,5 +185,37 @@ i {
   }
   100% {
     transform: rotate(180deg);
+  }
+}
+
+@keyframes spinBack {
+  /* simple reverse spin animation*/
+  0% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes pick {
+  0% {
+    transform: matrix(0);
+  }
+  50% {
+    transform: matrix(0.93969262, 0.34202014, -0.34202014, 0.93969262, -15, 10);
+  }
+  100% {
+    transform: matrix(0);
+  }
+}
+
+@keyframes pickBack {
+  0% {
+    transform: matrix(0.93969262, 0.34202014, -0.34202014, 0.93969262, -30, 18);
+  }
+  100% {
+
+    transform: matrix(0);
   }
 }

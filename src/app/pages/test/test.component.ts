@@ -17,9 +17,9 @@ import { AuthService } from 'src/app/services/auth.service';
 export class TestComponent implements OnInit {
   title = 'theFrontEnd';
   public uploader: FileUploader = new FileUploader({
-   // url: 'https://licentabackend.herokuapp.com/images', itemAlias: 'image',
+    url: 'https://licentabackend.herokuapp.com/images/small', itemAlias: 'image',
       //url: 'http://localhost:4000/images', itemAlias: 'image',
-      url: 'http://localhost:4000/users/avatar', itemAlias: 'image',
+      // url: 'http://localhost:4000/users/avatar', itemAlias: 'image',
     authToken: 'Bearer '  + this.authService.getToken()});
 
   public hasBaseDropZoneOver = false;
@@ -39,6 +39,8 @@ export class TestComponent implements OnInit {
       title: 'swag',
       description: 'cea mai jmen poza',
       private: false,
+      lat: 30,
+      lon: 30
 
     };
     this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };
