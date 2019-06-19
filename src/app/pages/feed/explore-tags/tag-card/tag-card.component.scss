@@ -1,0 +1,39 @@
+@import '../../../../../sass/vars';
+@import '../../../../../sass/classes';
+
+
+.card {
+    color:white;
+    // hwigh   :120px;
+    cursor: pointer;
+    transition: all .1s ease-in-out;
+    @extend %treeBg;
+    width:90%;
+    box-shadow: none;
+}
+
+.card:hover {
+    transform: translate(0, -5px);
+}
+
+.card-image > img {
+    // height:120px;
+    height:90px;
+}
+
+img {
+    text-indent: -10000px
+}
+
+.card-content {
+ padding: 0;
+}
+
+.card-content > h5 {
+    font-size: 18px;
+    margin: 0px;
+    font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

@@ -5,12 +5,15 @@
   <app-explore-tags></app-explore-tags>
 </div>
 
+
 <div class="row">
-  <app-filter-pictures (sorted)="sorted($event)" [loading]="loading"></app-filter-pictures>
+  <div class="col s12 m2 offset-m10">
+    <app-filter-pictures (sorted)="sorted($event)" [loading]="loading"></app-filter-pictures>
+  </div>
 </div>
 
 <!-- card grid -->
-<div class="row ">
+<div class="row">
 
   <ngx-masonry [useImagesLoaded]="true" [options]="options">
       <div ngxMasonryItem class="masonry-item col s12 m4  xl2" *ngFor="let image of feedImages; let ind = index">

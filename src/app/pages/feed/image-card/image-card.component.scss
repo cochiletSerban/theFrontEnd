@@ -3,6 +3,9 @@
 
 .myTitle {
   padding: 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .card-content {

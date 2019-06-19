@@ -1,7 +1,17 @@
-<div class="input-field col s12">
+<!-- <div class="input-field col s12">
   <select (change)="sort(select.value)"  #select >
     <option [value]="crit.value" *ngFor = "let crit of criteria">{{crit.name}}</option>
   </select>
   <label>Sort By</label>
-</div>
+</div> -->
 
+<div class="row">
+
+
+  <div class="select">
+    <select name="slct" id="slct" (change)="sort(select.value)"  class="browser-default" #select>
+      <option [value]="crit.value" *ngFor = "let crit of criteria">{{crit.name}}</option>
+    </select>
+  </div>
+
+</div>

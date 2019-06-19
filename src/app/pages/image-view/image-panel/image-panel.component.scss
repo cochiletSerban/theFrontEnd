@@ -2,6 +2,7 @@
 @import '../../../../sass/classes';
 
 
+
 :host {
   // background-color: $imgur-bg;
     display: block;
@@ -32,6 +33,7 @@ img {
   max-width: 100%;
   // border: 2px solid $tree-dark;
   //border-image: url('../../../../assets/treeBg.png') 30 stretch;
+
 }
 
 .title {
@@ -39,6 +41,9 @@ img {
   padding-bottom:  10px;
   margin-top:12px;
   color:white;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .post-comment {

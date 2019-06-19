@@ -21,7 +21,7 @@ import { CommentComponent } from './pages/image-view/comment/comment.component';
 import { ExploreTagsComponent } from './pages/feed/explore-tags/explore-tags.component';
 import { FilterPicturesComponent } from './pages/feed/filter-pictures/filter-pictures.component';
 import { NavBarComponent } from './pages/shared/nav-bar/nav-bar.component';
-import { TagCardComponent } from './pages/feed/tag-card/tag-card.component';
+import { TagCardComponent } from './pages/feed/explore-tags/tag-card/tag-card.component';
 
 
 @NgModule({
