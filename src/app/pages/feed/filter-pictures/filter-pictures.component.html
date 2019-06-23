@@ -6,12 +6,11 @@
 </div> -->
 
 <div class="row">
-
-
-  <div class="select">
-    <select name="slct" id="slct" (change)="sort(select.value)"  class="browser-default" #select>
-      <option [value]="crit.value" *ngFor = "let crit of criteria">{{crit.name}}</option>
-    </select>
+  <div class="col s12">
+    <div class="select">
+      <select name="slct" class="decorated" id="slct" (change)="sort(select.value)" class="browser-default" #select>
+        <option [value]="crit.value" class="nebunie" *ngFor="let crit of criteria">{{crit.name}}</option>
+      </select>
+    </div>
   </div>
-
 </div>

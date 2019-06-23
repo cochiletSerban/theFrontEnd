@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { TagService } from 'src/app/services/tag.service';
 import { Tag } from 'src/app/models/tag';
-
+declare var $: any;
 @Component({
   selector: 'app-explore-tags',
   templateUrl: './explore-tags.component.html',
@@ -9,15 +9,13 @@ import { Tag } from 'src/app/models/tag';
 })
 export class ExploreTagsComponent implements OnInit {
 
-  tags: Tag[] = [];
+  @Input() tags: Tag[];
   constructor(private tagService: TagService) { }
 
   ngOnInit() {
-    this.tagService.getTags(6).subscribe(tags => {
-      this.tags.push(...tags);
-      console.log(tags);
-    });
+    if (this.tags.length === 1 && this.tags[0].imageUrl) {
+      $('app-explore-tags').css('background-image', 'url(' + this.tags[0].imageUrl + ')');
+    }
   }
-
 
 }

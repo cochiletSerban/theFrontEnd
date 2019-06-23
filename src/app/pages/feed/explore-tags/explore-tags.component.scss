@@ -1,15 +1,35 @@
 @import "../../../../sass/vars";
 
 :host {
-    // background: linear-gradient(to bottom,  rgba(126,193,70,1) 0%,rgba(0,0,0,0) 120%);
-    background-color: $primary-color;
+    min-height: 360px;
     display: block;
-    height: 100%;
-}
+    background: linear-gradient(to bottom,  $primary-color 0%,rgba(0,0,0,0) 100%);
+    margin-bottom: -200px;
+    background-size: cover;
+  }
 
 .card {
     margin-bottom: 0;
 }
 .row {
     margin-bottom: 0;
+}
+
+
+.tagTitle  {
+    color:white;
+    min-height: 260px;
+    text-align: center;
+}
+
+.tagTitle > * {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin:0 auto;
+}
+
+.tagTitleDetails > * {
+    margin-top:0;
+    margin-bottom: 0;
+    text-shadow: 0px 1px 5px black;
 }

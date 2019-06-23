@@ -2,7 +2,10 @@ import { Image } from './../../models/image';
 import { ImageService } from '../../services/image.service';
 import { Component, OnInit } from '@angular/core';
 import { NgxMasonryOptions } from 'ngx-masonry';
-
+import { TagService } from 'src/app/services/tag.service';
+import { Tag } from 'src/app/models/tag';
+import { combineLatest } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 declare var $: any;
 @Component({
   selector: 'app-feed',
@@ -12,10 +15,13 @@ declare var $: any;
 
 export class FeedComponent implements OnInit {
   feedImages: Image[];
+  tags: Tag[];
   skip = 0;
   loading = true;
+  init = true;
   endOfPages = false;
-  grid;
+  grid: any;
+  tag: any;
   private readonly limit = 15;
 
   public options: NgxMasonryOptions = {
@@ -23,13 +29,30 @@ export class FeedComponent implements OnInit {
     gutter: 0,
   };
 
-  constructor(private imageService: ImageService) { }
+  constructor(private imageService: ImageService, private tagService: TagService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.imageService.getPublicImages(this.limit, 0).subscribe(images => {
-      this.feedImages = images;
-      this.loading = false;
+    this.route.params.subscribe(params => {
+      if (!params.tag) {
+        combineLatest(this.imageService.getPublicImages(this.limit, 0), this.tagService.getTags(6)).subscribe(res => {
+          this.feedImages = res[0];
+          this.tags = res[1];
+          this.init = false;
+          this.loading = false;
+        });
+      } else {
+        this.tag = params.tag;
+        combineLatest(this.imageService.getPublicImages(this.limit, 0, undefined, params.tag),
+          this.tagService.getTag(params.tag)).subscribe(res => {
+          this.feedImages = res[0];
+          this.tags = [res[1]];
+          this.init = false;
+          this.loading = false;
+        });
+      }
     });
+
+
   }
 
   onScroll() {
@@ -38,7 +61,7 @@ export class FeedComponent implements OnInit {
     }
     this.loading = true;
     this.skip++;
-    this.imageService.getPublicImages(this.limit, this.skip).subscribe(images => {
+    this.imageService.getPublicImages(this.limit, this.skip, undefined, this.tag).subscribe(images => {
       if (images.length === 0) {
         this.endOfPages = true;
       }
@@ -54,9 +77,10 @@ export class FeedComponent implements OnInit {
   sorted(sortBy) {
     this.skip = 0;
     this.loading = true;
-    this.imageService.getPublicImages(this.limit, this.skip, sortBy).subscribe(images => {
+    this.imageService.getPublicImages(this.limit, this.skip, sortBy, this.tag).subscribe(images => {
       this.feedImages = images;
       this.loading = false;
     });
   }
+
 }

@@ -20,14 +20,14 @@ export class ImageCardComponent implements OnInit {
   constructor(private imageService: ImageService, public authService: AuthService, private router: Router) { }
 
   ngOnInit() {
-     if (this.image.rating.likes.includes(this.authService.getUserId())) {
-        this.isLiked = true;
-        this.isDisliked = false;
-     }
-     if (this.image.rating.dislikes.includes(this.authService.getUserId())) {
-        this.isLiked = false;
-        this.isDisliked = true;
-     }
+    if (this.image.rating.likes.includes(this.authService.getUserId())) {
+      this.isLiked = true;
+      this.isDisliked = false;
+    }
+    if (this.image.rating.dislikes.includes(this.authService.getUserId())) {
+      this.isLiked = false;
+      this.isDisliked = true;
+    }
   }
 
   likeImage() {

@@ -10,17 +10,23 @@
 
 .card-content {
   padding: 0;
+  @extend %treeBg;
 }
 
 .card  {
   cursor: pointer;
-  @extend %treeBg;
+  // @extend %treeBg;
   transition: all .1s ease-in-out;
   color:white;
 }
 
 .card:hover {
-  opacity: 0.8;
+  .card-image {
+    opacity: 0.8;
+  }
+  .card-content {
+    opacity: 0.8;
+  }
   transform: scale(1.05);
 }
 

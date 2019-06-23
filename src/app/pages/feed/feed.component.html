@@ -1,44 +1,49 @@
 <!-- infinite scroll container -->
 
-
-<div class="row">
-  <app-explore-tags></app-explore-tags>
-</div>
-
-
-<div class="row">
-  <div class="col s12 m2 offset-m10">
-    <app-filter-pictures (sorted)="sorted($event)" [loading]="loading"></app-filter-pictures>
-  </div>
-</div>
-
-<!-- card grid -->
-<div class="row">
-
-  <ngx-masonry [useImagesLoaded]="true" [options]="options">
-      <div ngxMasonryItem class="masonry-item col s12 m4  xl2" *ngFor="let image of feedImages; let ind = index">
-          <app-image-card [image]="image"></app-image-card>
-      </div>
-  </ngx-masonry>
-
-</div>
-
-
-<!-- scrollToTop -->
-<div class="goToTop" (click)="goToTop()">
-  <a class="btn-floating btn-large waves-effect waves-light"><i class="material-icons">arrow_upward</i></a>
-</div>
-<!-- loader -->
+<div *ngIf="!init">
 
   <div class="row">
-    <div class="loading" [ngClass]="{'show':loading}">
-      <img *ngIf="loading" src="https://media.giphy.com/media/8ShTENZfKnfQA/giphy.gif" alt="">
-      <!-- https://www.mechsauce.com/wp-content/uploads/2018/09/Fall-Leaves-Falling-GiF.gif -->
-    </div>
+    <app-explore-tags [tags]="tags"></app-explore-tags>
   </div>
 
-  <div *ngIf="!endOfPages" infiniteScroll [infiniteScrollDistance]="0"
-  [infiniteScrollThrottle]="1000" (scrolled)="onScroll()" [scrollWindow]="true">
+  <div class="row">
+      <div class="col s12 m2 ">
+          <app-filter-pictures (sorted)="sorted($event)" [loading]="loading"></app-filter-pictures>
+        </div>
+        
+    <div class="col s12 m2 offset-m8">
+      <app-filter-pictures (sorted)="sorted($event)" [loading]="loading"></app-filter-pictures>
+    </div>
+
+  </div>
+
+  <!-- card grid -->
+  <div class="row">
+
+    <ngx-masonry [useImagesLoaded]="true" [options]="options">
+      <div ngxMasonryItem class="masonry-item col s12 m4  xl2" *ngFor="let image of feedImages; let ind = index">
+        <app-image-card [image]="image"></app-image-card>
+      </div>
+    </ngx-masonry>
+
+  </div>
+
+
+  <!-- scrollToTop -->
+  <div class="goToTop" (click)="goToTop()">
+    <a class="btn-floating btn-large waves-effect waves-light"><i class="material-icons">arrow_upward</i></a>
+  </div>
+  <!-- loader -->
 </div>
 
 
+<div class="row">
+  <div class="loading" [ngClass]="{'show':loading}">
+    <img *ngIf="init || loading" src="https://media.giphy.com/media/8ShTENZfKnfQA/giphy.gif" alt="">
+    <!-- https://www.mechsauce.com/wp-content/uploads/2018/09/Fall-Leaves-Falling-GiF.gif -->
+  </div>
+</div>
+
+<div *ngIf="!endOfPages || !init" infiniteScroll [infiniteScrollDistance]="0" [infiniteScrollThrottle]="1000"
+  (scrolled)="onScroll()" [scrollWindow]="true">
+</div>

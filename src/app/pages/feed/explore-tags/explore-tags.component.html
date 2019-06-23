@@ -1,8 +1,22 @@
 
-<div class="container">
+<div class="container" *ngIf="tags.length > 1">
+
+  <div class="row center-align"><h5 style="margin-top:0; color:white">Explore Tags</h5></div>
   <div class="row">
-  <div class="col s4 m2" *ngFor="let tag of tags">
-    <app-tag-card [tag]="tag" ></app-tag-card>
+    <div class="col s4 m2" *ngFor="let tag of tags">
+      <app-tag-card [tag]="tag" ></app-tag-card>
+    </div>
+  </div>
+
+</div>
+
+
+<div *ngIf="tags.length === 1" class="tagTitle valign-wrapper">
+  <div class="row">
+    <div class="col s12 tagTitleDetails">
+        <h2> #{{tags[0].tag | titlecase}} </h2>
+        <h4>{{tags[0].nrOfPosts}} posts</h4>
+    </div>
   </div>
 </div>
-</div>
+

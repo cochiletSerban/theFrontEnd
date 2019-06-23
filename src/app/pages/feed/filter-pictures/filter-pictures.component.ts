@@ -40,6 +40,6 @@ export class FilterPicturesComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-   
+
   }
 }

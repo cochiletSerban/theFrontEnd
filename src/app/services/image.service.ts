@@ -14,13 +14,17 @@ export class ImageService {
   apiUrl = environment.apiUrl + '/images';
   constructor(private http: HttpClient) { }
 
-  getPublicImages(limit, skip, sort?) {
+  getPublicImages(limit, skip, sort?, tag?) {
     skip = skip * limit;
-    let params;
+    let params: any;
+    params = {limit, skip};
+
     if (sort) {
-     params = {limit, skip, sort};
-    } else {
-      params = {limit, skip};
+      params.sort = sort;
+    }
+
+    if (tag) {
+      params.tag = tag;
     }
 
     return this.http.get<Image[]>(this.apiUrl,  {params} ).pipe(tap(imgs => this.publicImages = imgs));
