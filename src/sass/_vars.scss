@@ -12,3 +12,21 @@ $imgur-bg:#2E3035;
 $imgur-card-bg:#474a51;
 $imgur-card-bg-hover:#67686F;
 $imgur-button-bg:hsla(0,0%,100%,.6);
+
+
+$ng-select-highlight:$secondary-color;
+$ng-select-primary-text:$secondary-color;
+$ng-select-disabled-text: #f9f9f9;
+$ng-select-border:$secondary-color;
+$ng-select-border-radius: 4px;
+$ng-select-bg: rgba($primary-color, 0.6);
+$ng-select-selected: rgba($primary-color, 0.6);
+$ng-select-marked:  rgba($primary-color, 0.6);
+// $ng-select-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 0 3px rgba(0, 126, 255, 0.1);
+// $ng-select-box-shadow: inset 2px 2px 2px black;
+$ng-select-placeholder: lighten($ng-select-primary-text, 40);
+$ng-select-height: 36px;
+$ng-select-value-padding-left: 10px;
+$ng-select-value-font-size: 0.9em;
+
+

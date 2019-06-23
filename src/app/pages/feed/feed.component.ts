@@ -22,7 +22,18 @@ export class FeedComponent implements OnInit {
   endOfPages = false;
   grid: any;
   tag: any;
+  sortBy: any;
   private readonly limit = 15;
+
+  readonly imageCriteria = [
+    { name: 'Most discussed', value: 'comment' },
+    { name: 'Top rated', value: 'rating' }
+  ];
+
+  readonly dateCriteria = [
+    { name: 'Latest', value:  'desc' },
+    { name: 'Oldest', value:  'asc'  }
+  ];
 
   public options: NgxMasonryOptions = {
     transitionDuration: '0.3s',
@@ -75,6 +86,8 @@ export class FeedComponent implements OnInit {
   }
 
   sorted(sortBy) {
+    let cacat =  {ratingScore : 'desc', createdAt: 'desc'}; // add to back end figure out how to asemble the object
+
     this.skip = 0;
     this.loading = true;
     this.imageService.getPublicImages(this.limit, this.skip, sortBy, this.tag).subscribe(images => {

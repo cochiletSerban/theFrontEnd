@@ -22,6 +22,7 @@ import { ExploreTagsComponent } from './pages/feed/explore-tags/explore-tags.com
 import { FilterPicturesComponent } from './pages/feed/filter-pictures/filter-pictures.component';
 import { NavBarComponent } from './pages/shared/nav-bar/nav-bar.component';
 import { TagCardComponent } from './pages/feed/explore-tags/tag-card/tag-card.component';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 
 @NgModule({
@@ -50,7 +51,8 @@ import { TagCardComponent } from './pages/feed/explore-tags/tag-card/tag-card.co
     FormsModule,
     ReactiveFormsModule,
     InfiniteScrollModule,
-    NgxMasonryModule
+    NgxMasonryModule,
+    NgSelectModule
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
   bootstrap: [AppComponent]

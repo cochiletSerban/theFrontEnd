@@ -6,13 +6,13 @@
     <app-explore-tags [tags]="tags"></app-explore-tags>
   </div>
 
-  <div class="row">
+  <div class="row mb-0" >
       <div class="col s12 m2 ">
-          <app-filter-pictures (sorted)="sorted($event)" [loading]="loading"></app-filter-pictures>
+          <app-filter-pictures (sorted)="sorted($event)" [criteria] = "imageCriteria" [loading]="loading"></app-filter-pictures>
         </div>
-        
+
     <div class="col s12 m2 offset-m8">
-      <app-filter-pictures (sorted)="sorted($event)" [loading]="loading"></app-filter-pictures>
+      <app-filter-pictures (sorted)="sorted($event)"  [criteria] = "dateCriteria" [loading]="loading"></app-filter-pictures>
     </div>
 
   </div>
