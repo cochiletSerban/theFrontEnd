@@ -22,7 +22,7 @@ export class FeedComponent implements OnInit {
   endOfPages = false;
   grid: any;
   tag: any;
-  sortBy: any;
+  sortBy = ['rating', 'desc'];
   private readonly limit = 15;
 
   readonly imageCriteria = [
@@ -86,14 +86,22 @@ export class FeedComponent implements OnInit {
   }
 
   sorted(sortBy) {
-    let cacat =  {ratingScore : 'desc', createdAt: 'desc'}; // add to back end figure out how to asemble the object
+
+    //let cacat =  {ratingScore : 'desc', createdAt: 'desc'}; // add to back end figure out how to asemble the object
+
+    if (sortBy.value === 'rating' || sortBy.value === 'comment') {
+      this.sortBy[0] = sortBy.value;
+    } else {
+      this.sortBy[1] = sortBy.value;
+    }
 
     this.skip = 0;
     this.loading = true;
-    this.imageService.getPublicImages(this.limit, this.skip, sortBy, this.tag).subscribe(images => {
+    this.imageService.getPublicImages(this.limit, this.skip, this.sortBy, this.tag).subscribe(images => {
       this.feedImages = images;
       this.loading = false;
     });
   }
 
 }
+
