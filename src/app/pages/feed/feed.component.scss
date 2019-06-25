@@ -12,7 +12,7 @@
 }
 
 .goToTop {
-  position: absolute;
+  position: fixed;
   bottom: 20px;
   right: 20px;
 }
@@ -25,4 +25,6 @@
 
 :host > div {
   margin-bottom: 0px;
+  overflow-y: hidden;
 }
+

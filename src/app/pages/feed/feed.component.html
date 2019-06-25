@@ -1,6 +1,6 @@
 <!-- infinite scroll container -->
 
-<div *ngIf="!init">
+<div *ngIf="!init" id="top">
 
   <div class="row">
     <app-explore-tags [tags]="tags"></app-explore-tags>
@@ -30,7 +30,7 @@
 
 
   <!-- scrollToTop -->
-  <div class="goToTop" (click)="goToTop()">
+  <div class="goToTop" (click)="goToTop()" *ngIf="showScrollToTop">
     <a class="btn-floating btn-large waves-effect waves-light"><i class="material-icons">arrow_upward</i></a>
   </div>
   <!-- loader -->

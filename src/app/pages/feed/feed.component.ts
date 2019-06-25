@@ -22,12 +22,13 @@ export class FeedComponent implements OnInit {
   endOfPages = false;
   grid: any;
   tag: any;
-  sortBy = ['rating', 'desc'];
+  sortBy = ['ratingScore', 'desc'];
+  showScrollToTop = false;
   private readonly limit = 15;
 
   readonly imageCriteria = [
-    { name: 'Most discussed', value: 'comment' },
-    { name: 'Top rated', value: 'rating' }
+    { name: 'Top rated', value: 'ratingScore' },
+    { name: 'Most discussed', value: 'numberOfComments' },
   ];
 
   readonly dateCriteria = [
@@ -45,7 +46,7 @@ export class FeedComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(params => {
       if (!params.tag) {
-        combineLatest(this.imageService.getPublicImages(this.limit, 0), this.tagService.getTags(6)).subscribe(res => {
+        combineLatest(this.imageService.getPublicImages(this.limit, 0, this.sortBy), this.tagService.getTags(6)).subscribe(res => {
           this.feedImages = res[0];
           this.tags = res[1];
           this.init = false;
@@ -53,7 +54,7 @@ export class FeedComponent implements OnInit {
         });
       } else {
         this.tag = params.tag;
-        combineLatest(this.imageService.getPublicImages(this.limit, 0, undefined, params.tag),
+        combineLatest(this.imageService.getPublicImages(this.limit, 0, this.sortBy, params.tag),
           this.tagService.getTag(params.tag)).subscribe(res => {
           this.feedImages = res[0];
           this.tags = [res[1]];
@@ -63,6 +64,13 @@ export class FeedComponent implements OnInit {
       }
     });
 
+    $(window).scroll(() => {
+      if ($(window).scrollTop() >= 500) {
+        this.showScrollToTop = true;
+      } else {
+        this.showScrollToTop = false;
+      }
+    });
 
   }
 
@@ -82,17 +90,18 @@ export class FeedComponent implements OnInit {
   }
 
   goToTop() {
-    $('.mcontainer').animate({scrollTop: 0}, 1000);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   sorted(sortBy) {
 
     //let cacat =  {ratingScore : 'desc', createdAt: 'desc'}; // add to back end figure out how to asemble the object
 
-    if (sortBy.value === 'rating' || sortBy.value === 'comment') {
-      this.sortBy[0] = sortBy.value;
+
+    if (sortBy === 'ratingScore' || sortBy === 'numberOfComments') {
+      this.sortBy[0] = sortBy;
     } else {
-      this.sortBy[1] = sortBy.value;
+      this.sortBy[1] = sortBy;
     }
 
     this.skip = 0;

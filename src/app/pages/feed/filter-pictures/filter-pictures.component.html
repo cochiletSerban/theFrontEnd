@@ -1,9 +1,9 @@
-
 <ng-select [items]="criteria"
            bindLabel="name"
            bindValue="value"
+           [selectOnTab]="true"
            [(ngModel)]="selectedCriteria"
            [searchable]="false" [clearable]="false"
-           (change)="sort(selectedCriteria)"
+           (change)="sort()"
            >
 </ng-select>

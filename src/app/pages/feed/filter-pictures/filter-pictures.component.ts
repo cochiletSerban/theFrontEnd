@@ -8,7 +8,7 @@ declare var $: any;
 })
 export class FilterPicturesComponent implements OnInit, AfterViewInit {
 
-  @Output() sorted = new EventEmitter<any>();
+  @Output() sorted = new EventEmitter<string>();
   @Input() loading;
   @Input() criteria;
 
@@ -19,11 +19,11 @@ export class FilterPicturesComponent implements OnInit, AfterViewInit {
     this.selectedCriteria = this.criteria[0].value;
   }
 
-  sort(criteria) {
+  sort() {
     if (this.loading) {
       return;
     }
-    this.sorted.emit(this.selectedCriteria);
+    this.sorted.emit(this.selectedCriteria.toString());
   }
 
   ngAfterViewInit(): void {

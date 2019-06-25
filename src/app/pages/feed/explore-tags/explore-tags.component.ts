@@ -15,6 +15,7 @@ export class ExploreTagsComponent implements OnInit {
   ngOnInit() {
     if (this.tags.length === 1 && this.tags[0].imageUrl) {
       $('app-explore-tags').css('background-image', 'url(' + this.tags[0].imageUrl + ')');
+      $('app-explore-tags').attr('data-before', 'anything');
     }
   }
 
