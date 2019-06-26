@@ -10,16 +10,13 @@
     position: relative;
 }
 
-:host::after {
-    content: attr(data-before); // no bueno chnage to div with postion absolute and z index 1
+.background-blur {
     position: absolute;
     width: 100%;
     min-height: 360px;
-    display: block;
     top:0;
-    // filter: blur(5px);
-    background-color: rgba(0,0,0,0.5);
-    z-index: 1;
+    background-color: rgba(0,0,0,0.3);
+    z-index: 2;
 }
 
 .card {

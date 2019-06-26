@@ -95,9 +95,6 @@ export class FeedComponent implements OnInit {
 
   sorted(sortBy) {
 
-    //let cacat =  {ratingScore : 'desc', createdAt: 'desc'}; // add to back end figure out how to asemble the object
-
-
     if (sortBy === 'ratingScore' || sortBy === 'numberOfComments') {
       this.sortBy[0] = sortBy;
     } else {
