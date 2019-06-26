@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { LocationService } from 'src/app/services/location.service';
+import { ImageService } from 'src/app/services/image.service';
 
 @Component({
   selector: 'app-location-feed',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LocationFeedComponent implements OnInit {
 
-  constructor() { }
+  constructor(private locationService: LocationService, private imageService: ImageService) { }
 
   ngOnInit() {
+    this.locationService.getPosition().then(location => {
+      console.log(location);
+      this.imageService.getImagesInMyArea(10000, location).subscribe(images => console.log(images));
+    });
   }
 
 }

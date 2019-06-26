@@ -46,4 +46,13 @@ export class ImageService {
     return this.http.get<Image>(this.apiUrl + '/' + imageId);
   }
 
+  getImagesInMyArea(radius, location) {
+    const params = {
+      lon: location.lon,
+      lat: location.lat,
+      radius
+    };
+    return this.http.get<Image[]>(this.apiUrl,  {params});
+  }
+
 }

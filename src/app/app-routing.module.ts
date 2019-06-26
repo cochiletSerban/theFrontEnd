@@ -6,6 +6,7 @@ import { TestComponent } from './pages/test/test.component';
 import { LandingComponent } from './pages/landing/landing.component';
 import { AuthGuard } from './guards/auth.guard';
 import { FeedComponent } from './pages/feed/feed.component';
+import { LocationFeedComponent } from './pages/location-feed/location-feed.component';
 
 
 const routes: Routes = [
@@ -14,7 +15,8 @@ const routes: Routes = [
   {path: '', component: LandingComponent},
   {path: 'explore', component: FeedComponent},
   {path: 'explore/:tag', component: FeedComponent},
-  {path: 'image/:imageId', component: ImageViewComponent}
+  {path: 'image/:imageId', component: ImageViewComponent},
+  {path: 'feed', component: LocationFeedComponent}
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
