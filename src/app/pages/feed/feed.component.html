@@ -6,7 +6,7 @@
     <app-explore-tags [tags]="tags"></app-explore-tags>
   </div>
 
-  <div class="row mb-0" >
+  <div class="row mb-7" >
       <div class="col s12 m2 ">
           <app-filter-pictures (sorted)="sorted($event)" [criteria] = "imageCriteria" [loading]="loading"></app-filter-pictures>
         </div>
@@ -30,7 +30,7 @@
 
 
   <!-- scrollToTop -->
-  <div class="goToTop" (click)="goToTop()" *ngIf="showScrollToTop">
+  <div class="goToTop" (click)="goToTop()" [hidden]="!showScrollToTop">
     <a class="btn-floating btn-large waves-effect waves-light"><i class="material-icons">arrow_upward</i></a>
   </div>
   <!-- loader -->

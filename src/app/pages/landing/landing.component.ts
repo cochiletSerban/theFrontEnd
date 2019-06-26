@@ -29,14 +29,14 @@ export class LandingComponent implements OnInit {
     this.render.addClass(this.frunze.nativeElement, 'zoomIn');
     this.render.addClass(this.grass.nativeElement, 'slideInUp');
     this.render.setStyle(this.logo.nativeElement, 'animation', 'pick 1s');
-    this.imageService.getPublicImages(15, 0, 'date').subscribe(res => {
+    this.imageService.getPublicImages(15, 0, ['rating', 'desc']).subscribe(res => {
       this.images.push(...res);
     });
   }
 
   initSlider(index) {
     if (index === this.images.length - 1) {
-      $('.slider').slider({indicators: false, duration: 100, interval: 500});
+      $('.slider').slider({indicators: false, duration: 800, interval: 800});
     }
   }
 
@@ -55,7 +55,7 @@ export class LandingComponent implements OnInit {
   }
 
   getStarted() {
-    this.router.navigate(['/explore/12']);
+    this.router.navigate(['/explore']);
   }
 
 

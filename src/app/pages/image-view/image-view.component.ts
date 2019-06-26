@@ -14,7 +14,7 @@ export class ImageViewComponent implements OnInit {
   image: Image;
   imgLoading = true;
   commsLoading = true;
-  comms: Comment[];
+  comms: Comment[] = [];
   limit = 10;
   skip = 0;
   constructor(
@@ -23,6 +23,7 @@ export class ImageViewComponent implements OnInit {
       private comentesSerivce: CommentService
     ) {
       this.comentesSerivce.commentAdded$.subscribe(comm => {
+        this.image.comms++;
         const temp  = [comm];
         temp.push(...this.comms);
         this.comms = temp;

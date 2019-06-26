@@ -1,6 +1,6 @@
 <li class="collection-item avatar">
     <img *ngIf="comm.owner.avatar" [src]="comm.owner.avatar | safeImage" alt="" class="circle">
     <img *ngIf="!comm.owner.avatar" src="https://static.independent.co.uk/s3fs-public/thumbnails/image/2017/05/03/15/ok-hand.jpg?w968h681"  class="circle" alt="">
-    <b>{{comm.owner.username | titlecase}} </b> {{comm.createdAt | timeAgo}} <br>
+    <b>{{comm.owner.username | titlecase}} </b> {{comm.createdAt | timeAgo  }} <br>
     {{comm.text}}
   </li>

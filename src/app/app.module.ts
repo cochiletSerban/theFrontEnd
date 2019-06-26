@@ -16,13 +16,14 @@ import { ImageCardComponent } from './pages/feed/image-card/image-card.component
 import { NgxMasonryModule } from 'ngx-masonry';
 import { ImageViewComponent } from './pages/image-view/image-view.component';
 import { ImagePanelComponent } from './pages/image-view/image-panel/image-panel.component';
-import {TimeAgoPipe} from 'time-ago-pipe';
 import { CommentComponent } from './pages/image-view/comment/comment.component';
 import { ExploreTagsComponent } from './pages/feed/explore-tags/explore-tags.component';
 import { FilterPicturesComponent } from './pages/feed/filter-pictures/filter-pictures.component';
 import { NavBarComponent } from './pages/shared/nav-bar/nav-bar.component';
 import { TagCardComponent } from './pages/feed/explore-tags/tag-card/tag-card.component';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { LocationFeedComponent } from './pages/location-feed/location-feed.component';
+import { TimeAgoPipe } from '../../node_modules/time-ago-pipe';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
     ExploreTagsComponent,
     FilterPicturesComponent,
     NavBarComponent,
-    TagCardComponent
+    TagCardComponent,
+    LocationFeedComponent
   ],
   imports: [
     BrowserModule,
