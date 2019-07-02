@@ -35,10 +35,4 @@ export class AuthService {
     return false;
   }
 
-  getUserId() {
-    if (this.isUserLoggedIn()) {
-      return jwt_decode(localStorage.getItem('token'))._id;
-    }
-  }
-
 }

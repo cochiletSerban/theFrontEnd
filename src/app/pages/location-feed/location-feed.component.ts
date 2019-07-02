@@ -4,6 +4,7 @@ import { ImageService } from 'src/app/services/image.service';
 import { Image } from 'src/app/models/image';
 import { subscribeOn } from 'rxjs/operators';
 
+
 @Component({
   selector: 'app-location-feed',
   templateUrl: './location-feed.component.html',
@@ -12,13 +13,23 @@ import { subscribeOn } from 'rxjs/operators';
 export class LocationFeedComponent implements OnInit {
   images: Image[] = [];
   loading = true;
-  constructor(private locationService: LocationService, private imageService: ImageService) { }
+  constructor(private locationService: LocationService, private imageService: ImageService) {
+    this.locationService.getLocation().subscribe(location => {
+      this.imageService.getImagesInMyArea(
+        this.locationService.getCoordinatesFromLocation(location))
+          .subscribe(images => this.images = images)
+          .add(() => this.loading = false);
+    });
+   }
 
   ngOnInit() {
-    this.locationService.getPosition().then(location => {
-      console.log(location);
-      this.imageService.getImagesInMyArea(500, location).subscribe(images => this.images = images).add(() => this.loading = false);
+    this.locationService.locationChange().subscribe(location => {
+      this.imageService.getImagesInMyArea(
+        this.locationService.getCoordinatesFromLocation(location))
+          .subscribe(images => this.images = images)
+          .add(() => this.loading = false);
     });
+
   }
 
 }

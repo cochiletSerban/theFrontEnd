@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Image } from '../models/image';
 import { tap } from 'rxjs/operators';
+import { UserService } from './user.service';
 @Injectable({
   providedIn: 'root'
 })
@@ -12,7 +13,7 @@ export class ImageService {
   private publicImages: Image[] = [];
 
   apiUrl = environment.apiUrl + '/images';
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private userService: UserService) { }
 
   getPublicImages(limit, skip, sort?, tag?) {
     skip = skip * limit;
@@ -46,11 +47,11 @@ export class ImageService {
     return this.http.get<Image>(this.apiUrl + '/' + imageId);
   }
 
-  getImagesInMyArea(radius, location) {
+  getImagesInMyArea(location) {
     const params = {
       lon: location.lon,
       lat: location.lat,
-      radius
+      radius: this.userService.getUserRadius()
     };
     return this.http.get<Image[]>(this.apiUrl,  {params});
   }

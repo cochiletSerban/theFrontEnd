@@ -4,6 +4,7 @@ import { ImageService } from 'src/app/services/image.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-image-panel',
@@ -19,8 +20,9 @@ export class ImagePanelComponent implements OnInit {
   postComentLoading = false;
   comment: FormGroup;
 
-  constructor(private imageService: ImageService, public authService: AuthService,
-    private router: Router, private commentService: CommentService) { }
+  constructor(private imageService: ImageService, private userService: UserService,
+              public authService: AuthService,
+              private router: Router, private commentService: CommentService) { }
 
   public noWhitespaceValidator(control: FormControl) {
     const isWhitespace = (control.value || '').trim().length === 0;
@@ -30,11 +32,11 @@ export class ImagePanelComponent implements OnInit {
 
 
   ngOnInit() {
-    if (this.image.rating.likes.includes(this.authService.getUserId())) {
+    if (this.image.rating.likes.includes(this.userService.getUserId())) {
       this.isLiked = true;
       this.isDisliked = false;
    }
-    if (this.image.rating.dislikes.includes(this.authService.getUserId())) {
+    if (this.image.rating.dislikes.includes(this.userService.getUserId())) {
       this.isLiked = false;
       this.isDisliked = true;
    }
@@ -56,7 +58,7 @@ export class ImagePanelComponent implements OnInit {
     if (!this.isLiked) {
       this.imageService.likeImage(this.image).subscribe(res => {
         this.image.rating.dislikes.pop();
-        this.image.rating.likes.push(this.authService.getUserId());
+        this.image.rating.likes.push(this.userService.getUserId());
         this.isLiked = true;
         this.isDisliked = false;
       }).add(() => this.isLoading = false);
@@ -83,7 +85,7 @@ export class ImagePanelComponent implements OnInit {
     if (!this.isDisliked) {
       this.imageService.dislikeImage(this.image).subscribe(res => {
         this.image.rating.likes.pop();
-        this.image.rating.dislikes.push(this.authService.getUserId());
+        this.image.rating.dislikes.push(this.userService.getUserId());
         this.isLiked = false;
         this.isDisliked = true;
       }).add(() => this.isLoading = false);
@@ -100,7 +102,7 @@ export class ImagePanelComponent implements OnInit {
     this.postComentLoading = true;
     if (!this.authService.isUserLoggedIn()) {
       this.postComentLoading = false;
-      return;  //TODO add login pop up
+      return;  // TODO add login pop up
     }
 
     if (this.comment.valid) {

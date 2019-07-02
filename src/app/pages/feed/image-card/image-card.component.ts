@@ -3,6 +3,7 @@ import { Image } from 'src/app/models/image';
 import { ImageService } from 'src/app/services/image.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
 declare var $: any;
 
 @Component({
@@ -17,14 +18,15 @@ export class ImageCardComponent implements OnInit {
   isDisliked = false;
   isLoading = false;
 
-  constructor(private imageService: ImageService, public authService: AuthService, private router: Router) { }
+  constructor(private imageService: ImageService, public authService: AuthService,
+              private router: Router, private userService: UserService) { }
 
   ngOnInit() {
-    if (this.image.rating.likes.includes(this.authService.getUserId())) {
+    if (this.image.rating.likes.includes(this.userService.getUserId())) {
       this.isLiked = true;
       this.isDisliked = false;
     }
-    if (this.image.rating.dislikes.includes(this.authService.getUserId())) {
+    if (this.image.rating.dislikes.includes(this.userService.getUserId())) {
       this.isLiked = false;
       this.isDisliked = true;
     }
@@ -43,7 +45,7 @@ export class ImageCardComponent implements OnInit {
     if (!this.isLiked) {
       this.imageService.likeImage(this.image).subscribe(res => {
         this.image.rating.dislikes.pop();
-        this.image.rating.likes.push(this.authService.getUserId());
+        this.image.rating.likes.push(this.userService.getUserId());
         this.isLiked = true;
         this.isDisliked = false;
       }).add(() => this.isLoading = false);
@@ -69,7 +71,7 @@ export class ImageCardComponent implements OnInit {
     if (!this.isDisliked) {
       this.imageService.dislikeImage(this.image).subscribe(res => {
         this.image.rating.likes.pop();
-        this.image.rating.dislikes.push(this.authService.getUserId());
+        this.image.rating.dislikes.push(this.userService.getUserId());
         this.isLiked = false;
         this.isDisliked = true;
       }).add(() => this.isLoading = false);
