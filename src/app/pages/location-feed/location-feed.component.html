@@ -1,3 +1,30 @@
-<p>
-  location-feed works!
-</p>
+<div class="container">
+  <div class="row">
+    <h2>Pictures near your location</h2>
+  </div>
+
+
+  <!-- <div class="scrolling-wrapper">
+      <div class="card"><h2>Card</h2></div>
+      <div class="card"><h2>Card</h2></div>
+      <div class="card"><h2>Card</h2></div>
+      <div class="card"><h2>Card</h2></div>
+      <div class="card"><h2>Card</h2></div>
+      <div class="card"><h2>Card</h2></div>
+      <div class="card"><h2>Card</h2></div>
+      <div class="card"><h2>Card</h2></div>
+      <div class="card"><h2>Card</h2></div>
+    </div> -->
+
+</div>
+
+
+<drag-scroll [scroll-x-wheel-enabled]="true"  [scrollbar-hidden]="true" *ngIf="!loading"  [snap-disabled]="true" >
+  <div class="col s4" drag-scroll-item *ngFor="let img of images">
+      <app-image-card [image]="img"></app-image-card>
+  </div>
+</drag-scroll>
+
+
+
+

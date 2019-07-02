@@ -24,6 +24,7 @@ import { TagCardComponent } from './pages/feed/explore-tags/tag-card/tag-card.co
 import { NgSelectModule } from '@ng-select/ng-select';
 import { LocationFeedComponent } from './pages/location-feed/location-feed.component';
 import { TimeAgoPipe } from '../../node_modules/time-ago-pipe';
+import { DragScrollModule } from 'ngx-drag-scroll';
 
 
 @NgModule({
@@ -54,7 +55,8 @@ import { TimeAgoPipe } from '../../node_modules/time-ago-pipe';
     ReactiveFormsModule,
     InfiniteScrollModule,
     NgxMasonryModule,
-    NgSelectModule
+    NgSelectModule,
+    DragScrollModule,
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
   bootstrap: [AppComponent]
