@@ -36,7 +36,6 @@ export class LocationService {
         if (window.navigator && window.navigator.geolocation) {
           window.navigator.geolocation.watchPosition(
                 (position) => {
-
                   console.warn(geolib.getDistance(
                     this.getCoordinatesFromLocation(this.currentLocation),
                     this.getCoordinatesFromLocation(position)

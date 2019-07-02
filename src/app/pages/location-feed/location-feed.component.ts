@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LocationService } from 'src/app/services/location.service';
 import { ImageService } from 'src/app/services/image.service';
 import { Image } from 'src/app/models/image';
-import { subscribeOn } from 'rxjs/operators';
+declare var $: any;
 
 
 @Component({
@@ -29,7 +29,5 @@ export class LocationFeedComponent implements OnInit {
           .subscribe(images => this.images = images)
           .add(() => this.loading = false);
     });
-
   }
-
 }

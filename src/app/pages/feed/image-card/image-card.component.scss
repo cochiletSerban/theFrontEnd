@@ -20,6 +20,11 @@
   color:white;
 }
 
+.card-image {
+  max-height: 450px;
+  overflow: hidden;
+}
+
 .card:hover {
   .card-image {
     opacity: 0.8;
