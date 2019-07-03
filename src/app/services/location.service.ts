@@ -7,7 +7,12 @@ import { UserService } from './user.service';
 })
 export class LocationService {
 
-  currentLocation;
+  currentLocation = {
+    coords: {
+      latitude: 420,
+      longitude: 69
+    }
+  };
   radius = 200;
 
   constructor(private userService: UserService) {

@@ -13,16 +13,22 @@ declare var $: any;
 export class LocationFeedComponent implements OnInit {
   images: Image[] = [];
   loading = true;
+  nebunie;
   constructor(private locationService: LocationService, private imageService: ImageService) {
-    this.locationService.getLocation().subscribe(location => {
-      this.imageService.getImagesInMyArea(
-        this.locationService.getCoordinatesFromLocation(location))
-          .subscribe(images => this.images = images)
-          .add(() => this.loading = false);
-    });
+
    }
 
   ngOnInit() {
+
+    // this.locationService.getLocation().subscribe(location => {
+    //   this.imageService.getImagesInMyArea(
+    //     this.locationService.getCoordinatesFromLocation(location))
+    //       .subscribe(images => this.images = images)
+    //       .add(() => this.loading = false);
+    // });
+  
+    //  BUG THIS WORKS ONLY WHEN LOADING THE COMPONENT THE FRIST TIME
+
     this.locationService.locationChange().subscribe(location => {
       this.imageService.getImagesInMyArea(
         this.locationService.getCoordinatesFromLocation(location))
@@ -30,4 +36,6 @@ export class LocationFeedComponent implements OnInit {
           .add(() => this.loading = false);
     });
   }
+
+
 }

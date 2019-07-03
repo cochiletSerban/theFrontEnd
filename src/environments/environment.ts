@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://licentabackend.herokuapp.com'
+  apiUrl: 'localhost:4200'
 };
 
 /*
