@@ -15,7 +15,6 @@
 
 .card  {
   cursor: pointer;
-  // @extend %treeBg;
   transition: all .1s ease-in-out;
   color:white;
 }
@@ -25,14 +24,27 @@
   overflow: hidden;
 }
 
-.card:hover {
-  .card-image {
-    opacity: 0.8;
+
+
+//@media only screen and (min-width:37.5em) {
+  @media (pointer: fine) {
+  .card:hover {
+    .card-image {
+      opacity: 0.8;
+    }
+    .card-content {
+      opacity: 0.8;
+    }
+    transform: scale(1.05);
   }
-  .card-content {
-    opacity: 0.8;
+  .likes:hover {
+    color: $primary-color;
   }
-  transform: scale(1.05);
+
+  .dislikes:hover {
+    color:#f2596d;
+  }
+
 }
 
 .card-buttons {
@@ -66,10 +78,3 @@ i {
   // border-bottom: 5px solid #f2596d;;
 }
 
-.likes:hover {
-  color: $primary-color;
-}
-
-.dislikes:hover {
-  color:#f2596d;
-}

@@ -1,54 +1,48 @@
-/* You can add global styles to this file, and also import other style files */
 $roboto-font-path: "~materialize-css/dist/fonts/roboto/";
 @import './vars';
 @import './classes';
 @import '~@ng-select/ng-select/scss/default.theme.scss';
 @import "~materialize-css/sass/materialize";
 
-
-
-
-html,body {
-    height: 100%;
-    // background-color: $imgur-bg;
-    // border:2px solid red;
-    -webkit-font-smoothing: antialiased;
+html,
+body {
+  height: 100%;
+  -webkit-font-smoothing: antialiased;
 }
 
 .interceptorErrToast {
-    @extend %errToast;
+  @extend %errToast;
 }
 
 .debug {
-    border:2px solid fuchsia;
+  border: 2px solid fuchsia;
 }
 
-
-
-.ng-value-label , .ng-option-label {
-    color:white;
-    font-weight: bold!important;
-    text-shadow: 1px 1px 2px black;
+.ng-value-label,
+.ng-option-label {
+  color: white;
+  font-weight: bold !important;
+  text-shadow: 1px 1px 2px black;
 }
-
 
 .ng-input {
-    display: none;
+  display: none;
 }
 
 .ng-option {
-    border-top: 2px solid rgba(0, 0, 0, 0.3);
+  border-top: 2px solid rgba(0, 0, 0, 0.3);
 }
 
 .ng-option:hover {
-    background-color: rgba($primary-color, 1)!important;
+  background-color: rgba($primary-color, 1) !important;
 }
 
 .mb-0 {
-    margin-bottom: 0;
+  margin-bottom: 0;
 }
+
 .mb-7 {
-    margin-bottom: 7px;
+  margin-bottom: 7px;
 }
 
 .p-0 {
@@ -56,11 +50,11 @@ html,body {
 }
 
 .pr-0 {
-  padding-right: 0!important;
+  padding-right: 0 !important;
 }
 
 .pl-0 {
-  padding-left: 0!important;
+  padding-left: 0 !important;
 }
 
 .truncate {

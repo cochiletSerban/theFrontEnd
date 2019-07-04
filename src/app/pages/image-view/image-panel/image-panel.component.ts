@@ -116,6 +116,4 @@ export class ImagePanelComponent implements OnInit {
     }
 
   }
-
-
 }
