@@ -7,11 +7,11 @@
   </div>
 
   <div class="row mb-7" >
-      <div class="col s12 m2 ">
+      <div class="col s6 m2 ">
           <app-filter-pictures (sorted)="sorted($event)" [criteria] = "imageCriteria" [loading]="loading"></app-filter-pictures>
         </div>
 
-    <div class="col s12 m2 offset-m8">
+    <div class="col s6 m2 offset-m8">
       <app-filter-pictures (sorted)="sorted($event)"  [criteria] = "dateCriteria" [loading]="loading"></app-filter-pictures>
     </div>
 

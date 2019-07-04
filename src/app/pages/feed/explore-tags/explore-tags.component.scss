@@ -10,6 +10,12 @@
     position: relative;
 }
 
+@media only screen and (max-width:600px) {
+  :host {
+    margin-bottom: 0;
+  }
+}
+
 .background-blur {
     position: absolute;
     width: 100%;

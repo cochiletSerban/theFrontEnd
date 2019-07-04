@@ -4,11 +4,11 @@
 
   <div class="row valign-wrapper">
 
-    <div class="col s8">
+    <div class="col s8 pr-0">
       <div class="title">
         <div class="row">
-          <div class="col s12 imageTitile" >
-            <h4>{{image.fileName.split('.')[0]}}</h4>
+          <div class="col s12 imageTitile pr-0" >
+            <h4 class="truncate">{{image.fileName.split('.')[0]}}</h4>
           </div>
         </div>
         <div class="row">
@@ -21,8 +21,8 @@
     </div>
 
 
-    <div class="col s4">
-      <div class="col s6 right-align" (click)="likeImage()"  >
+    <div class="col s4 pl-0">
+      <div class="col s6 right-align p-0" (click)="likeImage()"  >
 
         <i class="fa fa-thumbs-up fa-2x"aria-hidden="true" [ngClass]="{'isLiked': isLiked, 'likes': authService.isUserLoggedIn()}" >
           <span>{{image.rating.likes.length}}</span>
@@ -30,7 +30,7 @@
 
       </div>
 
-      <div class="col s6 right-align" (click)="dislikeImage()" >
+      <div class="col s6 right-align p-0" (click)="dislikeImage()" >
 
         <i class="fa fa-thumbs-down fa-2x" aria-hidden="true" [ngClass]="{'isDisliked': isDisliked, 'dislikes': authService.isUserLoggedIn()}">
           <span>{{image.rating.dislikes.length}}</span>
@@ -41,11 +41,9 @@
     </div>
   </div>
 
-  <div class="row">
-    <div class="col">
-      <div class="col" >
-        {{image.description}}
-      </div>
+  <div class="row col">
+    <div class="col s12">
+        {{image.description}} asdsds
     </div>
   </div>
 
@@ -66,13 +64,3 @@
     </form>
   </div>
 </div>
-
-
-<!-- <div class="comment-container">
-
-  <ul class="collection">
-
-    <app-comment></app-comment>
-  </ul>
-
-</div> -->
