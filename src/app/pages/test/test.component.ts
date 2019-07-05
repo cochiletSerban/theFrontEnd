@@ -15,7 +15,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 
 export class TestComponent implements OnInit {
-  title = 'theFrontEnd';
+  title = 'piky';
   public uploader: FileUploader = new FileUploader({
     url: 'https://licentabackend.herokuapp.com/images/small', itemAlias: 'image',
       //url: 'http://localhost:4000/images', itemAlias: 'image',

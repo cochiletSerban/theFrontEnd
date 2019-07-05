@@ -6,7 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthInterceptor } from './interceptors/AuthInterceptor';
 import { SafeImagePipe } from './pipes/safe-image.pipe';
-import { FileSelectDirective } from 'ng2-file-upload/';
+import {  FileUploadModule } from 'ng2-file-upload/';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { TestComponent } from './pages/test/test.component';
 import { SignupComponent } from './pages/signup/signup.component';
@@ -31,7 +31,6 @@ import { DragScrollModule } from 'ngx-drag-scroll';
   declarations: [
     AppComponent,
     SafeImagePipe,
-    FileSelectDirective,
     SignupComponent,
     TestComponent,
     LandingComponent,
@@ -57,6 +56,7 @@ import { DragScrollModule } from 'ngx-drag-scroll';
     NgxMasonryModule,
     NgSelectModule,
     DragScrollModule,
+    FileUploadModule
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
   bootstrap: [AppComponent]

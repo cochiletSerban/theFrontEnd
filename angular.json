@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "theFrontEnd": {
+    "piky": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/theFrontEnd",
+            "outputPath": "dist/piky",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -76,14 +76,14 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "theFrontEnd:build"
+            "browserTarget": "piky:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "theFrontEnd:build:production"
+              "browserTarget": "piky:build:production"
             },
             "amPulaMare": {
-              "browserTarget": "theFrontEnd:build:amPulaMare"
+              "browserTarget": "piky:build:amPulaMare"
             }
           }
 
@@ -91,7 +91,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "theFrontEnd:build"
+            "browserTarget": "piky:build"
           }
         },
         "test": {
@@ -131,7 +131,7 @@
         }
       }
     },
-    "theFrontEnd-e2e": {
+    "piky-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "prefix": "",
@@ -140,11 +140,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "theFrontEnd:serve"
+            "devServerTarget": "piky:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "theFrontEnd:serve:production"
+              "devServerTarget": "piky:serve:production"
             }
           }
         },
@@ -160,5 +160,5 @@
       }
     }
   },
-  "defaultProject": "theFrontEnd"
+  "defaultProject": "piky"
 }
