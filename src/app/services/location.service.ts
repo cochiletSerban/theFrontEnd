@@ -13,28 +13,28 @@ export class LocationService {
       longitude: 69
     }
   };
-  radius = 200;
+  radius = 500;
 
   constructor(private userService: UserService) {
     this.radius = this.userService.getUserRadius();
   }
 
-  getLocation(): Observable<any> {
-    return Observable.create(observer => {
-        if (window.navigator && window.navigator.geolocation) {
-            window.navigator.geolocation.getCurrentPosition(
-                (position) => {
-                    this.currentLocation = position;
-                    observer.next(position);
-                    observer.complete();
-                },
-                (error) => observer.error(error)
-            );
-        } else {
-            observer.error('Unsupported Browser');
-        }
-    });
-  }
+  // getLocation(): Observable<any> {
+  //   return Observable.create(observer => {
+  //       if (window.navigator && window.navigator.geolocation) {
+  //           window.navigator.geolocation.getCurrentPosition(
+  //               (position) => {
+  //                   this.currentLocation = position;
+  //                   observer.next(position);
+  //                   observer.complete();
+  //               },
+  //               (error) => observer.error(error)
+  //           );
+  //       } else {
+  //           observer.error('Unsupported Browser');
+  //       }
+  //   });
+  // }
 
   locationChange(): Observable<any> {
     return Observable.create(observer => {
@@ -67,6 +67,12 @@ export class LocationService {
       lat: location.coords.latitude,
       lon: location.coords.longitude
     };
+  }
+
+  getCurrentLocation() {
+    return new Promise((resolve, reject) => {
+      navigator.geolocation.getCurrentPosition(resolve, reject);
+    });
   }
 
 

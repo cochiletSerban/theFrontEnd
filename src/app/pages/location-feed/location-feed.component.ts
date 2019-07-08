@@ -20,13 +20,15 @@ export class LocationFeedComponent implements OnInit {
 
   ngOnInit() {
 
-    // this.locationService.getLocation().subscribe(location => {
-    //   this.imageService.getImagesInMyArea(
-    //     this.locationService.getCoordinatesFromLocation(location))
-    //       .subscribe(images => this.images = images)
-    //       .add(() => this.loading = false);
-    // });
-  
+    this.locationService.getCurrentLocation().then(location => {
+      console.log('yas');
+
+      this.imageService.getImagesInMyArea(
+        this.locationService.getCoordinatesFromLocation(location))
+          .subscribe(images => this.images = images)
+          .add(() => this.loading = false);
+    });
+
     //  BUG THIS WORKS ONLY WHEN LOADING THE COMPONENT THE FRIST TIME
 
     this.locationService.locationChange().subscribe(location => {
@@ -35,6 +37,7 @@ export class LocationFeedComponent implements OnInit {
           .subscribe(images => this.images = images)
           .add(() => this.loading = false);
     });
+
   }
 
 
