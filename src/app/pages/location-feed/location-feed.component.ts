@@ -2,7 +2,8 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { LocationService } from 'src/app/services/location.service';
 import { ImageService } from 'src/app/services/image.service';
 import { Image } from 'src/app/models/image';
-import { Observable } from 'rxjs';
+
+import { switchMap } from 'rxjs/operators';
 declare var $: any;
 
 
@@ -23,23 +24,14 @@ export class LocationFeedComponent implements OnInit, OnDestroy {
     console.log('init');
 
 
+    this.locationService.getLocation().pipe(switchMap(
+      location => this.imageService.getImagesInMyArea(this.locationService.getCoordinatesFromLocation(location))
+    )).subscribe(images => this.images = images).add(() => this.loading = false);
 
-    //  BUG THIS WORKS ONLY WHEN LOADING THE COMPONENT THE FRIST TIME
 
-
-    this.locationService.getLocation().subscribe(location => {
-
-      this.imageService.getImagesInMyArea(this.locationService.getCoordinatesFromLocation(location))
-        .subscribe(images => this.images = images)
-        .add(() => this.loading = false);
-
-    });
-
-    this.locationService.locationChange().subscribe(newLocation => {
-      this.imageService.getImagesInMyArea(this.locationService.getCoordinatesFromLocation(newLocation))
-        .subscribe(images => this.images = images)
-        .add(() => this.loading = false);
-    });
+    this.locationService.locationChange().pipe(switchMap(
+      newLocation => this.imageService.getImagesInMyArea(this.locationService.getCoordinatesFromLocation(newLocation))
+    )).subscribe(images => this.images = images).add(() => this.loading = false);
 
   }
 
@@ -47,6 +39,7 @@ export class LocationFeedComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.locationService.clearLocationChangeWatch();
   }
+
 
 
 
