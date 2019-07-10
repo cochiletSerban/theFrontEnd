@@ -14,42 +14,40 @@ export class LocationService {
     }
   };
   radius = 500;
+  locationChangeWatch;
 
   constructor(private userService: UserService) {
     this.radius = this.userService.getUserRadius();
   }
 
-  // getLocation(): Observable<any> {
-  //   return Observable.create(observer => {
-  //       if (window.navigator && window.navigator.geolocation) {
-  //           window.navigator.geolocation.getCurrentPosition(
-  //               (position) => {
-  //                   this.currentLocation = position;
-  //                   observer.next(position);
-  //                   observer.complete();
-  //               },
-  //               (error) => observer.error(error)
-  //           );
-  //       } else {
-  //           observer.error('Unsupported Browser');
-  //       }
-  //   });
-  // }
+  getLocation(): Observable<any> {
+    return Observable.create(observer => {
+        if (window.navigator && window.navigator.geolocation) {
+            window.navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    this.currentLocation = position;
+                    observer.next(position);
+                    observer.complete();
+                },
+                (error) => observer.error(error)
+            );
+        } else {
+            observer.error('Unsupported Browser');
+        }
+    });
+  }
 
   locationChange(): Observable<any> {
     return Observable.create(observer => {
         if (window.navigator && window.navigator.geolocation) {
-          window.navigator.geolocation.watchPosition(
+         this.locationChangeWatch = window.navigator.geolocation.watchPosition(
                 (position) => {
                   console.warn(geolib.getDistance(
                     this.getCoordinatesFromLocation(this.currentLocation),
                     this.getCoordinatesFromLocation(position)
                   ));
 
-                  if (geolib.getDistance(
-                      this.getCoordinatesFromLocation(this.currentLocation),
-                      this.getCoordinatesFromLocation(position)
-                    ) > this.radius) {
+                  if (this.coordinatesInRadius(position)) {
                     observer.next(position);
                     this.currentLocation = position;
                   }
@@ -69,11 +67,19 @@ export class LocationService {
     };
   }
 
-  getCurrentLocation() {
-    return new Promise((resolve, reject) => {
-      navigator.geolocation.getCurrentPosition(resolve, reject);
-    });
+  coordinatesInRadius(startCoordinate, endCoordinate = this.currentLocation) {
+    return geolib.getDistance(
+      this.getCoordinatesFromLocation(endCoordinate),
+      this.getCoordinatesFromLocation(startCoordinate)
+    ) > this.radius;
   }
 
 
+  getCurrentLocation() {
+    return this.getCoordinatesFromLocation(this.currentLocation);
+  }
+
+  clearLocationChangeWatch() {
+    window.navigator.geolocation.clearWatch(this.locationChangeWatch);
+  }
 }
