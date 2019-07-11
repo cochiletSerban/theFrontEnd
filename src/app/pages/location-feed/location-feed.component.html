@@ -1,21 +1,7 @@
-<div class="container">
-  <div class="row">
-    <h2>Pictures near your location</h2>
+<div class="container-fluid">
+  <div class="row center-align mb-0">
+    <h4 class="header-title">Pictures near your location</h4>
   </div>
-
-
-  <!-- <div class="scrolling-wrapper">
-      <div class="card"><h2>Card</h2></div>
-      <div class="card"><h2>Card</h2></div>
-      <div class="card"><h2>Card</h2></div>
-      <div class="card"><h2>Card</h2></div>
-      <div class="card"><h2>Card</h2></div>
-      <div class="card"><h2>Card</h2></div>
-      <div class="card"><h2>Card</h2></div>
-      <div class="card"><h2>Card</h2></div>
-      <div class="card"><h2>Card</h2></div>
-    </div> -->
-
 </div>
 
 
@@ -26,5 +12,15 @@
 </drag-scroll>
 
 
+<div class="container-fluid">
+    <div class="row center-align mb-0">
+      <h4 class="header-title">People's opinions</h4>
+    </div>
+</div>
 
 
+<drag-scroll [scroll-x-wheel-enabled]="true"  [scrollbar-hidden]="true" *ngIf="!loading && comments.length > 0"  [snap-disabled]="true" >
+    <div class="col s4" drag-scroll-item *ngFor="let comm of comments">
+        <app-comment [comm]="comm" ></app-comment>
+    </div>
+</drag-scroll>

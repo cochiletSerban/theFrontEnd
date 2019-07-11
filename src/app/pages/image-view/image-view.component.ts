@@ -27,7 +27,6 @@ export class ImageViewComponent implements OnInit {
         const temp  = [comm];
         temp.push(...this.comms);
         this.comms = temp;
-        console.log(this.comms);
       });
     }
 

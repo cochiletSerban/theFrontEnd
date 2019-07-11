@@ -9,7 +9,7 @@
           </ul>
       </div>
 
-      <div class="loadMore" (click)="loadMore()" *ngIf="comms?.length !== image?.comms">
+      <div class="loadMore" (click)="loadMore()" *ngIf="comms?.length !== image?.numberOfComments">
           {{ commsLoading ? 'Loading Comments...' : 'Load more comments' }}
       </div>
 
