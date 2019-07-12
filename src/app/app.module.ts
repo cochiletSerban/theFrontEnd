@@ -25,6 +25,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { LocationFeedComponent } from './pages/location-feed/location-feed.component';
 import { TimeAgoPipe } from '../../node_modules/time-ago-pipe';
 import { DragScrollModule } from 'ngx-drag-scroll';
+import { CommentCardComponent } from './pages/location-feed/comment-card/comment-card.component';
 
 
 @NgModule({
@@ -44,7 +45,8 @@ import { DragScrollModule } from 'ngx-drag-scroll';
     FilterPicturesComponent,
     NavBarComponent,
     TagCardComponent,
-    LocationFeedComponent
+    LocationFeedComponent,
+    CommentCardComponent
   ],
   imports: [
     BrowserModule,

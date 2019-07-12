@@ -19,8 +19,12 @@
 </div>
 
 
-<drag-scroll [scroll-x-wheel-enabled]="true"  [scrollbar-hidden]="true" *ngIf="!loading && comments.length > 0"  [snap-disabled]="true" >
-    <div class="col s4" drag-scroll-item *ngFor="let comm of comments">
-        <app-comment [comm]="comm" ></app-comment>
-    </div>
-</drag-scroll>
+<!-- <drag-scroll [scroll-x-wheel-enabled]="true"  [scrollbar-hidden]="true" *ngIf="!loading && comments.length > 0"  [snap-disabled]="true" > -->
+  <div class="row">
+      <div class="col s4">
+          <app-comment-card [comment]="comments[0]" *ngIf="!loading && comments.length > 0"></app-comment-card>
+      </div>
+  </div>
+
+
+<!-- </drag-scroll> -->

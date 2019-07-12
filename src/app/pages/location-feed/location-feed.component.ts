@@ -5,6 +5,8 @@ import { LocationService } from 'src/app/services/location.service';
 import { ImageService } from 'src/app/services/image.service';
 import { Image } from 'src/app/models/image';
 import { switchMap } from 'rxjs/operators';
+import { combineLatest } from 'rxjs';
+
 declare var $: any;
 
 
@@ -18,28 +20,31 @@ export class LocationFeedComponent implements OnInit, OnDestroy {
   comments: Comment[] = [];
   loading = true;
 
+
   constructor(private locationService: LocationService, private imageService: ImageService, private commentService: CommentService) {
 
-   }
+    this.locationService.locationChange().pipe(switchMap(
+      location => combineLatest([
+        this.imageService.getImagesInMyArea(this.locationService.getCoordinatesFromLocation(location)),
+        this.commentService.getCommentsInArea(this.locationService.getCoordinatesFromLocation(location))
+      ])
+    )).subscribe(res => { this.images = res[0], this.comments = res[1]; }).add(() => this.loading = false);
+
+  }
 
   ngOnInit() {
 
     this.locationService.getLocation().pipe(switchMap(
-      location => this.imageService.getImagesInMyArea(this.locationService.getCoordinatesFromLocation(location))
-    )).subscribe(images => {this.images = images;}).add(() => this.loading = false);
-
-
-    this.locationService.locationChange().pipe(switchMap(
-      newLocation => this.imageService.getImagesInMyArea(this.locationService.getCoordinatesFromLocation(newLocation))
-    )).subscribe(images => this.images = images).add(() => this.loading = false);
+      location => combineLatest([
+        this.imageService.getImagesInMyArea(this.locationService.getCoordinatesFromLocation(location)),
+        this.commentService.getCommentsInArea(this.locationService.getCoordinatesFromLocation(location))
+      ])
+    )).subscribe(res => { this.images = res[0], this.comments = res[1]; }).add(() => this.loading = false);
 
   }
 
   ngOnDestroy() {
     this.locationService.clearLocationChangeWatch();
   }
-
-
-
 
 }

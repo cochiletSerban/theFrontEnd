@@ -1,0 +1,15 @@
+
+
+
+  <!-- <b>{{comment.owner.username | titlecase}} </b> {{comment.createdAt | timeAgo  }} <br>
+  {{comment.text}} -->
+
+  <div class="image">
+      <img *ngIf="comment.owner.avatar" [src]="comment.owner.avatar | safeImage" alt="" class="profile-pic">
+      <img *ngIf="!comment.owner.avatar" src="https://static.independent.co.uk/s3fs-public/thumbnails/image/2017/05/03/15/ok-hand.jpg?w968h681" class="profile-pic"   alt="">
+  </div>
+
+<div class="card-panel primary-color">
+  <b>{{comment.owner.username | titlecase}} </b> {{comment.createdAt | timeAgo  }} <br>
+  {{comment.text}}
+</div>
