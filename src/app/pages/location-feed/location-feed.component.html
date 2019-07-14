@@ -20,9 +20,9 @@
 
 
 <!-- <drag-scroll [scroll-x-wheel-enabled]="true"  [scrollbar-hidden]="true" *ngIf="!loading && comments.length > 0"  [snap-disabled]="true" > -->
-  <div class="row">
-      <div class="col s4">
-          <app-comment-card [comment]="comments[0]" *ngIf="!loading && comments.length > 0"></app-comment-card>
+  <div class="row"  *ngIf="!loading && comments.length > 0">
+      <div class="col s4" *ngFor="let comment of comments">
+          <app-comment-card [comment]="comment"></app-comment-card>
       </div>
   </div>
 

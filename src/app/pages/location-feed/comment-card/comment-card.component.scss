@@ -1,11 +1,6 @@
 @import '../../../../sass/vars';
 @import '../../../../sass/classes';
 
-.card-panel {
-  color:white;
-  padding-top: 50px;
-}
-
 .image {
   width: 100px;
   height: 100px;
@@ -15,7 +10,10 @@
   margin: 0 auto;
   border: 5px solid white;
   margin-bottom: -50px;
+  cursor: pointer;
+  transform: scale(1);
 }
+
 .profile-pic {
   display: inline;
   margin: 0 auto;
@@ -23,3 +21,46 @@
   height: 100%;
   width: auto;
 }
+
+.card-panel {
+  color:white;
+  padding: 50px 0 0 0;
+  text-align: center;
+  background: $primary-color 100%;
+  cursor: pointer;
+}
+
+.card-header > p {
+  margin: 0;
+  color: rgba($tree-dark, 0.6);
+}
+
+.card-header > p:nth-child(2) {
+  padding-bottom: 5px;
+  border-bottom: 2px dashed $tree;
+}
+
+.card-header > h5 {
+  font-size: 18px;
+  margin-top: 0;
+  margin-bottom: 0;
+  color: $tree;
+}
+
+.card-content {
+  padding: 0 5px 5px 5px;
+}
+
+.card-content {
+  padding-top:5px;
+}
+
+.card-content > p {
+  margin: 0;
+}
+
+// @media (pointer: fine) {
+//   .card-header:hover ~ .image{
+//     transform: scale(1.10);
+//   }
+// }
