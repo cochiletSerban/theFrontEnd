@@ -83,4 +83,16 @@ export class LocationService {
   clearLocationChangeWatch() {
     window.navigator.geolocation.clearWatch(this.locationChangeWatch);
   }
+
+  getCenterOfMap() {
+    return geolib.getBoundsOfDistance(this.getCurrentLocation(), this.radius);
+  }
+
+  getRadiusOfCurrentView(mapCenter, mapEdge): Location {
+    return  {
+      radius: geolib.getDistance(mapCenter, mapEdge),
+      lat: mapCenter.lat,
+      lon: mapCenter.lng
+    };
+  }
 }
