@@ -1,3 +1,4 @@
+import { Location } from './../models/location';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import * as geolib from 'geolib';
@@ -60,7 +61,7 @@ export class LocationService {
     });
   }
 
-  getCoordinatesFromLocation(location) {
+  getCoordinatesFromLocation(location): Location {
     return {
       lat: location.coords.latitude,
       lon: location.coords.longitude
@@ -75,7 +76,7 @@ export class LocationService {
   }
 
 
-  getCurrentLocation() {
+  getCurrentLocation(): Location {
     return this.getCoordinatesFromLocation(this.currentLocation);
   }
 

@@ -26,6 +26,8 @@ import { LocationFeedComponent } from './pages/location-feed/location-feed.compo
 import { TimeAgoPipe } from '../../node_modules/time-ago-pipe';
 import { DragScrollModule } from 'ngx-drag-scroll';
 import { CommentCardComponent } from './pages/location-feed/comment-card/comment-card.component';
+import { MapComponent } from './pages/image-view/map/map.component';
+import { AgmCoreModule } from '@agm/core';
 
 
 @NgModule({
@@ -46,7 +48,8 @@ import { CommentCardComponent } from './pages/location-feed/comment-card/comment
     NavBarComponent,
     TagCardComponent,
     LocationFeedComponent,
-    CommentCardComponent
+    CommentCardComponent,
+    MapComponent
   ],
   imports: [
     BrowserModule,
@@ -58,7 +61,10 @@ import { CommentCardComponent } from './pages/location-feed/comment-card/comment
     NgxMasonryModule,
     NgSelectModule,
     DragScrollModule,
-    FileUploadModule
+    FileUploadModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyAUlyq5mD4M532jSKMqykG3UwXnzA8FMKk'
+    })
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
   bootstrap: [AppComponent]

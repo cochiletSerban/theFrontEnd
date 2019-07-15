@@ -21,7 +21,7 @@ export class LocationFeedComponent implements OnInit, OnDestroy {
   loading = true;
 
 
-  constructor(private locationService: LocationService, private imageService: ImageService, private commentService: CommentService) {
+  constructor(public locationService: LocationService, private imageService: ImageService, private commentService: CommentService) {
 
     this.locationService.locationChange().pipe(switchMap(
       location => combineLatest([

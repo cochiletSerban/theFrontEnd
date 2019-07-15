@@ -4,27 +4,10 @@
   </div>
 </div>
 
-
 <drag-scroll [scroll-x-wheel-enabled]="true"  [scrollbar-hidden]="true" *ngIf="!loading && images.length > 0"  [snap-disabled]="true" >
   <div class="col s4" drag-scroll-item *ngFor="let img of images">
       <app-image-card [image]="img"></app-image-card>
   </div>
 </drag-scroll>
 
-
-<div class="container-fluid">
-    <div class="row center-align mb-0">
-      <h4 class="header-title">People's opinions</h4>
-    </div>
-</div>
-
-
-<!-- <drag-scroll [scroll-x-wheel-enabled]="true"  [scrollbar-hidden]="true" *ngIf="!loading && comments.length > 0"  [snap-disabled]="true" > -->
-  <div class="row"  *ngIf="!loading && comments.length > 0">
-      <div class="col s4" *ngFor="let comment of comments">
-          <app-comment-card [comment]="comment"></app-comment-card>
-      </div>
-  </div>
-
-
-<!-- </drag-scroll> -->
+<app-map [initialImages]="images"  [userLocation]="locationService.getCurrentLocation()" *ngIf="!loading && images.length > 0"></app-map>
