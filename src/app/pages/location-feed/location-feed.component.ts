@@ -25,7 +25,7 @@ export class LocationFeedComponent implements OnInit, OnDestroy {
 
     this.locationService.locationChange().pipe(switchMap(
       location => combineLatest([
-        this.imageService.getImagesInMyArea(this.locationService.getCoordinatesFromLocation(location)),
+        this.imageService.getImagesInMyArea(),
         this.commentService.getCommentsInArea(this.locationService.getCoordinatesFromLocation(location))
       ])
     )).subscribe(res => { this.images = res[0], this.comments = res[1]; }).add(() => this.loading = false);
@@ -36,7 +36,7 @@ export class LocationFeedComponent implements OnInit, OnDestroy {
 
     this.locationService.getLocation().pipe(switchMap(
       location => combineLatest([
-        this.imageService.getImagesInMyArea(this.locationService.getCoordinatesFromLocation(location)),
+        this.imageService.getImagesInMyArea(),
         this.commentService.getCommentsInArea(this.locationService.getCoordinatesFromLocation(location))
       ])
     )).subscribe(res => { this.images = res[0], this.comments = res[1]; }).add(() => this.loading = false);

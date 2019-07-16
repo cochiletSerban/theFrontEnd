@@ -1,3 +1,4 @@
+import { LocationService } from './location.service';
 
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -13,7 +14,7 @@ export class ImageService {
   private publicImages: Image[] = [];
 
   apiUrl = environment.apiUrl + '/images';
-  constructor(private http: HttpClient, private userService: UserService) { }
+  constructor(private http: HttpClient, private userService: UserService, private locationService: LocationService) { }
 
   getPublicImages(limit, skip, sort?, tag?) {
     skip = skip * limit;
@@ -47,12 +48,16 @@ export class ImageService {
     return this.http.get<Image>(this.apiUrl + '/' + imageId);
   }
 
-  getImagesInMyArea(location) {
-    const params = {
-      lon: location.lon,
-      lat: location.lat,
-      radius: this.userService.getUserRadius()
-    };
+  getImagesInMyArea(location?) {
+    let params;
+    if (!location) {
+      params = {
+        ...this.locationService.getCurrentLocation(),
+        radius: this.userService.getUserRadius()
+      };
+    } else {
+      params = location;
+    }
     return this.http.get<Image[]>(this.apiUrl,  {params});
   }
 

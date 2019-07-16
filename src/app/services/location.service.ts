@@ -90,9 +90,9 @@ export class LocationService {
 
   getRadiusOfCurrentView(mapCenter, mapEdge): Location {
     return  {
-      radius: geolib.getDistance(mapCenter, mapEdge),
+      radius: geolib.getDistance(mapCenter, mapEdge, 1),
       lat: mapCenter.lat,
-      lon: mapCenter.lng
+      lon: mapCenter.lon
     };
   }
 }
