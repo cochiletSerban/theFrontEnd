@@ -1,15 +1,12 @@
 <agm-map [latitude]="userLocation.lat" [longitude]="userLocation.lon"  [zoom]='zoom' (centerChange)="centerChange($event)" (boundsChange)="boundsChange($event)">
 
-  <agm-marker *ngFor="let img of picturesOnMap" [latitude]="img.coordinate.lat" [longitude]="img.coordinate.lon" >
+  <agm-marker [animation]="'drop'" *ngFor="let img of picturesOnMap" [label]="'S'" [latitude]="img.coordinate.lat" [longitude]="img.coordinate.lon" >
     <agm-info-window [disableAutoPan]="true">
         <app-image-card [image]="img"></app-image-card>
     </agm-info-window>
   </agm-marker>
 
-  <agm-marker  [latitude]="mapCenter.lat" [longitude]="mapCenter.lon" >
-    </agm-marker>
-
   <agm-circle [latitude]="mapCenter.lat" [longitude]="mapCenter.lon"  [radius]="topEdge.radius"
-  [fillColor]="'red'"   ></agm-circle>
+  [fillColor]="'#7EC146'"   ></agm-circle>
 
 </agm-map>
