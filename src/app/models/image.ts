@@ -12,5 +12,5 @@ export interface Image {
     rating?: Rating;
     comms?: number;
     tags?: string[];
-    comments?: Comment[];
+    numberOfComments?: Comment[];
 }

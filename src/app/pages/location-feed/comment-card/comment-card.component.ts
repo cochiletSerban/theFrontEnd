@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, AfterViewInit, ElementRef, Renderer2 } from '@angular/core';
-
+import { Comment } from '../../../models/comment';
 
 @Component({
   selector: 'app-comment-card',
