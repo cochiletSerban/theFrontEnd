@@ -1,6 +1,11 @@
 @import '../../../sass/vars';
 @import '../../../sass/classes';
 
+:host {
+  overflow-y: none;
+  display: block;
+  height: calc(100vh - 50px - 70px);
+}
 
 drag-scroll {
     width: 100%;
