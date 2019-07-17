@@ -8,6 +8,7 @@ import { Component, OnInit, Input, } from '@angular/core';
 import { isAbsolute } from 'path';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import * as _ from 'lodash';
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
@@ -163,9 +164,6 @@ export class MapComponent implements OnInit {
   //   },
   // ];
 
-
-
-
   @Input() initialImages: Image[];
   @Input() userLocation: Location;
   mapCenter;
@@ -174,9 +172,10 @@ export class MapComponent implements OnInit {
   map;
   zoom;
 
+  debug = false;
+
   boundsChanged: Subject<Location> = new Subject<Location>();
   picturesOnMap: Image[] = [];
-
 
   constructor(private locationService: LocationService, private imageService: ImageService, private userService: UserService) {
     this.boundsChanged.pipe(
@@ -184,8 +183,8 @@ export class MapComponent implements OnInit {
         distinctUntilChanged(),
         switchMap((location => this.imageService.getImagesInMyArea(location)))
       ).subscribe(images => {
-        this.picturesOnMap = images;
-        console.log(this.picturesOnMap);
+        this.picturesOnMap.push(...images);
+        this.picturesOnMap = _.uniqBy(this.picturesOnMap, '_id');
       });
     this.topEdge = this.locationService.getCurrentLocation();
     this.bottomEdge = this.locationService.getCurrentLocation();
@@ -197,36 +196,15 @@ export class MapComponent implements OnInit {
     this.zoom = this.calculateZoom(window.innerWidth, 100, this.userLocation.lat, 1);
   }
 
-
-
-calculateZoom(WidthPixel, Ratio, Lat, Length) {
-    // from a segment Length (km),
-    // with size ratio of the segment expected on a map (70%),
-    // with a map WidthPixel width in pixels (100px),
-    // and a latitude (45°) we can get the best Zoom
-    // assume earth is a perfect ball with radius : 6,378,137m and
-    //      circumference at the equator = 40,075,016.7 m
-    // The full world on google map is available in tiles of 256 px;
-    // it has a ratio of 156543.03392 (px/m).
-    // For Z = 0;
-    // pixel scale at the Lat_level is ( 156543,03392 * cos ( PI * (Lat/180) ))
-    // The map scale increases at the rate of square root of Z.
-    //
-    Length = Length * 1000;                     // Length is in Km
-    let k = WidthPixel * 156543.03392 * Math.cos(Lat * Math.PI / 180);        // k = circumference of the world at the Lat_level, for Z=0
+  calculateZoom(WidthPixel, Ratio, Lat, Length) {
+    Length = Length * 1000;
+    const k = WidthPixel * 156543.03392 * Math.cos(Lat * Math.PI / 180);
     let myZoom = Math.round( Math.log( (Ratio * k) / (Length * 100) ) / Math.LN2 );
-    myZoom =  myZoom - 1;                   // Z starts from 0 instead of 1
-    // console.log("calculateZoom: width "+WidthPixel+" Ratio "+Ratio+" Lat "+Lat+" length "+Length+" (m) calculated zoom "+ myZoom);
-
-    // not used but it could be useful for some: Part of the world size at the Lat
-    const MapDim = k / Math.pow(2, myZoom);
-    // console.log("calculateZoom: size of the map at the Lat: "+MapDim + " meters.");
-    // console.log("calculateZoom: world circumference at the Lat: " +k+ " meters.");
+    myZoom =  myZoom - 1;
     return(myZoom);
   }
 
-boundsChange(event) {
-
+  boundsChange(event) {
     this.bottomEdge.lat = event.na.j;
     this.bottomEdge.lon = event.ia.j;
 
@@ -234,11 +212,10 @@ boundsChange(event) {
 
     this.topEdge.radius = location.radius / 2;
     location.radius = location.radius / 2 ;
-    console.log(location.radius);
     this.boundsChanged.next(location);
   }
 
-centerChange(event) {
+  centerChange(event) {
     this.mapCenter.lat = event.lat;
     this.mapCenter.lon = event.lng;
   }
@@ -248,10 +225,3 @@ centerChange(event) {
     this.map.setCenter({ lat: this.locationService.getCurrentLocation().lat, lng: this.locationService.getCurrentLocation().lon });
   }
 }
-
-// vreau sa populez harta cu locatiile imaginiilor si id-urile lor pe masura ce dau zoom out
-// dupa on mouse over vreau sa aduc imaginea
-
-
-
-

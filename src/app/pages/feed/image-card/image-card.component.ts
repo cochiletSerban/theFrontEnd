@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, AfterViewInit, ElementRef, Renderer2 } from '@angular/core';
 import { Image } from 'src/app/models/image';
 import { ImageService } from 'src/app/services/image.service';
 import { AuthService } from 'src/app/services/auth.service';
@@ -11,7 +11,7 @@ declare var $: any;
   templateUrl: './image-card.component.html',
   styleUrls: ['./image-card.component.scss']
 })
-export class ImageCardComponent implements OnInit {
+export class ImageCardComponent implements OnInit, AfterViewInit {
   @Input() image: Image;
 
   isLiked = false;
@@ -19,7 +19,8 @@ export class ImageCardComponent implements OnInit {
   isLoading = false;
 
   constructor(private imageService: ImageService, public authService: AuthService,
-              private router: Router, private userService: UserService) { }
+              private router: Router, private userService: UserService,
+              private renderer: Renderer2, private elRef: ElementRef) { }
 
   ngOnInit() {
     if (this.image.rating.likes.includes(this.userService.getUserId())) {
@@ -86,5 +87,12 @@ export class ImageCardComponent implements OnInit {
 
   goToImageView() {
     this.router.navigate(['/image', this.image._id]);
+  }
+
+  ngAfterViewInit() {
+    if (this.router.url === '/feed') {
+      this.renderer.removeClass(this.elRef.nativeElement.querySelector('.card'), 'card-hover'); // 💪 the angular way 💪
+    }
+    // disable hover effects on feed
   }
 }
