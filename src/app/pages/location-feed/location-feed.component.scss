@@ -2,13 +2,12 @@
 @import '../../../sass/classes';
 
 app-map {
-  max-height: 100%;
+  // max-height: calc(100vh - 50px - 61.22px);
+  // border: 2px solid red;
+  display: block;
+  height: calc(100vh - 50px - 70px);
 }
 
-:host {
-  display: block;
-  height: calc(100vh - 50px - 61.22px);
-}
 
 drag-scroll {
   width: 100%;
