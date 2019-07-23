@@ -1,7 +1,7 @@
 <agm-map [latitude]="userLocation.lat" [longitude]="userLocation.lon"  [zoom]='zoom' (centerChange)="centerChange($event)" (boundsChange)="boundsChange($event)">
 
   <agm-marker [animation]="'drop'" *ngFor="let img of picturesOnMap" [latitude]="img.coordinate.lat" [longitude]="img.coordinate.lon" >
-    <agm-info-window [maxWidth]="300"> 
+    <agm-info-window [maxWidth]="300">
       <!-- shouldn't be necessary if you implement tumbnails -->
         <app-image-card [image]="img"></app-image-card>
     </agm-info-window>

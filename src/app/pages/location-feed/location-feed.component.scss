@@ -1,14 +1,6 @@
 @import '../../../sass/vars';
 @import '../../../sass/classes';
 
-app-map {
-  // max-height: calc(100vh - 50px - 61.22px);
-  // border: 2px solid red;
-  display: block;
-  height: 75vh;
-}
-
-
 drag-scroll {
   width: 100%;
   background: linear-gradient(to bottom, $primary-color 20%, white 100%);
