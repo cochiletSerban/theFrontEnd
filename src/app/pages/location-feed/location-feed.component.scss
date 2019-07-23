@@ -1,24 +1,27 @@
 @import '../../../sass/vars';
 @import '../../../sass/classes';
 
+app-map {
+  max-height: 100%;
+}
+
 :host {
-  overflow-y: none;
   display: block;
-  height: calc(100vh - 50px - 70px);
+  height: calc(100vh - 50px - 61.22px);
 }
 
 drag-scroll {
-    width: 100%;
-    background: linear-gradient(to bottom, $primary-color 20%, white 100%);
-    height: 555px;
-    padding-right:10px;
-    padding-left: 10px;
+  width: 100%;
+  background: linear-gradient(to bottom, $primary-color 20%, white 100%);
+  height: 555px;
+  padding-right:10px;
+  padding-left: 10px;
 }
 
 app-image-card {
-    margin-right: 10px;
-    height: 100%;
-    display: block;
+  margin-right: 10px;
+  height: 100%;
+  display: block;
 }
 
 :host > div:nth-child(1) {
