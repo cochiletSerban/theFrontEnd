@@ -4,6 +4,7 @@
   </div>
 </div>
 
+
 <app-map [initialImages]="images"  [userLocation]="locationService.getCurrentLocation()" *ngIf="!loading && images.length > 0"  ></app-map>
 
 <!-- <drag-scroll [scroll-x-wheel-enabled]="true"  [scrollbar-hidden]="true" *ngIf="!loading && images.length > 0"  [snap-disabled]="10" >
@@ -12,3 +13,6 @@
   </div>
 </drag-scroll> -->
 
+<!-- <div class="row">
+  
+</div> -->

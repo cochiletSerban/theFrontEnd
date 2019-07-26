@@ -41,7 +41,6 @@ export class TestComponent implements OnInit {
       private: false,
       lat: 30,
       lon: 30
-
     };
     this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };
     this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
