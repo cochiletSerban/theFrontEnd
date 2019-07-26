@@ -28,6 +28,7 @@ import { DragScrollModule } from 'ngx-drag-scroll';
 import { CommentCardComponent } from './pages/location-feed/comment-card/comment-card.component';
 import { MapComponent } from './pages/image-view/map/map.component';
 import { AgmCoreModule } from '@agm/core';
+import { DeviceDetectorModule } from 'ngx-device-detector';
 
 
 @NgModule({
@@ -64,7 +65,8 @@ import { AgmCoreModule } from '@agm/core';
     FileUploadModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAUlyq5mD4M532jSKMqykG3UwXnzA8FMKk'
-    })
+    }),
+    DeviceDetectorModule.forRoot()
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
   bootstrap: [AppComponent]

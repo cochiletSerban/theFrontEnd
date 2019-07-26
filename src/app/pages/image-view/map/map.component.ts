@@ -9,6 +9,7 @@ import { isAbsolute } from 'path';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import * as _ from 'lodash';
+import { DeviceDetectorService } from 'ngx-device-detector';
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
@@ -166,6 +167,7 @@ export class MapComponent implements OnInit {
 
   @Input() initialImages: Image[];
   @Input() userLocation: Location;
+
   mapCenter;
   bottomEdge;
   topEdge;
@@ -176,8 +178,10 @@ export class MapComponent implements OnInit {
 
   boundsChanged: Subject<Location> = new Subject<Location>();
   picturesOnMap: Image[] = [];
+  isMobile: boolean;
 
-  constructor(private locationService: LocationService, private imageService: ImageService, private userService: UserService) {
+  constructor(private locationService: LocationService, private imageService: ImageService,
+              private userService: UserService, private deviceService: DeviceDetectorService) {
     this.boundsChanged.pipe(
         debounceTime(300),
         distinctUntilChanged(),
@@ -188,6 +192,7 @@ export class MapComponent implements OnInit {
       });
     this.topEdge = this.locationService.getCurrentLocation();
     this.bottomEdge = this.locationService.getCurrentLocation();
+    this.isMobile = this.deviceService.isMobile();
    }
 
   ngOnInit() {
@@ -198,7 +203,10 @@ export class MapComponent implements OnInit {
 
   calculateZoom(WidthPixel, Ratio, Lat, Length) {
     Length = Length * 1000;
-    const k = WidthPixel * 156543.03392 * Math.cos(Lat * Math.PI / 180);
+    let k = WidthPixel * 156543.03392 * Math.cos(Lat * Math.PI / 180);
+    if (this.isMobile) {
+      k = WidthPixel * 306543.03392 * Math.cos(Lat * Math.PI / 180);
+    }
     let myZoom = Math.round( Math.log( (Ratio * k) / (Length * 100) ) / Math.LN2 );
     myZoom =  myZoom - 1;
     return(myZoom);
