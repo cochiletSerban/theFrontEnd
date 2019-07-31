@@ -26,9 +26,11 @@ import { LocationFeedComponent } from './pages/location-feed/location-feed.compo
 import { TimeAgoPipe } from '../../node_modules/time-ago-pipe';
 import { DragScrollModule } from 'ngx-drag-scroll';
 import { CommentCardComponent } from './pages/location-feed/comment-card/comment-card.component';
-import { MapComponent } from './pages/image-view/map/map.component';
+import { MapComponent } from './pages/location-feed/map/map.component';
 import { AgmCoreModule } from '@agm/core';
 import { DeviceDetectorModule } from 'ngx-device-detector';
+import { LoadingSpinnerComponent } from './pages/shared/loading-spinner/loading-spinner.component';
+import { PulseLoaderComponent } from './pages/location-feed/pulse-loader/pulse-loader.component';
 
 
 @NgModule({
@@ -50,7 +52,9 @@ import { DeviceDetectorModule } from 'ngx-device-detector';
     TagCardComponent,
     LocationFeedComponent,
     CommentCardComponent,
-    MapComponent
+    MapComponent,
+    LoadingSpinnerComponent,
+    PulseLoaderComponent
   ],
   imports: [
     BrowserModule,

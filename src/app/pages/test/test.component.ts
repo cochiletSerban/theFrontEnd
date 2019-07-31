@@ -18,7 +18,7 @@ export class TestComponent implements OnInit {
   title = 'piky';
   public uploader: FileUploader = new FileUploader({
     url: 'https://licentabackend.herokuapp.com/images/small', itemAlias: 'image',
-      //url: 'http://localhost:4000/images', itemAlias: 'image',
+      // url: 'http://localhost:4000/images', itemAlias: 'image',
       // url: 'http://localhost:4000/users/avatar', itemAlias: 'image',
     authToken: 'Bearer '  + this.authService.getToken()});
 
@@ -54,11 +54,11 @@ export class TestComponent implements OnInit {
     });
 
   }
-  public fileOverBase(e:any):void {
+  public fileOverBase(e: any): void {
     this.hasBaseDropZoneOver = e;
   }
 
-  public fileOverAnother(e:any):void {
+  public fileOverAnother(e: any): void {
     this.hasAnotherDropZoneOver = e;
   }
 

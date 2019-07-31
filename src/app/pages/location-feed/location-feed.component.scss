@@ -21,6 +21,15 @@ app-image-card {
   color:white;
 }
 
+
+
+.center-in-page-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(var(--vh, 1vh) * 100 - 50px - 62.22px);
+}
+
 .header-title {
   @extend %headerTitle;
 }

@@ -17,7 +17,7 @@ export class CommentCardComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
   // //  this.isTouch = (('ontouchstart' in window) || (navigator.msMaxTouchPoints > 0));
-    
+
   }
 
   // onHover(element) {

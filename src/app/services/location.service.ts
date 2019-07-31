@@ -43,11 +43,6 @@ export class LocationService {
         if (window.navigator && window.navigator.geolocation) {
          this.locationChangeWatch = window.navigator.geolocation.watchPosition(
                 (position) => {
-                  console.warn(geolib.getDistance(
-                    this.getCoordinatesFromLocation(this.currentLocation),
-                    this.getCoordinatesFromLocation(position)
-                  ));
-
                   if (this.coordinatesInRadius(position)) {
                     observer.next(position);
                     this.currentLocation = position;

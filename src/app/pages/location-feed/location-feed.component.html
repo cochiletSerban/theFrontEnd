@@ -5,7 +5,11 @@
 </div>
 
 
-<app-map [initialImages]="images"  [userLocation]="locationService.getCurrentLocation()" *ngIf="!loading && images.length > 0"  ></app-map>
+<app-map [initialImages]="images"  [userLocation]="locationService.getCurrentLocation()" *ngIf="!loading" ></app-map>
+
+<div class="center-in-page-container">
+  <app-pulse-loader *ngIf="loading"></app-pulse-loader>
+</div>
 
 <!-- <drag-scroll [scroll-x-wheel-enabled]="true"  [scrollbar-hidden]="true" *ngIf="!loading && images.length > 0"  [snap-disabled]="10" >
   <div class="col s4" drag-scroll-item *ngFor="let img of images">
@@ -14,5 +18,5 @@
 </drag-scroll> -->
 
 <!-- <div class="row">
-  
+
 </div> -->
