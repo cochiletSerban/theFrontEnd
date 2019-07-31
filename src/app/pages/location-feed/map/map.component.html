@@ -1,4 +1,6 @@
-<agm-map [latitude]="userLocation.lat" [longitude]="userLocation.lon"  [zoom]='zoom' (centerChange)="centerChange($event)" (boundsChange)="boundsChange($event)">
+<agm-map  [streetViewControl]="false"  [showDefaultInfoWindow]="false" [clickableIcons]="false" [usePanning]="true"
+  [zoomControl]="false" [latitude]="userLocation.lat" [longitude]="userLocation.lon" (mapReady)="mapReady($event)"
+  [zoom]='zoom' (centerChange)="centerChange($event)" (boundsChange)="boundsChange($event)">
 
   <agm-marker [animation]="'drop'" *ngFor="let img of picturesOnMap" [latitude]="img.coordinate.lat" [longitude]="img.coordinate.lon" >
     <agm-info-window [maxWidth]="300">
@@ -12,4 +14,9 @@
   <agm-circle  *ngIf="debug" [latitude]="mapCenter.lat" [longitude]="mapCenter.lon"  [radius]="topEdge.radius"
   [fillColor]="'#7EC146'"   ></agm-circle>
 
+
+
 </agm-map>
+
+<button class="btn-floating btn-large waves-effect waves-light primary-color"
+id="goToUserLocation" (click)="goToUserLocation()"><i class="material-icons">location_searching</i></button>

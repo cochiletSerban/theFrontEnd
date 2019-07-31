@@ -1,8 +1,8 @@
 import { UserService } from 'src/app/services/user.service';
-import { ImageService } from './../../../services/image.service';
+import { ImageService } from '../../../services/image.service';
 import { LatLngBounds } from '@agm/core';
 import { LocationService } from 'src/app/services/location.service';
-import { Location } from './../../../models/location';
+import { Location } from '../../../models/location';
 import { Image } from 'src/app/models/image';
 import { Component, OnInit, Input, } from '@angular/core';
 import { isAbsolute } from 'path';
@@ -10,6 +10,7 @@ import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import * as _ from 'lodash';
 import { DeviceDetectorService } from 'ngx-device-detector';
+declare const google: any;
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
@@ -168,6 +169,7 @@ export class MapComponent implements OnInit {
   @Input() initialImages: Image[];
   @Input() userLocation: Location;
 
+
   mapCenter;
   bottomEdge;
   topEdge;
@@ -230,6 +232,10 @@ export class MapComponent implements OnInit {
 
   protected mapReady(map) {
     this.map = map;
-    this.map.setCenter({ lat: this.locationService.getCurrentLocation().lat, lng: this.locationService.getCurrentLocation().lon });
+    this.map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(document.getElementById('goToUserLocation'));
+  }
+
+  goToUserLocation() {
+      this.map.setCenter({ lat: this.locationService.getCurrentLocation().lat, lng: this.locationService.getCurrentLocation().lon });
   }
 }
