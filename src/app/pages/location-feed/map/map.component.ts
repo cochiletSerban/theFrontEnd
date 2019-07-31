@@ -230,7 +230,7 @@ export class MapComponent implements OnInit {
     this.mapCenter.lon = event.lng;
   }
 
-  protected mapReady(map) {
+  mapReady(map) {
     this.map = map;
     this.map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(document.getElementById('goToUserLocation'));
   }
