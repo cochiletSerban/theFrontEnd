@@ -1,4 +1,4 @@
-<agm-map  [streetViewControl]="false"  [showDefaultInfoWindow]="false" [clickableIcons]="false" [usePanning]="true"
+<agm-map (mapClick)="addPoi($event.coords)" [streetViewControl]="false"  [showDefaultInfoWindow]="false" [clickableIcons]="false" [usePanning]="true"
   [zoomControl]="false" [latitude]="userLocation.lat" [longitude]="userLocation.lon" (mapReady)="mapReady($event)"
   [zoom]='zoom' (centerChange)="centerChange($event)" (boundsChange)="boundsChange($event)">
 
@@ -19,5 +19,42 @@
 
 <h5 id="hud">{{userLocation.lat}} {{userLocation.lon}} </h5>
 
-<button class="btn-floating btn-large waves-effect waves-light primary-color"
-id="goToUserLocation" (click)="goToUserLocation()"><i class="material-icons">location_searching</i></button>
+<div class="fixed-action-btn" [hidden]="showFinalUploadStep" id="goToUserLocation">
+  <a class="btn-floating btn-large ">
+    <i class="large material-icons">mode_edit</i>
+  </a>
+  <ul>
+    <li (click)="goToUserLocation()"><a class="btn-floating blue"><i class="material-icons">location_searching</i></a></li>
+    <li (click)="uploadPicture()"><a class="btn-floating red" ><i class="material-icons">publish</i></a></li>
+  </ul>
+</div>
+
+<div class="my-fixed-action-btn" *ngIf="showFinalUploadStep">
+  <a  id="upload"  class="btn-floating right btn-large waves-effect waves-light green" (click)="goToUpload('marker')"><i class="material-icons">check</i></a>
+  <a id="cancel"  class="btn-floating left btn-large waves-effect waves-light red" (click)="cancelUpload()"><i class="material-icons">close</i></a>
+</div>
+
+<!-- Modal Structure -->
+<div id="locationUploadModal" class="modal bottom-sheet">
+  <div class="modal-content">
+    <h4>Picture Upload</h4>
+    <p>Do you want to user your current location to upload a picture?</p>
+  </div>
+  <div class="modal-footer">
+    <button class="modal-close waves-effect waves-green btn-flat" (click)="goToUpload()" >Yes</button>
+    <button class="modal-close waves-effect waves-green btn-flat" (click)="confirm()" >No</button>
+    <button class="modal-close waves-effect waves-green btn-flat">Cancel</button>
+  </div>
+</div>
+
+
+<div id="confirmationModal" class="modal bottom-sheet">
+  <div class="modal-content">
+    <h4>Picture Upload</h4>
+    <p>Put a marker on the map to select the location of your picture. Then click on the upload button</p>
+  </div>
+  <div class="modal-footer">
+    <button class="modal-close waves-effect waves-green btn-flat" (click)="goToMarkerUpload()">OK</button>
+    <button class="modal-close waves-effect waves-green btn-flat">Cancel</button>
+  </div>
+</div>
