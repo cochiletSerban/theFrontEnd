@@ -233,6 +233,7 @@ export class MapComponent implements OnInit {
   mapReady(map) {
     this.map = map;
     this.map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(document.getElementById('goToUserLocation'));
+    this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(document.getElementById('hud'));
   }
 
   goToUserLocation() {

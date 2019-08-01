@@ -11,12 +11,13 @@
 
   <agm-marker [label]="'s'"  [latitude]="userLocation.lat" [longitude]="userLocation.lon" ></agm-marker>
 
-  <agm-circle  *ngIf="debug" [latitude]="mapCenter.lat" [longitude]="mapCenter.lon"  [radius]="topEdge.radius"
-  [fillColor]="'#7EC146'"   ></agm-circle>
+  <agm-circle  *ngIf="debug" [latitude]="mapCenter.lat" [longitude]="mapCenter.lon"  [radius]="topEdge.radius" [fillColor]="'#7EC146'" ></agm-circle>
 
 
 
 </agm-map>
+
+<h5 id="hud">{{userLocation.lat}} {{userLocation.lon}} </h5>
 
 <button class="btn-floating btn-large waves-effect waves-light primary-color"
 id="goToUserLocation" (click)="goToUserLocation()"><i class="material-icons">location_searching</i></button>
