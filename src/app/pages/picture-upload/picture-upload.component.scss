@@ -1,0 +1,71 @@
+@import '../../../sass/vars';
+@import '../../../sass/classes';
+
+:host {
+    @extend %valign-children;
+    padding: 10px;
+    height: calc(var(--vh, 1vh) * 100 - 50px);
+}
+
+.upload-card {
+    position: relative;
+    margin:0 auto;
+    max-width: 500px;
+
+    border-radius: 5px;
+}
+
+.top-part {
+    @extend %valign-children;
+    height: 300px;
+    // border: 2px solid $primary-color;
+    background-color: $primary-color;
+    // border-bottom: 2px solid rgba(0, 0, 0, 1);
+}
+
+.drop-zone {
+    margin: 0 auto;
+    border: 5px dotted white;
+    color: white;
+    padding: 30px;
+}
+
+.go-back {
+    width:40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: $tree-dark;
+    color:white;
+    font-weight: bold;
+    position: absolute;
+    text-align: center;
+    right:-20px;
+    top:-20px;
+    font-size: 15px;
+    @extend %valign-children;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.go-back:hover {
+    transform: rotate(180deg);
+}
+
+h5 {
+    margin: 0;
+}
+
+.bottom-part {
+    height: 250px;
+    @extend %treeBg;
+    box-shadow: inset 0 2px 4px black;
+}
+
+.center-col {
+    float: none;
+    margin: 0 auto;
+}
+
+.row {
+    margin:0;
+}

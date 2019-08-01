@@ -8,6 +8,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { FeedComponent } from './pages/feed/feed.component';
 import { LocationFeedComponent } from './pages/location-feed/location-feed.component';
 import { PulseLoaderComponent } from './pages/location-feed/pulse-loader/pulse-loader.component';
+import { PictureUploadComponent } from './pages/picture-upload/picture-upload.component';
 
 
 const routes: Routes = [
@@ -18,6 +19,7 @@ const routes: Routes = [
   {path: 'explore/:tag', component: FeedComponent},
   {path: 'image/:imageId', component: ImageViewComponent},
   {path: 'feed', component: LocationFeedComponent},
+  {path: 'upload', component: PictureUploadComponent},
   {path: 'pl', component: PulseLoaderComponent}
 ];
 @NgModule({
