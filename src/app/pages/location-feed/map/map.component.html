@@ -20,18 +20,18 @@
 <h5 id="hud">{{userLocation.lat}} {{userLocation.lon}} </h5>
 
 <div class="fixed-action-btn" [hidden]="showFinalUploadStep" id="goToUserLocation">
-  <a class="btn-floating btn-large ">
+  <button class="btn-floating btn-large ">
     <i class="large material-icons">mode_edit</i>
-  </a>
+  </button>
   <ul>
-    <li (click)="goToUserLocation()"><a class="btn-floating blue"><i class="material-icons">location_searching</i></a></li>
-    <li (click)="uploadPicture()"><a class="btn-floating red" ><i class="material-icons">publish</i></a></li>
+    <li (click)="goToUserLocation()"><button class="btn-floating blue"><i class="material-icons">location_searching</i></button></li>
+    <li (click)="uploadPicture()"><button class="btn-floating red" ><i class="material-icons">publish</i></button></li>
   </ul>
 </div>
 
 <div class="my-fixed-action-btn" *ngIf="showFinalUploadStep">
-  <a  id="upload"  class="btn-floating right btn-large waves-effect waves-light green" (click)="goToUpload('marker')"><i class="material-icons">check</i></a>
-  <a id="cancel"  class="btn-floating left btn-large waves-effect waves-light red" (click)="cancelUpload()"><i class="material-icons">close</i></a>
+  <button  id="upload" [disabled]="!uploadMarker" class="btn-floating right btn-large waves-effect waves-light green" (click)="goToUpload('marker')"><i class="material-icons">check</i></button>
+  <button id="cancel"  class="btn-floating left btn-large waves-effect waves-light red" (click)="cancelUpload()"><i class="material-icons">close</i></button>
 </div>
 
 <!-- Modal Structure -->

@@ -266,7 +266,6 @@ export class MapComponent implements OnInit, AfterViewInit {
 
   goToUserLocation() {
       this.map.setCenter({ lat: this.locationService.getCurrentLocation().lat, lng: this.locationService.getCurrentLocation().lon });
-      // console.log(JSON.parse(JSON.stringify(this.uploadMarker.position)));
   }
 
   enableMarkers() {
@@ -281,7 +280,7 @@ export class MapComponent implements OnInit, AfterViewInit {
   goToUpload(type?) { // 4
     if (type) {
       console.log(JSON.parse(JSON.stringify(this.uploadMarker.position)));
-      this.cancelUpload();
+      this.showFinalUploadStep = false;
     } else {
       console.log(this.userLocation);
     }
@@ -289,7 +288,7 @@ export class MapComponent implements OnInit, AfterViewInit {
   }
 
   goToMarkerUpload() { // 3
-    this.canAddMarkers = true;  // ?
+    this.enableMarkers();
     this.showFinalUploadStep = true;
   }
 
