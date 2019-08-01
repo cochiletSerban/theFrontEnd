@@ -1,150 +1,138 @@
-/*
-                          --2--
-  *   The sky is crying and i do the same               *
-  *   because this style sheet just can't be tamed..    *
-  *   Words can say what code can do,                   *
-  *   but baby all i want to do is be with you :(       *
-*/
-
-@import '../../../sass/vars';
-
 :host {
-    /*global component style*/
-    display: block;
-    /*needed to let divs get up to 100vh*/
-    overflow: auto;
-    height: 100%;
-    // background-color: #ECEFF1;
-    /* fall back colors*/
-  }
-
-  .formContainer {
-    background-color: $imgur-card-bg;
-    border-radius: 5px;
-    text-align: center;
-    padding-top: 80px;
-  }
-
-  .titleBarContainer {
-    position: relative;
-    z-index: 0;
-  }
-
-  .titleBar {
-    height: 120px;
-    width: 120px;
-    border-radius: 50%;
-    margin: 0 auto;
-    border-bottom: 2px solid $imgur-bg;
-    margin-bottom: 5px;
-    position: relative;
-    top: 65px;
-  }
-
-  .titleBar>img {
-    width: 125px;
-    position: relative;
-    left: -4px;
-  }
-
-  .titleBar:after {
-    height: 125%;
-    width: 125%;
-    display: block;
-    position: absolute;
-    content: '';
-    background-color: $imgur-bg;
-    border-radius: 50%;
-    z-index: -1;
-    left: -15px;
-    top: -15px;
-  }
-
-  .fbl,
-  .eth {
-    padding: 10px 50px 10px 50px;
-    color: #616161;
-  }
-
-  .eth>.btn {
-    background-color: #424242 !important;
-  }
-
-  .eth>.btn>img:first-child {
-    width: 20px;
-    float: right;
-    top: 3px;
-  }
-
-  .eth>.btn>img:nth-child(2) {
-    width: 20px;
-    float: left;
-    top: 3px;
-  }
-
-  .btn {
-    width: 100%;
-    text-transform: capitalize;
-    box-shadow: none !important;
-  }
-
-  .fbl>.btn {
-    background-color: #3b5998 !important;
-  }
-
-  .fbl {
-    border-bottom: 2px dotted $imgur-bg;
-    position: relative;
-  }
-
-  .fbl>img {
-    top: 50px;
-    width: 10px;
-    position: absolute;
-    z-index: 1;
-    margin: 0 auto;
-  }
-
-  .eth {
-    border-bottom: 5px solid $imgur-bg;
-  }
-
-  .formBox {
-    padding: 10px 50px 40px 50px;
-    overflow: hidden;
-
-  }
-
-  h4 {
-    margin: 0;
-  }
-
-  .tab {
-    text-transform: capitalize;
-    background-color: $imgur-card-bg;
-  }
+  /*global component style*/
+  display: block;
+  /*needed to let divs get up to 100vh*/
+  overflow: auto;
+  height: 100%;
+  background-color: #ECEFF1;
+  /* fall back colors*/
+}
 
 
+.formContainer {
+  background-color: white;
+  border-radius: 5px;
+  text-align: center;
+  padding-top: 80px;
+}
 
-  #tab1,#tab2 {
-    animation-duration: 0.3s;
-    animation-timing-function: linear;
-    transform: translate3d(100%, 0, 0);
-    background-color:$imgur-card-bg;
-  }
+.titleBarContainer {
+  position: relative;
+  z-index: 0;
+}
+
+.titleBar {
+  height: 120px;
+  width: 120px;
+  border-radius: 50%;
+  margin: 0 auto;
+  border-bottom: 2px solid #ECEFF1;
+  margin-bottom: 5px;
+  position: relative;
+  top: 65px;
+}
+
+.titleBar>img {
+  width: 125px;
+  position: relative;
+  left: -4px;
+}
+
+.titleBar:after {
+  height: 125%;
+  width: 125%;
+  display: block;
+  position: absolute;
+  content: '';
+  background-color: #ECEFF1;
+  border-radius: 50%;
+  z-index: -1;
+  left: -15px;
+  top: -15px;
+}
+
+.fbl,
+.eth {
+  padding: 10px 50px 10px 50px;
+  color: #616161;
+}
+
+.eth>.btn {
+  background-color: #424242 !important;
+}
+
+.eth>.btn>img:first-child {
+  width: 20px;
+  float: right;
+  top: 3px;
+}
+
+.eth>.btn>img:nth-child(2) {
+  width: 20px;
+  float: left;
+  top: 3px;
+}
+
+.btn {
+  width: 100%;
+  text-transform: capitalize;
+  box-shadow: none !important;
+}
+
+.fbl>.btn {
+  background-color: #3b5998 !important;
+}
+
+.fbl {
+  border-bottom: 2px dotted #ECEFF1;
+  position: relative;
+}
+
+.fbl>img {
+  top: 50px;
+  width: 10px;
+  position: absolute;
+  z-index: 1;
+  margin: 0 auto;
+}
+
+.eth {
+  border-bottom: 5px solid #ECEFF1;
+}
+
+.formBox {
+  padding: 10px 50px 40px 50px;
+  overflow: hidden;
+
+}
+
+h4 {
+  margin: 0;
+}
+
+.tab {
+  text-transform: capitalize;
+}
+
+#tab1,#tab2 {
+  animation-duration: 0.3s;
+  animation-timing-function: linear;
+  transform: translate3d(100%, 0, 0);
+}
+
+.errMsg {
+  background-color:red;
+  color: white;
+  padding: 6px;
+  position: relative;
+  top: 20px;
+  box-shadow: -1px 5px 46px -14px rgba(0,0,0,0.65);
+  animation-duration: 0.5ms;
+  animation-timing-function: linear;
+}
 
 
-  .errMsg {
-    background-color:red;
-    color: white;
-    padding: 6px;
-    position: relative;
-    top: 20px;
-    box-shadow: -1px 5px 46px -14px rgba(0,0,0,0.65);
-    animation-duration: 0.5ms;
-    animation-timing-function: linear;
-  }
 
-  .errMsgText {
-   margin:0 auto;
-  }
+.errMsgText {
+ margin:0 auto;
+}

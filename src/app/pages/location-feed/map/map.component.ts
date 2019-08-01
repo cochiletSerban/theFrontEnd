@@ -303,7 +303,6 @@ export class MapComponent implements OnInit, AfterViewInit {
       this.uploadMarker = null;
     }
     this.showFinalUploadStep = false;
-
   }
 
 }
