@@ -31,6 +31,7 @@ import { AgmCoreModule } from '@agm/core';
 import { DeviceDetectorModule } from 'ngx-device-detector';
 import { LoadingSpinnerComponent } from './pages/shared/loading-spinner/loading-spinner.component';
 import { PulseLoaderComponent } from './pages/location-feed/pulse-loader/pulse-loader.component';
+import { PictureUploadComponent } from './pages/picture-upload/picture-upload.component';
 
 
 @NgModule({
@@ -54,7 +55,8 @@ import { PulseLoaderComponent } from './pages/location-feed/pulse-loader/pulse-l
     CommentCardComponent,
     MapComponent,
     LoadingSpinnerComponent,
-    PulseLoaderComponent
+    PulseLoaderComponent,
+    PictureUploadComponent
   ],
   imports: [
     BrowserModule,
