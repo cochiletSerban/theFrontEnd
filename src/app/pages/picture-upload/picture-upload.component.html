@@ -5,10 +5,32 @@
         <div class="go-back">X</div>
         <div class="top-part">
           <div class="drop-zone">
-            <h5>Drop pictures here</h5>
+            <h5 >Drop pictures here</h5>
           </div>
         </div>
-        <div class="bottom-part"></div>
+        <div class="bottom-part">
+          <div class="input-zone">
+            <input type="file" name="file" id="file" accept="image/*"  ng2FileSelect [uploader]="uploader" multiple   />
+            <label for="file">
+              <div class="text valign-wrapper">
+                <i class="material-icons left">image</i>
+                <h5>{{ uploader.queue.length <= 0 ? 'Choose a picture' : 'Add more ' }}</h5>
+                <i class="material-icons right">image</i>
+              </div>
+            </label>
+
+            <div class="or"> <h5 ><~~~~~~~ OR ~~~~~~~></h5></div>
+
+            <button [disabled]="!inputHasfile" class="waves-effect w-100 waves-light btn">
+              <div class="valign-wrapper ">
+                <i class="material-icons">publish</i>
+                Upload picture{{uploader.queue.length > 1 ? 's' : ''}}
+                <i class="material-icons">publish</i>
+              </div>
+            </button>
+
+          </div>
+        </div>
       </div>
     </div>
   </div>
