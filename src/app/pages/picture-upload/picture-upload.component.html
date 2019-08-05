@@ -3,8 +3,8 @@
     <div class="col s12 center-col">
       <div class="upload-card card">
         <div class="go-back">X</div>
-        <div class="top-part">
-          <div class="drop-zone">
+        <div class="top-part" ng2FileDrop (fileOver)="fileOverBase($event)" [ngClass]="{'nv-file-over': hasBaseDropZoneOver}"  [uploader]="uploader">
+          <div class="drop-zone" >
             <h5 >Drop pictures here</h5>
           </div>
         </div>
@@ -21,7 +21,7 @@
 
             <div class="or"> <h5 ><~~~~~~~ OR ~~~~~~~></h5></div>
 
-            <button [disabled]="!inputHasfile" class="waves-effect w-100 waves-light btn">
+            <button  (click)="goToImageEdit()" [disabled]="!inputHasfile" class="waves-effect w-100 waves-light btn">
               <div class="valign-wrapper ">
                 <i class="material-icons">publish</i>
                 Upload picture{{uploader.queue.length > 1 ? 's' : ''}}
@@ -35,3 +35,6 @@
     </div>
   </div>
 </div>
+
+
+<img *ngFor="let image of pics" [src]="image | safeImage" >

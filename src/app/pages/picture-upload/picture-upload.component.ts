@@ -13,8 +13,9 @@ export class PictureUploadComponent implements OnInit {
     authToken: 'Bearer '  + this.authService.getToken()});
 
   public hasBaseDropZoneOver = false;
-  public hasAnotherDropZoneOver = false;
   inputHasfile = false;
+
+  pics = [];
 
   constructor(private authService: AuthService) { }
 
@@ -23,14 +24,24 @@ export class PictureUploadComponent implements OnInit {
       file.withCredentials = false;
       this.inputHasfile = true;
     };
+
+    this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
+         console.log('ImageUpload:uploaded:', item, status, response);
+     };
   }
 
   public fileOverBase(e: any): void {
     this.hasBaseDropZoneOver = e;
   }
 
-  public fileOverAnother(e: any): void {
-    this.hasAnotherDropZoneOver = e;
+  goToImageEdit() {
+    this.uploader.queue.forEach((val, i, array) => {
+      const fileReader = new FileReader();
+      fileReader.onloadend = (e) => {
+          this.pics.push(fileReader.result);
+      };
+      fileReader.readAsDataURL(val._file);
+    });
   }
 
 }
