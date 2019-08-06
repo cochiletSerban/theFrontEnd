@@ -32,6 +32,9 @@ import { DeviceDetectorModule } from 'ngx-device-detector';
 import { LoadingSpinnerComponent } from './pages/shared/loading-spinner/loading-spinner.component';
 import { PulseLoaderComponent } from './pages/location-feed/pulse-loader/pulse-loader.component';
 import { PictureUploadComponent } from './pages/picture-upload/picture-upload.component';
+import { EditInfoComponent } from './pages/picture-upload/edit-info/edit-info.component';
+import { HeaderComponent } from './pages/shared/header/header.component';
+
 
 
 @NgModule({
@@ -56,7 +59,9 @@ import { PictureUploadComponent } from './pages/picture-upload/picture-upload.co
     MapComponent,
     LoadingSpinnerComponent,
     PulseLoaderComponent,
-    PictureUploadComponent
+    PictureUploadComponent,
+    EditInfoComponent,
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,

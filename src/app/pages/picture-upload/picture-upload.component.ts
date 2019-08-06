@@ -1,6 +1,10 @@
+import { Router } from '@angular/router';
+import { ImageUploadService } from './../../services/image-upload.service';
+import { Image } from 'src/app/models/image';
 import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { FileUploader } from 'ng2-file-upload';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-picture-upload',
@@ -8,26 +12,22 @@ import { FileUploader } from 'ng2-file-upload';
   styleUrls: ['./picture-upload.component.scss']
 })
 export class PictureUploadComponent implements OnInit {
+  apiUrl = environment.apiUrl;
   public uploader: FileUploader = new FileUploader({
-    url: 'https://licentabackend.herokuapp.com/images/small', itemAlias: 'image',
+    url: this.apiUrl + '/images/small', itemAlias: 'image',
     authToken: 'Bearer '  + this.authService.getToken()});
 
   public hasBaseDropZoneOver = false;
   inputHasfile = false;
 
-  pics = [];
-
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private imageUploadService: ImageUploadService,
+              private router: Router) { }
 
   ngOnInit() {
     this.uploader.onAfterAddingFile = (file) => {
       file.withCredentials = false;
       this.inputHasfile = true;
     };
-
-    this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
-         console.log('ImageUpload:uploaded:', item, status, response);
-     };
   }
 
   public fileOverBase(e: any): void {
@@ -35,13 +35,8 @@ export class PictureUploadComponent implements OnInit {
   }
 
   goToImageEdit() {
-    this.uploader.queue.forEach((val, i, array) => {
-      const fileReader = new FileReader();
-      fileReader.onloadend = (e) => {
-          this.pics.push(fileReader.result);
-      };
-      fileReader.readAsDataURL(val._file);
-    });
+    this.imageUploadService.setUploader(this.uploader);
+    this.router.navigate(['/upload/edit-info']);
   }
 
 }

@@ -1,3 +1,4 @@
+import { EditInfoComponent } from './pages/picture-upload/edit-info/edit-info.component';
 import { ImageViewComponent } from './pages/image-view/image-view.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -7,7 +8,6 @@ import { LandingComponent } from './pages/landing/landing.component';
 import { AuthGuard } from './guards/auth.guard';
 import { FeedComponent } from './pages/feed/feed.component';
 import { LocationFeedComponent } from './pages/location-feed/location-feed.component';
-import { PulseLoaderComponent } from './pages/location-feed/pulse-loader/pulse-loader.component';
 import { PictureUploadComponent } from './pages/picture-upload/picture-upload.component';
 
 
@@ -20,7 +20,7 @@ const routes: Routes = [
   {path: 'image/:imageId', component: ImageViewComponent},
   {path: 'feed', component: LocationFeedComponent},
   {path: 'upload', component: PictureUploadComponent},
-  {path: 'pl', component: PulseLoaderComponent}
+  {path: 'upload/edit-info', component: EditInfoComponent}
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

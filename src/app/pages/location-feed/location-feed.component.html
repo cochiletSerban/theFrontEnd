@@ -1,10 +1,3 @@
-<div class="container-fluid">
-  <div class="row center-align mb-0">
-    <h4 class="header-title">Pictures near your location</h4>
-  </div>
-</div>
-
-
 <app-map [initialImages]="images"  [userLocation]="locationService.getCurrentLocation()" *ngIf="!loading" ></app-map>
 
 <div class="center-in-page-container" *ngIf="loading">

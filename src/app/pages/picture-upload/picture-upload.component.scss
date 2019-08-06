@@ -2,9 +2,12 @@
 @import '../../../sass/classes';
 
 :host {
+}
+
+.container-fluid {
+  // background-color: red;
   @extend %valign-children;
-  padding: 10px;
-  height: calc(var(--vh, 1vh) * 100 - 50px);
+  height: calc(var(--vh, 1vh) * 100 - 50px - 62.22px);
 }
 
 .upload-card {
@@ -13,7 +16,6 @@
   max-width: 500px;
   border-radius: 5px;
 }
-
 
 .top-part {
   @extend %valign-children;
@@ -135,3 +137,4 @@ h5 {
 .nv-file-over {
   border: 5px dotted red;
 }
+

@@ -1,0 +1,10 @@
+@import '../../../../sass/vars';
+@import '../../../../sass/classes';
+
+.container-fluid {
+  background-color: $primary-color;
+}
+
+.header-title {
+  @extend %headerTitle;
+}

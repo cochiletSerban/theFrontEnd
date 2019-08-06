@@ -15,13 +15,6 @@ app-image-card {
   display: block;
 }
 
-:host > div:nth-child(1) {
-  background-color: $primary-color;
-  border:1px solid transparent;
-  color:white;
-}
-
-
 
 .center-in-page-container {
   display: flex;
