@@ -1,3 +1,4 @@
+import { UploadGuard } from './guards/upload.guard';
 import { EditInfoComponent } from './pages/picture-upload/edit-info/edit-info.component';
 import { ImageViewComponent } from './pages/image-view/image-view.component';
 import { NgModule } from '@angular/core';
@@ -20,7 +21,7 @@ const routes: Routes = [
   {path: 'image/:imageId', component: ImageViewComponent},
   {path: 'feed', component: LocationFeedComponent},
   {path: 'upload', component: PictureUploadComponent},
-  {path: 'upload/edit-info', component: EditInfoComponent}
+  {path: 'upload/edit-info', canActivate: [UploadGuard], component: EditInfoComponent}
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
