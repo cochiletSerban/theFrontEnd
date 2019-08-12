@@ -2,16 +2,14 @@ import { Image } from './../../../models/image';
 import { ImageUploadService } from './../../../services/image-upload.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
-
+import { MapsAPILoader } from '@agm/core';
+declare var google: any;
 @Component({
   selector: 'app-edit-info',
   templateUrl: './edit-info.component.html',
   styleUrls: ['./edit-info.component.scss']
 })
 export class EditInfoComponent implements OnInit {
-
-  constructor(private imageUploadService: ImageUploadService, private fb: FormBuilder) {}
-
   name = 'Angular';
   form: FormGroup;
   arr: FormArray;
@@ -19,8 +17,20 @@ export class EditInfoComponent implements OnInit {
   images: Image[] = [];
   loading = true;
   uploader;
+  geoCoder;
+
+  constructor(private imageUploadService: ImageUploadService, private fb: FormBuilder, private mapsAPILoader: MapsAPILoader) {
+    this.mapsAPILoader.load().then(() => {
+      // Fetch GeoCoder for reverse geocoding
+      this.geoCoder = new google.maps.Geocoder();
+      this.getAddress(this.imageUploadService.getImageLocation());
+
+    });
+  }
+
 
   ngOnInit() {
+    // console.log(this.imageUploadService.getImageLocation());
     this.form = this.fb.group({
       arr: this.fb.array([])
     });
@@ -35,6 +45,7 @@ export class EditInfoComponent implements OnInit {
     }).add(() => this.loading = false);
 
   }
+
 
 
 
@@ -61,7 +72,8 @@ export class EditInfoComponent implements OnInit {
   createItem() {
     return this.fb.group({
       description: [''],
-      title: ['']
+      title: [''],
+      location: ['']
     });
   }
 
@@ -72,6 +84,23 @@ export class EditInfoComponent implements OnInit {
 
   onSubmit() {
     console.log(this.form.value);
+  }
+
+  getAddress(location) {
+    this.geoCoder.geocode({location}, (results, status) => {
+
+      if (status === 'OK') {
+        if (results[0]) {
+          console.log(results[0].formatted_address);
+          // this.form.get('location').patchValue(results[0].formatted_address);
+        } else {
+          console.log('No results found');
+        }
+      } else {
+        console.log('Geocoder failed due to: ' + status);
+      }
+
+    });
   }
 
 

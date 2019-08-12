@@ -1,3 +1,4 @@
+import { Location } from './../models/location';
 import { Image } from 'src/app/models/image';
 import { Injectable } from '@angular/core';
 import { from } from 'rxjs';
@@ -9,6 +10,7 @@ import { from } from 'rxjs';
 export class ImageUploadService {
 
   private uploader = null;
+  private imageLocation: Location;
 
   constructor() { }
 
@@ -18,6 +20,14 @@ export class ImageUploadService {
 
   getUploader() {
     return this.uploader;
+  }
+
+  setImageLocation(location) {
+    this.imageLocation = location;
+  }
+
+  getImageLocation() {
+    return this.imageLocation;
   }
 
   getUploaderImages() {

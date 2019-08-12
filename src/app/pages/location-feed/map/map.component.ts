@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+import { ImageUploadService } from './../../../services/image-upload.service';
 import { UserService } from 'src/app/services/user.service';
 import { ImageService } from '../../../services/image.service';
 import { LatLngBounds } from '@agm/core';
@@ -187,8 +189,8 @@ export class MapComponent implements OnInit, AfterViewInit {
 
   constructor(private locationService: LocationService, private imageService: ImageService,
               private userService: UserService, private deviceService: DeviceDetectorService,
-              private renderer: Renderer2, private elRef: ElementRef
-              ) {
+              private renderer: Renderer2, private elRef: ElementRef,
+              private imageUploadService: ImageUploadService, private router: Router ) {
     this.boundsChanged.pipe( debounceTime(300), distinctUntilChanged(),
         switchMap((location => this.imageService.getImagesInMyArea(location)))
       ).subscribe(images => {
@@ -279,10 +281,12 @@ export class MapComponent implements OnInit, AfterViewInit {
 
   goToUpload(type?) { // 4
     if (type) {
-      console.log(JSON.parse(JSON.stringify(this.uploadMarker.position)));
+      this.imageUploadService.setImageLocation(JSON.parse(JSON.stringify(this.uploadMarker.position)));
+      this.router.navigate(['/upload']);
       this.showFinalUploadStep = false;
     } else {
-      console.log(this.userLocation);
+      this.imageUploadService.setImageLocation(this.userLocation);
+      this.router.navigate(['/upload']);
     }
     this.showFinalUploadStep = false;
   }
