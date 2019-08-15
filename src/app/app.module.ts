@@ -75,7 +75,8 @@ import { HeaderComponent } from './pages/shared/header/header.component';
     DragScrollModule,
     FileUploadModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyAUlyq5mD4M532jSKMqykG3UwXnzA8FMKk'
+      apiKey: 'AIzaSyAUlyq5mD4M532jSKMqykG3UwXnzA8FMKk',
+      libraries: ['places']
     }),
     DeviceDetectorModule.forRoot()
   ],

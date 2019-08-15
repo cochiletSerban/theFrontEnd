@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import * as geolib from 'geolib';
 import { UserService } from './user.service';
+import { MapsAPILoader } from '@agm/core';
+declare var google: any;
 @Injectable({
   providedIn: 'root'
 })
@@ -16,9 +18,13 @@ export class LocationService {
   };
   radius = 500;
   locationChangeWatch;
+  geoCoder;
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private mapsAPILoader: MapsAPILoader) {
     this.radius = this.userService.getUserRadius();
+    this.mapsAPILoader.load().then(() => {
+      this.geoCoder = new google.maps.Geocoder();
+    });
   }
 
   getLocation(): Observable<any> {
@@ -53,6 +59,19 @@ export class LocationService {
         } else {
             observer.error('Unsupported Browser');
         }
+    });
+  }
+
+  getAddressFromLocation(location): Observable<any> {
+    return Observable.create(observer => {
+      this.geoCoder.geocode({location}, (results, status) => {
+        if (status === 'OK' && results[0]) {
+          observer.next(results[0].formatted_address);
+          observer.complete();
+        } else {
+          observer.error(status);
+        }
+      });
     });
   }
 

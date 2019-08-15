@@ -1,8 +1,10 @@
 import { Image } from './../../../models/image';
 import { ImageUploadService } from './../../../services/image-upload.service';
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
+import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
 import { MapsAPILoader } from '@agm/core';
+import { LocationService } from 'src/app/services/location.service';
+declare var M: any;
 declare var google: any;
 @Component({
   selector: 'app-edit-info',
@@ -10,39 +12,62 @@ declare var google: any;
   styleUrls: ['./edit-info.component.scss']
 })
 export class EditInfoComponent implements OnInit {
-  name = 'Angular';
-  form: FormGroup;
-  arr: FormArray;
+  @ViewChild('search')  searchElementRef;
+
+  form: FormGroup = new FormGroup({
+    title: new FormControl(null),
+    description: new FormControl(null),
+    tags: new FormControl(null),
+    location: new FormControl(null),
+  });
 
   images: Image[] = [];
   loading = true;
   uploader;
   geoCoder;
 
-  constructor(private imageUploadService: ImageUploadService, private fb: FormBuilder, private mapsAPILoader: MapsAPILoader) {
-    this.mapsAPILoader.load().then(() => {
-      // Fetch GeoCoder for reverse geocoding
-      this.geoCoder = new google.maps.Geocoder();
-      this.getAddress(this.imageUploadService.getImageLocation());
+  constructor(private imageUploadService: ImageUploadService, private locationService: LocationService,
+              private mapsAPILoader: MapsAPILoader, private ngZone: NgZone) {
 
-    });
+    if (this.imageUploadService.getImageLocation()) {
+      this.locationService.getAddressFromLocation(this.imageUploadService.getImageLocation())
+        .subscribe(address =>  {
+          this.form.get('location').patchValue(address);
+          this.form.updateValueAndValidity();
+          M.updateTextFields();
+        });
+    }
+
   }
 
 
   ngOnInit() {
-    // console.log(this.imageUploadService.getImageLocation());
-    this.form = this.fb.group({
-      arr: this.fb.array([])
-    });
-
     this.uploader = this.imageUploadService.getUploader();
-
     this.imageUploadService.getUploaderImages().subscribe(res => {
       this.images = res;
-      this.images.forEach(img => {
-        this.addItem();
-      });
     }).add(() => this.loading = false);
+
+
+    this.mapsAPILoader.load().then(() => {
+      const autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
+        types: ['address']
+      });
+      autocomplete.addListener('place_changed', () => {
+        this.ngZone.run(() => {
+
+          const place = google.maps.places.PlaceResult = autocomplete.getPlace();
+
+          if (place.geometry === undefined || place.geometry === null) {
+            return;
+          }
+
+          // this.latitude = place.geometry.location.lat();
+          // this.longitude = place.geometry.location.lng();
+          // this.zoom = 12;
+        });
+      });
+    });
+
 
   }
 
@@ -69,40 +94,11 @@ export class EditInfoComponent implements OnInit {
 
 
 
-  createItem() {
-    return this.fb.group({
-      description: [''],
-      title: [''],
-      location: ['']
-    });
-  }
 
-  addItem() {
-    this.arr = this.form.get('arr') as FormArray;
-    this.arr.push(this.createItem());
-  }
 
   onSubmit() {
     console.log(this.form.value);
   }
 
-  getAddress(location) {
-    this.geoCoder.geocode({location}, (results, status) => {
-
-      if (status === 'OK') {
-        if (results[0]) {
-          console.log(results[0].formatted_address);
-          // this.form.get('location').patchValue(results[0].formatted_address);
-        } else {
-          console.log('No results found');
-        }
-      } else {
-        console.log('Geocoder failed due to: ' + status);
-      }
-
-    });
-  }
-
-
-
 }
+
