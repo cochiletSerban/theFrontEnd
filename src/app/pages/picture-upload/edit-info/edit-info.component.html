@@ -35,6 +35,15 @@
     </div>
 
   </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <agm-map  [streetViewControl]="false" [showDefaultInfoWindow]="false"
+        [clickableIcons]="false" [usePanning]="true" [zoomControl]="false" [latitude]="lat"
+        [longitude]="lon"  [zoom]='zoom' (mapReady)="mapReady($event)" >
+      </agm-map>
+    </div>
+  </div>
+
 
   <div class="row">
     <div class="loading" [ngClass]="{'show':loading}">

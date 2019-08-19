@@ -184,11 +184,10 @@ export class MapComponent implements OnInit, AfterViewInit {
   canAddMarkers = false;
   boundsChanged: Subject<Location> = new Subject<Location>();
   picturesOnMap: Image[] = [];
-  isMobile: boolean;
   showFinalUploadStep = false;
 
   constructor(private locationService: LocationService, private imageService: ImageService,
-              private userService: UserService, private deviceService: DeviceDetectorService,
+              private userService: UserService,
               private renderer: Renderer2, private elRef: ElementRef,
               private imageUploadService: ImageUploadService, private router: Router ) {
     this.boundsChanged.pipe( debounceTime(300), distinctUntilChanged(),
@@ -199,13 +198,13 @@ export class MapComponent implements OnInit, AfterViewInit {
       });
     this.topEdge = this.locationService.getCurrentLocation();
     this.bottomEdge = this.locationService.getCurrentLocation();
-    this.isMobile = this.deviceService.isMobile();
+
    }
 
   ngOnInit() {
     this.mapCenter = this.userLocation;
     this.picturesOnMap = this.initialImages;
-    this.zoom = this.calculateZoom(window.innerWidth, 100, this.userLocation.lat, 1);
+    this.zoom = this.locationService.calculateZoom(window.innerWidth, 100, this.userLocation.lat, 1);
   }
 
   ngAfterViewInit() {
@@ -228,16 +227,7 @@ export class MapComponent implements OnInit, AfterViewInit {
     this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(document.getElementById('hud'));
   }
 
-  calculateZoom(WidthPixel, Ratio, Lat, Length) {
-    Length = Length * 1000;
-    let k = WidthPixel * 156543.03392 * Math.cos(Lat * Math.PI / 180);
-    if (this.isMobile) {
-      k = WidthPixel * 306543.03392 * Math.cos(Lat * Math.PI / 180);
-    }
-    let myZoom = Math.round( Math.log( (Ratio * k) / (Length * 100) ) / Math.LN2 );
-    myZoom =  myZoom - 1;
-    return(myZoom);
-  }
+
 
   boundsChange(event) {
     this.bottomEdge.lat = event.na.j;

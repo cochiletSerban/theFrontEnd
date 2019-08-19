@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import * as geolib from 'geolib';
 import { UserService } from './user.service';
 import { MapsAPILoader } from '@agm/core';
+import { DeviceDetectorService } from 'ngx-device-detector';
 declare var google: any;
 @Injectable({
   providedIn: 'root'
@@ -19,11 +20,14 @@ export class LocationService {
   radius = 500;
   locationChangeWatch;
   geoCoder;
+  isMobile: boolean;
 
-  constructor(private userService: UserService, private mapsAPILoader: MapsAPILoader) {
+  constructor(private userService: UserService, private mapsAPILoader: MapsAPILoader, private deviceService: DeviceDetectorService) {
     this.radius = this.userService.getUserRadius();
+    this.isMobile = this.deviceService.isMobile();
     this.mapsAPILoader.load().then(() => {
       this.geoCoder = new google.maps.Geocoder();
+      console.log('nebunie');
     });
   }
 
@@ -63,6 +67,7 @@ export class LocationService {
   }
 
   getAddressFromLocation(location): Observable<any> {
+    console.log(location);
     return Observable.create(observer => {
       this.geoCoder.geocode({location}, (results, status) => {
         if (status === 'OK' && results[0]) {
@@ -109,4 +114,17 @@ export class LocationService {
       lon: mapCenter.lon
     };
   }
+
+  calculateZoom(WidthPixel, Ratio, Lat, Length) {
+    Length = Length * 1000;
+    let k = WidthPixel * 156543.03392 * Math.cos(Lat * Math.PI / 180);
+    if (this.isMobile) {
+      k = WidthPixel * 306543.03392 * Math.cos(Lat * Math.PI / 180);
+    }
+    let myZoom = Math.round( Math.log( (Ratio * k) / (Length * 100) ) / Math.LN2 );
+    myZoom =  myZoom - 1;
+    return(myZoom);
+  }
 }
+
+

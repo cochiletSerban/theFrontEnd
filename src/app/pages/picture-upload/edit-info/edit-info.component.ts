@@ -1,3 +1,4 @@
+import { switchMap, tap } from 'rxjs/operators';
 import { Image } from './../../../models/image';
 import { ImageUploadService } from './../../../services/image-upload.service';
 import { Component, OnInit, ViewChild, ElementRef, NgZone, AfterViewInit } from '@angular/core';
@@ -25,21 +26,50 @@ export class EditInfoComponent implements OnInit, AfterViewInit {
   loading = true;
   uploader;
   geoCoder;
+  lat;
+  lon;
+  zoom;
+  uploadMarker;
+  map;
+
+  // iau locatia pt harta si geocode
+  // locatie este fie locationService.getCurrentLocation() fie this.imageUploadService.getImageLocation()
+  // daca getImageLocation nu e null iau locatia din serviciu creez markerul si geocodeul
+  // else fac acelasi lucru dar cu getCurrent location
 
   constructor(private imageUploadService: ImageUploadService, private locationService: LocationService,
               private mapsAPILoader: MapsAPILoader, private ngZone: NgZone) {
 
+    this.zoom = this.locationService.calculateZoom(window.innerWidth, 100, this.locationService.getCurrentLocation().lat, 1);
+    // this.lat = this.locationService.getCurrentLocation().lat;
+    // this.lon = this.locationService.getCurrentLocation().lon;
+
     if (this.imageUploadService.getImageLocation()) {
       this.locationService.getAddressFromLocation(this.imageUploadService.getImageLocation())
-        .subscribe(address =>  {
-          this.form.get('location').patchValue(address);
-          this.form.updateValueAndValidity();
-          M.updateTextFields();
+        .subscribe(address => {
+          this.createMarkerAndPopulateAddress(this.imageUploadService.getImageLocation(), address);
         });
+    } else {
+      const location = {
+        lat: this.locationService.getCurrentLocation().lat,
+        lon: this.locationService.getCurrentLocation().lon
+      };
+      this.locationService.getAddressFromLocation(location).subscribe(address => {
+        this.createMarkerAndPopulateAddress(this.imageUploadService.getImageLocation(), address);
+      });
     }
 
-  }
+ }
 
+ createMarkerAndPopulateAddress(location, address) {
+  this.lat = location.lat;
+  this.lon = location.lon;
+  this.addPoi({lat: this.lat, lng: this.lon});
+  this.uploadMarker.addListener('dragend', this.handleMarkerDrag.bind(this));
+  this.form.get('location').patchValue(address);
+  this.form.updateValueAndValidity();
+  M.updateTextFields();
+ }
 
   ngOnInit() {
     this.uploader = this.imageUploadService.getUploader();
@@ -48,8 +78,23 @@ export class EditInfoComponent implements OnInit, AfterViewInit {
     }).add(() => this.loading = false);
 
 
+  }
+
+  mapReady(map) {
+    this.map = map;
+    // this.addPoi({lat: this.lat, lng: this.lon});
+    // this.uploadMarker.addListener('dragend', this.handleMarkerDrag.bind(this));
+  }
 
 
+  handleMarkerDrag(event) {
+    this.lat = + event.latLng.lat();
+    this.lon = + event.latLng.lng();
+    this.locationService.getAddressFromLocation({lat: this.lat, lng: this.lon}).subscribe(address => {
+      this.form.get('location').patchValue(address);
+      this.form.updateValueAndValidity();
+      M.updateTextFields();
+    });
   }
 
   ngAfterViewInit() {
@@ -66,9 +111,11 @@ export class EditInfoComponent implements OnInit, AfterViewInit {
             return;
           }
 
-          // this.latitude = place.geometry.location.lat();
-          // this.longitude = place.geometry.location.lng();
-          // this.zoom = 12;
+          this.lat = place.geometry.location.lat();
+          this.lon = place.geometry.location.lng();
+          if (this.uploadMarker) {
+            this.uploadMarker.setPosition( new google.maps.LatLng( this.lat, this.lon ) );
+          }
         });
       });
     });
@@ -100,6 +147,14 @@ export class EditInfoComponent implements OnInit, AfterViewInit {
 
   onSubmit() {
     console.log(this.form.value);
+  }
+
+  addPoi(ev) {
+    this.uploadMarker = new google.maps.Marker({
+      position: new google.maps.LatLng(+ev.lat, +ev.lng),
+      map: this.map,
+      draggable: true
+    });
   }
 
 }

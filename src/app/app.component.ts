@@ -1,3 +1,4 @@
+import { LocationService } from 'src/app/services/location.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class AppComponent implements OnInit {
-  constructor() {}
+  constructor(private locationService: LocationService) {
+    this.locationService.getLocation().subscribe();
+  }
   ngOnInit() {
       let vh = window.innerHeight * 0.01;
       document.documentElement.style.setProperty('--vh', `${vh}px`);
