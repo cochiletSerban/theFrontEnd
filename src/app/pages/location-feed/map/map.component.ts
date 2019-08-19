@@ -285,7 +285,8 @@ export class MapComponent implements OnInit, AfterViewInit {
       this.router.navigate(['/upload']);
       this.showFinalUploadStep = false;
     } else {
-      this.imageUploadService.setImageLocation(this.userLocation);
+
+      this.imageUploadService.setImageLocation({lat: this.userLocation.lat, lng: this.userLocation.lon});
       this.router.navigate(['/upload']);
     }
     this.showFinalUploadStep = false;

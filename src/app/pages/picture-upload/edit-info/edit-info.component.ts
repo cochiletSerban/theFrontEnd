@@ -1,6 +1,6 @@
 import { Image } from './../../../models/image';
 import { ImageUploadService } from './../../../services/image-upload.service';
-import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, NgZone, AfterViewInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { MapsAPILoader } from '@agm/core';
 import { LocationService } from 'src/app/services/location.service';
@@ -11,7 +11,7 @@ declare var google: any;
   templateUrl: './edit-info.component.html',
   styleUrls: ['./edit-info.component.scss']
 })
-export class EditInfoComponent implements OnInit {
+export class EditInfoComponent implements OnInit, AfterViewInit {
   @ViewChild('search')  searchElementRef;
 
   form: FormGroup = new FormGroup({
@@ -48,6 +48,11 @@ export class EditInfoComponent implements OnInit {
     }).add(() => this.loading = false);
 
 
+
+
+  }
+
+  ngAfterViewInit() {
     this.mapsAPILoader.load().then(() => {
       const autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
         types: ['address']
@@ -68,10 +73,7 @@ export class EditInfoComponent implements OnInit {
       });
     });
 
-
   }
-
-
 
 
 
