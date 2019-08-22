@@ -5,6 +5,7 @@ import { Component, OnInit, ViewChild, ElementRef, NgZone, AfterViewInit } from 
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MapsAPILoader } from '@agm/core';
 import { LocationService } from 'src/app/services/location.service';
+import { Observable, of } from 'rxjs';
 declare var M: any;
 declare var google: any;
 @Component({
@@ -125,6 +126,13 @@ export class EditInfoComponent implements OnInit, AfterViewInit {
 
   }
 
+  public transform(value: string): Observable<object> {
+    if (value !== '#' && value !== '') {
+      const item = {display: `#${value}`, value: `#${value}`};
+      return of(item);
+    }
+  }
+
 
 
   onSubmit() {
@@ -133,7 +141,7 @@ export class EditInfoComponent implements OnInit, AfterViewInit {
       this.loadingAddress = true;
       this.uploader.options.additionalParameter = {
         title: this.form.get('title').value,
-        // tags: this.form.get('tags').value,
+        tags: JSON.stringify(this.form.get('tags').value.map(tags => tags.value)),
         description: this.form.get('description').value,
         private: false,
         lat: this.lat,
@@ -141,6 +149,8 @@ export class EditInfoComponent implements OnInit, AfterViewInit {
       };
       this.uploader.uploadAll();
     }
+
+    console.log(this.form.get('tags').value.map(tags => tags.value));
    }
 
   addPoi(ev) {

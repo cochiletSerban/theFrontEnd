@@ -26,3 +26,18 @@ img {
 agm-map {
   height: 500px;
 }
+
+tag-input::ng-deep tag-input-form {
+  width: 100%;
+}
+
+
+tag-input::ng-deep tag {
+  background-color: $primary-color !important;
+  color: white !important;
+}
+
+tag-input::ng-deep > div {
+  border-bottom: none !important;
+}
+

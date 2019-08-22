@@ -34,6 +34,8 @@ import { PulseLoaderComponent } from './pages/location-feed/pulse-loader/pulse-l
 import { PictureUploadComponent } from './pages/picture-upload/picture-upload.component';
 import { EditInfoComponent } from './pages/picture-upload/edit-info/edit-info.component';
 import { HeaderComponent } from './pages/shared/header/header.component';
+import { TagInputModule } from 'ngx-chips';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
@@ -65,6 +67,7 @@ import { HeaderComponent } from './pages/shared/header/header.component';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
@@ -73,6 +76,7 @@ import { HeaderComponent } from './pages/shared/header/header.component';
     NgxMasonryModule,
     NgSelectModule,
     DragScrollModule,
+    TagInputModule,
     FileUploadModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAUlyq5mD4M532jSKMqykG3UwXnzA8FMKk',

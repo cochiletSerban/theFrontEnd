@@ -21,8 +21,7 @@
         </div>
 
         <div class="input-field">
-          <input  type="text"  formControlName="tags">
-          <label  for="tags">Tags</label>
+          <tag-input id="tags"  [onAdding]="transform" formControlName="tags" [editable]="false"   [separatorKeys]="', .#'"></tag-input>
         </div>
 
         <div class="input-field">

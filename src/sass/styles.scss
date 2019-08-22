@@ -69,3 +69,7 @@ body {
 .w-100 {
   width:100%;
 }
+
+tag-input::ng-deep tag {
+  background-color: red!important;
+}
