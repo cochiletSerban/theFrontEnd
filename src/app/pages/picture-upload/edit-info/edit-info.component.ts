@@ -6,6 +6,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MapsAPILoader } from '@agm/core';
 import { LocationService } from 'src/app/services/location.service';
 import { Observable, of } from 'rxjs';
+import { Router } from '@angular/router';
 declare var M: any;
 declare var google: any;
 @Component({
@@ -19,7 +20,7 @@ export class EditInfoComponent implements OnInit, AfterViewInit {
   form: FormGroup = new FormGroup({
     title: new FormControl(null, Validators.required),
     description: new FormControl(null),
-    tags: new FormControl(null),
+    tags: new FormControl(null, Validators.required),
     location: new FormControl(null, Validators.required),
   });
 
@@ -37,7 +38,7 @@ export class EditInfoComponent implements OnInit, AfterViewInit {
 
 
   constructor(private imageUploadService: ImageUploadService, private locationService: LocationService,
-              private mapsAPILoader: MapsAPILoader, private ngZone: NgZone) {
+              private mapsAPILoader: MapsAPILoader, private ngZone: NgZone, private router: Router) {
 
     this.zoom = this.locationService.calculateZoom(window.innerWidth, 100, this.locationService.getCurrentLocation().lat, 1);
 
@@ -79,9 +80,13 @@ export class EditInfoComponent implements OnInit, AfterViewInit {
     this.uploader.onCompleteItem = (item, response, status) => {
       this.loadingPicture = false;
       this.loadingAddress = false;
-      console.log('ImageUpload:uploaded:', item, status, response);
+      if (status === 201) {
+        this.router.navigate(['/explore']);
+        M.toast({classes: 'succToaster' , html: 'Picure uploaded successfully!' +
+        `<button class="btn-flat toast-action" onclick="M.Toast.getInstance($('.toast')).dismiss()">Dismiss</button>`
+        });
+      }
     };
-
   }
 
   mapReady(map) {
@@ -141,7 +146,7 @@ export class EditInfoComponent implements OnInit, AfterViewInit {
       this.loadingAddress = true;
       this.uploader.options.additionalParameter = {
         title: this.form.get('title').value,
-        tags: JSON.stringify(this.form.get('tags').value.map(tags => tags.value)),
+        tags: JSON.stringify(this.form.get('tags').value.map(tags => tags.value.replace('#', ''))),
         description: this.form.get('description').value,
         private: false,
         lat: this.lat,
@@ -149,8 +154,6 @@ export class EditInfoComponent implements OnInit, AfterViewInit {
       };
       this.uploader.uploadAll();
     }
-
-    console.log(this.form.get('tags').value.map(tags => tags.value));
    }
 
   addPoi(ev) {

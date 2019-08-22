@@ -15,6 +15,10 @@ body {
   @extend %errToast;
 }
 
+.succToaster {
+  @extend %successToast;
+}
+
 .debug {
   border: 2px solid fuchsia;
 }
