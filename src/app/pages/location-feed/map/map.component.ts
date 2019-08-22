@@ -231,7 +231,7 @@ export class MapComponent implements OnInit, AfterViewInit {
 
   boundsChange(event) {
     this.bottomEdge.lat = event.na.j;
-    this.bottomEdge.lon = event.ia.j;
+    this.bottomEdge.lon = event.ga.j;
 
     const location = this.locationService.getRadiusOfCurrentView(this.mapCenter, this.bottomEdge);
 
