@@ -5,6 +5,7 @@ import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { FileUploader } from 'ng2-file-upload';
 import { environment } from 'src/environments/environment';
+import { DeviceDetectorService } from 'ngx-device-detector';
 
 @Component({
   selector: 'app-picture-upload',
@@ -12,6 +13,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./picture-upload.component.scss']
 })
 export class PictureUploadComponent implements OnInit {
+  isMobile;
   apiUrl = environment.apiUrl;
   public uploader: FileUploader = new FileUploader({
     url: this.apiUrl + '/images/small', itemAlias: 'image',
@@ -21,7 +23,9 @@ export class PictureUploadComponent implements OnInit {
   inputHasfile = false;
 
   constructor(private authService: AuthService, private imageUploadService: ImageUploadService,
-              private router: Router) { }
+              private router: Router, private deviceService: DeviceDetectorService) {
+    this.isMobile = this.deviceService.isMobile();
+  }
 
   ngOnInit() {
     this.uploader.onAfterAddingFile = (file) => {

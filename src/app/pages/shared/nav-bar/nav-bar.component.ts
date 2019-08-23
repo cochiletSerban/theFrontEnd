@@ -1,3 +1,4 @@
+import { AuthService } from 'src/app/services/auth.service';
 import { Component, OnInit, AfterViewInit, ElementRef } from '@angular/core';
 import * as M from 'materialize-css/dist/js/materialize';
 import { Router } from '@angular/router';
@@ -10,7 +11,10 @@ declare var $: any;
 })
 export class NavBarComponent implements OnInit, AfterViewInit {
 
-  constructor(private elRef: ElementRef, private router: Router) { }
+
+  constructor(private elRef: ElementRef, public authService: AuthService,
+              private router: Router) {
+  }
 
   ngOnInit() {
     $(window).scroll(() => {
@@ -31,6 +35,10 @@ export class NavBarComponent implements OnInit, AfterViewInit {
       return true;
     }
     return false;
+  }
+
+  logout() {
+    this.authService.logout();
   }
 
 }

@@ -36,6 +36,7 @@ import { EditInfoComponent } from './pages/picture-upload/edit-info/edit-info.co
 import { HeaderComponent } from './pages/shared/header/header.component';
 import { TagInputModule } from 'ngx-chips';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { PopupComponent } from './pages/image-view/popup/popup.component';
 
 
 
@@ -64,6 +65,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     PictureUploadComponent,
     EditInfoComponent,
     HeaderComponent,
+    PopupComponent,
   ],
   imports: [
     BrowserModule,

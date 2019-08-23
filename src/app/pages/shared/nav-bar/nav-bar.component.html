@@ -1,7 +1,6 @@
 <div [hidden]="hideNav">
-
   <div class="navbar-fixed">
-    <nav class ="hide-header">
+    <nav class ="hide-header" [ngClass]="{'loged':  !authService.isUserLoggedIn()}" >
       <div class="nav-wrapper container">
         <a [routerLink]="['/feed']" href="#!" class="brand-logo"><img src="../../assets/img/drop.png"  width="50" alt="" srcset=""></a>
         <a  data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
@@ -11,6 +10,7 @@
           <li  routerLinkActive="active" ><a [routerLink]="['/test']"  >Test</a></li>
           <li  routerLinkActive="active" ><a [routerLink]="['/signup']"  >Signup</a></li>
           <li  routerLinkActive="active" ><a [routerLink]="['/upload']"  >Upload</a></li>
+          <li    (click)="logout()"><a [routerLink]="['/explore']" >Logout</a></li>
         </ul>
       </div>
     </nav>
@@ -22,6 +22,7 @@
     <li  routerLinkActive="active" ><a [routerLink]="['/test']">Test</a></li>
     <li  routerLinkActive="active" ><a [routerLink]="['/signup']"  >Signup</a></li>
     <li  routerLinkActive="active" ><a [routerLink]="['/upload']">Upload</a></li>
+    <li   (click)="logout()" ><a [routerLink]="['/explore']" >Logout</a></li>
   </ul>
 
 </div>

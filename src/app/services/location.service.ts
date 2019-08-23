@@ -27,7 +27,6 @@ export class LocationService {
     this.isMobile = this.deviceService.isMobile();
     this.mapsAPILoader.load().then(() => {
       this.geoCoder = new google.maps.Geocoder();
-      console.log('nebunie');
     });
   }
 
@@ -67,7 +66,6 @@ export class LocationService {
   }
 
   getAddressFromLocation(location): Observable<any> {
-    console.log(location);
     return Observable.create(observer => {
       this.geoCoder.geocode({location}, (results, status) => {
         if (status === 'OK' && results[0]) {

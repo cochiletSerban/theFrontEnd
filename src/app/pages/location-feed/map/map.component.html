@@ -17,7 +17,6 @@
 
 </agm-map>
 
-<h5 id="hud">{{userLocation.lat}} {{userLocation.lon}} </h5>
 
 <div class="fixed-action-btn" [hidden]="showFinalUploadStep" id="goToUserLocation">
   <button class="btn-floating btn-large ">
@@ -38,7 +37,7 @@
 <div id="locationUploadModal" class="modal bottom-sheet">
   <div class="modal-content">
     <h4>Picture Upload</h4>
-    <p>Do you want to user your current location to upload a picture?</p>
+    <p>Do you want to use your current location to upload a picture?</p>
   </div>
   <div class="modal-footer">
     <button class="modal-close waves-effect waves-green btn-flat" (click)="goToUpload()" >Yes</button>

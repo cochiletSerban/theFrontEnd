@@ -27,7 +27,11 @@
   margin: 0 auto;
   border: 5px dotted white;
   color: white;
-  padding: 30px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  width: 70%;
+  text-align: center;
+  box-sizing: border-box;
 }
 
 .go-back {
@@ -49,7 +53,7 @@
 }
 
 .go-back:hover {
-  transform: rotate(180deg);
+  transform: scale(1.2);
 }
 
 h5 {
@@ -88,9 +92,8 @@ h5 {
 }
 
 .input-zone {
-  width: 60%;
+  width: 70%;
   margin: 0 auto;
-  padding: 20px;
 }
 
 .text {
@@ -138,3 +141,7 @@ h5 {
   border: 5px dotted red;
 }
 
+.remove-padding {
+  padding: 10px;
+  width: 90%;
+}

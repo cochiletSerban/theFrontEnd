@@ -21,7 +21,7 @@
         </div>
 
         <div class="input-field">
-          <tag-input id="tags"  [onAdding]="transform" formControlName="tags" [editable]="false"   [separatorKeys]="', .#'"></tag-input>
+          <tag-input id="tags" [onAdding]="transform" formControlName="tags" [editable]="false"   [separatorKeys]="', .#'"></tag-input>
         </div>
 
         <div class="input-field">
@@ -36,7 +36,7 @@
   </div>
 
   <div class="row">
-    <div class="col-sm-12">
+    <div class="col s12">
       <agm-map [streetViewControl]="false" [showDefaultInfoWindow]="false"
         [clickableIcons]="false" [usePanning]="true" [zoomControl]="false" [latitude]="lat"
         [longitude]="lon"  [zoom]='zoom' (mapReady)="mapReady($event)" >

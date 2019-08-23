@@ -20,8 +20,8 @@ const routes: Routes = [
   {path: 'explore/:tag', component: FeedComponent},
   {path: 'image/:imageId', component: ImageViewComponent},
   {path: 'feed', component: LocationFeedComponent},
-  {path: 'upload', component: PictureUploadComponent},
-  {path: 'upload/edit-info', canActivate: [UploadGuard], component: EditInfoComponent}
+  {path: 'upload', canActivate: [AuthGuard], component: PictureUploadComponent},
+  {path: 'upload/edit-info', canActivate: [UploadGuard, AuthGuard], component: EditInfoComponent}
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

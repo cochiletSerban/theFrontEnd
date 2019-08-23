@@ -16,6 +16,10 @@ export class AuthService {
     return this.http.post(this.apiUrl + '/login', user).pipe(map(token => this.setToken(token)));
   }
 
+  logout() {
+    this.removeToken();
+  }
+
   register(user: User) {
     return this.http.post(this.apiUrl + '/register', user);
   }
@@ -26,6 +30,10 @@ export class AuthService {
 
   setToken(token) {
     localStorage.setItem('token', token);
+  }
+
+  removeToken() {
+    localStorage.removeItem('token');
   }
 
   isUserLoggedIn() {
