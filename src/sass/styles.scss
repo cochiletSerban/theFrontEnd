@@ -46,6 +46,10 @@ body {
   margin-bottom: 0;
 }
 
+.m {
+  margin:0;
+}
+
 .mb-7 {
   margin-bottom: 7px;
 }
@@ -76,4 +80,9 @@ body {
 
 tag-input::ng-deep tag {
   background-color: red!important;
+}
+
+
+.no-shadow {
+  box-shadow: none;
 }

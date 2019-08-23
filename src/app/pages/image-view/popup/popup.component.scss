@@ -1,0 +1,53 @@
+@import '../../../../sass/vars';
+@import '../../../../sass/classes';
+
+:host {
+  display: block;
+  text-shadow: none;
+}
+
+.card {
+  background-color: $tree;
+
+  padding: 20px;
+  position: absolute;
+  z-index: 2;
+  top:50px;
+  left: 0;
+  width: 140%;
+}
+
+.card > h5 {
+  margin-top: 5px;
+}
+
+.card > p:nth-child(3) {
+  margin-top: 0;
+}
+
+.card > p:nth-child(2) {
+  margin-bottom: 0;
+}
+
+.triangle {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 15px 25px 15px;
+  border-color: transparent transparent $tree transparent;
+  position: absolute;
+  top: -25px;
+  // left: 60px;
+}
+
+.card > .row {
+  margin: 0;
+}
+
+.modal {
+  color: black;
+}
+
+.modal-content > p {
+  margin: 0;
+}

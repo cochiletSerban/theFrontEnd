@@ -1,3 +1,29 @@
-<p>
-  popup works!
-</p>
+<div class="card" *ngIf="!isMobile">
+  <div class="triangle" [style.left]="position"></div>
+  <h5>{{text.title}}</h5>
+  <p>You need to be loged in to {{text.content}} this picture.</p>
+  <p>Signup to get the full features and help the Piky community.</p>
+
+  <div class="row">
+    <div class="col s6">
+      <button class="waves-effect waves-teal btn no-shadow w-100" (click)="login()" >Login</button>
+    </div>
+    <div class="col s6">
+      <button class="waves-effect waves-teal btn w-100" (click)="signup()" >Sign up</button>
+    </div>
+  </div>
+</div>
+
+<div id="confirmationModal" class="modal bottom-sheet" *ngIf="isMobile">
+  <div class="modal-content">
+    <h4>{{text.title}}</h4>
+    <p>You need to be loged in to {{text.content}} this picture.</p>
+    <p>Signup to get the full features and help the Piky community.</p>
+  </div>
+  <div class="modal-footer">
+    <button class="modal-close waves-effect waves-green btn-flat" (click)="login()">login</button>
+    <button class="modal-close waves-effect waves-green btn"  (click)="signup()" >sign up</button>
+  </div>
+</div>
+
+

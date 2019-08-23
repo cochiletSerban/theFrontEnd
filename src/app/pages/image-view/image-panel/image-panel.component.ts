@@ -18,6 +18,7 @@ export class ImagePanelComponent implements OnInit {
   isDisliked = false;
   isLoading = false;
   postComentLoading = false;
+  showPopup = false;
   comment: FormGroup;
 
   constructor(private imageService: ImageService, private userService: UserService,
@@ -77,7 +78,7 @@ export class ImagePanelComponent implements OnInit {
       return;
     }
     if (!this.authService.isUserLoggedIn()) {
-      // display log in pop up
+      // this.showPopUp = true;
       return;
     }
 
