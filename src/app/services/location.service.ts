@@ -39,7 +39,12 @@ export class LocationService {
                     observer.next(position);
                     observer.complete();
                 },
-                (error) => observer.error(error)
+                (error) => observer.error(error),
+                {
+                  enableHighAccuracy: true,
+                  timeout: 5000,
+                  maximumAge: 0
+                }
             );
         } else {
             observer.error('Unsupported Browser');
