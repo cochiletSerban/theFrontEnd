@@ -37,6 +37,8 @@ import { HeaderComponent } from './pages/shared/header/header.component';
 import { TagInputModule } from 'ngx-chips';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PopupComponent } from './pages/image-view/popup/popup.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 
 
@@ -84,7 +86,8 @@ import { PopupComponent } from './pages/image-view/popup/popup.component';
       apiKey: 'AIzaSyAUlyq5mD4M532jSKMqykG3UwXnzA8FMKk',
       libraries: ['places']
     }),
-    DeviceDetectorModule.forRoot()
+    DeviceDetectorModule.forRoot(),
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
   bootstrap: [AppComponent]
