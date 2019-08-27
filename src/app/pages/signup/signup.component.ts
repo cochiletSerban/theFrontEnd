@@ -111,7 +111,7 @@ export class SignupComponent implements OnInit, AfterViewInit {
       };
       this.authService.login(this.user).subscribe(res => {
         this.stopTitleBar(this.loginPiky);
-        this.router.navigate(['/test']);
+        this.router.navigate(['/explore']);
       }, err => {
         this.setValidationErrors('both');
       });

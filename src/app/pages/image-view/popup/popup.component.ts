@@ -1,5 +1,7 @@
 import { Component, OnInit, Input, AfterViewInit, OnChanges } from '@angular/core';
 import { DeviceDetectorService } from 'ngx-device-detector';
+import { Router } from '@angular/router';
+
 declare var M: any;
 @Component({
   selector: 'app-popup',
@@ -26,7 +28,7 @@ export class PopupComponent implements OnInit, AfterViewInit, OnChanges {
 
   text =  this.textLike;
 
-  constructor(private deviceService: DeviceDetectorService) {
+  constructor(private deviceService: DeviceDetectorService, private router: Router) {
     this.isMobile = this.deviceService.isMobile();
   }
 
@@ -62,11 +64,11 @@ export class PopupComponent implements OnInit, AfterViewInit, OnChanges {
   }
 
   signup() {
-
+    this.router.navigate(['/signup']);
   }
 
   login() {
-
+    this.router.navigate(['/signup']);
   }
 
 }

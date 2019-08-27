@@ -8,20 +8,20 @@
   <div class="col s12 m6 push-m3 l4 push-l4">
     <div class="titleBarContainer">
       <div class="titleBar" >
-        <img src="{{loginLogo}}" class='animated' #titleBar>
+        <img [routerLink]="['/explore']" routerLinkActive="router-link-active"  src="{{loginLogo}}" class='animated' #titleBar>
       </div>
     </div>
 
     <div class="formContainer animated" >
 
-      <div class="fbl">
+      <!-- <div class="fbl">
         <button class="btn waves-light waves-effect"
         (click)='fbLogin()' #loginFb
         (mouseenter)="onHo('fb',true)" (mouseleave)="onHo('fb',false)" >
           Login with Facebook
         </button>
         <img src="../../assets/img/ethBtn.png" alt="">
-      </div>
+      </div> -->
 
       <!-- <div class="eth">
         <button class="btn waves-light waves-effect"
@@ -33,7 +33,7 @@
 
       <div class="formBox" (mouseenter)="onHo('piky',true)" (mouseleave)="onHo('piky',false)" >
 
-        <h6>~ OR ~</h6>
+        <!-- <h6>~ OR ~</h6> -->
 
         <div class="row">
           <div class="col s12">

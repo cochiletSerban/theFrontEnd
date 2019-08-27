@@ -1,28 +1,28 @@
 <div [hidden]="hideNav">
   <div class="navbar-fixed">
-    <nav class ="hide-header" [ngClass]="{'loged':  !authService.isUserLoggedIn()}" >
+    <nav class ="hide-header" >
       <div class="nav-wrapper container">
         <a [routerLink]="['/feed']" href="#!" class="brand-logo"><img src="../../assets/img/drop.png"  width="50" alt="" srcset=""></a>
         <a  data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
         <ul class="right hide-on-med-and-down">
-          <li  routerLinkActive="active" ><a [routerLink]="['/feed']">Feed</a></li>
-          <li  routerLinkActive="active" ><a [routerLink]="['/explore']"  >Explore</a></li>
-          <li  routerLinkActive="active" ><a [routerLink]="['/test']"  >Test</a></li>
-          <li  routerLinkActive="active" ><a [routerLink]="['/signup']"  >Signup</a></li>
-          <li  routerLinkActive="active" ><a [routerLink]="['/upload']"  >Upload</a></li>
-          <li    (click)="logout()"><a [routerLink]="['/explore']" >Logout</a></li>
+          <li  routerLinkActive="active" ><a [routerLink]="['/feed']">Near you</a></li>
+          <li  routerLinkActive="active" ><a [routerLink]="['/explore']" >Gallery</a></li>
+          <!-- <li  routerLinkActive="active" ><a [routerLink]="['/test']"  >Test</a></li> -->
+          <li  routerLinkActive="active" ><a [routerLink]="['/upload']"  >Upload a picture</a></li>
+          <li *ngIf="!authService.isUserLoggedIn()" routerLinkActive="active" ><a [routerLink]="['/signup']"  >Signup</a></li>
+          <li *ngIf="authService.isUserLoggedIn()"   (click)="logout()"><a [routerLink]="['/explore']" >Logout</a></li>
         </ul>
       </div>
     </nav>
   </div>
 
   <ul class="sidenav"  id="mobile-demo">
-    <li  routerLinkActive="active" ><a [routerLink]="['/feed']">Feed</a></li>
-    <li  routerLinkActive="active" ><a [routerLink]="['/explore']">Explore</a></li>
-    <li  routerLinkActive="active" ><a [routerLink]="['/test']">Test</a></li>
-    <li  routerLinkActive="active" ><a [routerLink]="['/signup']"  >Signup</a></li>
-    <li  routerLinkActive="active" ><a [routerLink]="['/upload']">Upload</a></li>
-    <li   (click)="logout()" ><a [routerLink]="['/explore']" >Logout</a></li>
+    <li  routerLinkActive="active" ><a [routerLink]="['/feed']">Near you</a></li>
+    <li  routerLinkActive="active" ><a [routerLink]="['/explore']">Gallery</a></li>
+    <!-- <li  routerLinkActive="active" ><a [routerLink]="['/test']">Test</a></li> -->
+    <li  routerLinkActive="active" ><a [routerLink]="['/upload']">Upload a picture</a></li>
+    <li  *ngIf="!authService.isUserLoggedIn()" routerLinkActive="active" ><a [routerLink]="['/signup']"  >Signup</a></li>
+    <li  *ngIf="authService.isUserLoggedIn()" (click)="logout()" ><a [routerLink]="['/explore']" >Logout</a></li>
   </ul>
 
 </div>
