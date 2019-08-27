@@ -18,7 +18,7 @@ export class ImagePanelComponent implements OnInit {
   isDisliked = false;
   isLoading = false;
   postComentLoading = false;
-  showPopup = false;
+  showPopup = '';
   comment: FormGroup;
 
   constructor(private imageService: ImageService, private userService: UserService,
@@ -51,7 +51,17 @@ export class ImagePanelComponent implements OnInit {
       return;
     }
     if (!this.authService.isUserLoggedIn()) {
-       // display log in pop up
+      switch (this.showPopup) {
+        case '':
+          this.showPopup = 'like';
+          break;
+        case 'like':
+          this.showPopup = '';
+          break;
+        case 'dislike':
+          this.showPopup = 'like';
+          break;
+      }
       return;
     }
 
@@ -78,7 +88,17 @@ export class ImagePanelComponent implements OnInit {
       return;
     }
     if (!this.authService.isUserLoggedIn()) {
-      // this.showPopUp = true;
+      switch (this.showPopup) {
+        case '':
+          this.showPopup = 'dislike';
+          break;
+        case 'dislike':
+          this.showPopup = '';
+          break;
+        case 'like':
+          this.showPopup = 'dislike';
+          break;
+      }
       return;
     }
 

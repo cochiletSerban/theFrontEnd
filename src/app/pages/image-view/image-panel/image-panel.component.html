@@ -24,7 +24,7 @@
 
     <div class="col s4 pl-0" style="position: relative">
 
-      <app-popup [type]="'dislike'"  ></app-popup>
+      <app-popup [type]="showPopup" *ngIf="showPopup!==''" ></app-popup>
 
       <div class="col s6 right-align p-0" (click)="likeImage()"  >
 
@@ -47,7 +47,7 @@
 
   <div class="row col">
     <div class="col s12">
-        {{image.description}} asdsds
+        {{image.description}}
     </div>
   </div>
 
@@ -62,7 +62,7 @@
       </div>
 
       <div class="col s12 m2">
-        <button class="btn waves-effect waves-light" [disabled]="postComentLoading" (click)="postComment()">Post</button>
+        <button class="btn waves-effect waves-light" [disabled]="postComentLoading || !authService.isUserLoggedIn()" (click)="postComment()">Post</button>
       </div>
 
     </form>

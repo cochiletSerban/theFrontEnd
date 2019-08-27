@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Input, AfterViewInit, OnChanges } from '@angular/core';
 import { DeviceDetectorService } from 'ngx-device-detector';
 declare var M: any;
 @Component({
@@ -6,7 +6,7 @@ declare var M: any;
   templateUrl: './popup.component.html',
   styleUrls: ['./popup.component.scss']
 })
-export class PopupComponent implements OnInit, AfterViewInit {
+export class PopupComponent implements OnInit, AfterViewInit, OnChanges {
   @Input() type: string;
 
   position = '23%';
@@ -20,8 +20,8 @@ export class PopupComponent implements OnInit, AfterViewInit {
   };
 
   private readonly textDislike = {
-    title: 'Like this picture?',
-    content: 'like'
+    title: `Don't like this picture?`,
+    content: 'dislike'
   };
 
   text =  this.textLike;
@@ -35,6 +35,19 @@ export class PopupComponent implements OnInit, AfterViewInit {
       this.position = '58%';
       this.text = this.textDislike;
     } else {
+      this.position = '23%';
+      this.text = this.textLike;
+    }
+  }
+
+  ngOnChanges(): void {
+    if (this.type === 'dislike') {
+      console.log('dis');
+      this.position = '58%';
+      this.text = this.textDislike;
+    }
+    if (this.type === 'like') {
+      console.log('like');
       this.position = '23%';
       this.text = this.textLike;
     }
