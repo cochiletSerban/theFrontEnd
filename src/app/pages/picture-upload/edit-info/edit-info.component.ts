@@ -165,4 +165,3 @@ export class EditInfoComponent implements OnInit, AfterViewInit {
   }
 
 }
-
