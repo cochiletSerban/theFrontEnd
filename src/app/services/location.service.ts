@@ -13,8 +13,8 @@ export class LocationService {
 
   currentLocation = {
     coords: {
-      latitude: 420,
-      longitude: 69
+      latitude: 44.434874,
+      longitude: 26.047612
     }
   };
   radius = 500;

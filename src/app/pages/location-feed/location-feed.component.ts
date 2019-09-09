@@ -33,7 +33,6 @@ export class LocationFeedComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-
     this.locationService.getLocation().pipe(switchMap(
       location => combineLatest([
         this.imageService.getImagesInMyArea(),
