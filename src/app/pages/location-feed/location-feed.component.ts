@@ -22,12 +22,17 @@ export class LocationFeedComponent implements OnInit, OnDestroy {
 
 
   constructor(public locationService: LocationService, private imageService: ImageService, private commentService: CommentService) {
+    this.locationService.locationChange().subscribe(
+      res => console.log(res)
+    );
 
     this.locationService.locationChange().pipe(switchMap(
-      location => combineLatest([
+      location => {
+        console.log(location);
+        return combineLatest([
         this.imageService.getImagesInMyArea(),
         this.commentService.getCommentsInArea(this.locationService.getCoordinatesFromLocation(location))
-      ])
+      ])}
     )).subscribe(res => { this.images = res[0], this.comments = res[1]; }).add(() => this.loading = false);
 
   }
